@@ -1,3 +1,13 @@
 .App {
-  text-align: center;
+  background-image: url('./Assets/backgrounds/bg0.jpg');
+  width: 800px;
+  height: 480px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+.component {
+  width: 800px;
+  height: 440px;
+  margin-top: 40px;
 }

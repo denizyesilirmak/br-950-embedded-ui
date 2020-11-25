@@ -1,0 +1,63 @@
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-container {
+  width: 720px;
+  height: 380px;
+  display: flex;
+}
+
+.settings-container .left {
+  width: 76px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.settings-container .right {
+  width: 644px;
+  height: 380px;
+  background: #ffffff90;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.settings .settings-container .left .settings-tab {
+  width: 76px;
+  height: 72px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: #ffffff20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-tab.active {
+  background: #ffffff90 !important;
+}
+
+.tab-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.settings-sub-title {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.settings-sub-container {
+  height: 320px;
+  width: 644px;
+}

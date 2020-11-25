@@ -1,0 +1,42 @@
+.language-settings {
+  height: 320px;
+  width: 644px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.language-container {
+  width: 600px;
+  height: 240px;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 50% 50%;
+}
+
+.language-container .language {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.language-container .language .language-icon {
+  width: 60px;
+}
+
+.language-container .language .language-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.language-container .language.selected {
+  background: #ffffffaa;
+}
+
+.language-container .language.selected .language-icon {
+  width: 100px;
+}

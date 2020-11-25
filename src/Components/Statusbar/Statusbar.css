@@ -1,0 +1,49 @@
+.status-bar {
+  width: 800px;
+  height: 40px;
+  background: #000;
+  border-bottom: 1px solid #ffffff20;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-bar-left {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.status-bar-right {
+  height: 40px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.status-bar .menu-title {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.wifi-icon {
+  margin-right: 8px;
+}
+
+.status-bar .flag {
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.status-bar .flag img {
+  width: 44px;
+  border-radius: 10px;
+}
