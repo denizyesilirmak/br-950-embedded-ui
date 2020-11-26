@@ -1,0 +1,41 @@
+.settings-item {
+  width: 100%;
+  height: 70px;
+  background: #ffffff40;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.settings-item .icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-item .icon img {
+  width: 50px;
+}
+
+.settings-item .settings-prop-label {
+  font-weight: bold;
+  font-size: 20px;
+  width: 300px;
+}
+
+.settings-item .settings-prop-value {
+  width: 210px;
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
+.settings-item.selected {
+  background: #40acff !important;
+  color: #ffffff !important;
+}

@@ -8,6 +8,7 @@ import Volume_Icon from '../../Assets/icons/settings/volume.png'
 import Info_Icon from '../../Assets/icons/settings/info.png'
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
+import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
 
 const SETTINGS_TABS = [
   "Language Settings",
@@ -20,7 +21,7 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeSettingsTab: 0
+      activeSettingsTab: 1
     }
   }
 
@@ -60,6 +61,7 @@ class Settings extends React.Component {
   renderSubSettings = () => {
     switch (this.state.activeSettingsTab) {
       case 0: return <LanguageSettings />
+      case 1: return <DateTimeSettings />
 
 
       default:

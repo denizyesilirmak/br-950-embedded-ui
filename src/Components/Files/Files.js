@@ -28,11 +28,14 @@ const dummy_file_list = [
 class Files extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       fileList: dummy_file_list,
       selectedFileIndex: 0
     }
+
+    this.scrollable = React.createRef()
+    this.scrollhandle = React.createRef()
   }
 
   componentDidMount() {
@@ -43,29 +46,37 @@ class Files extends React.Component {
     socketHelper.detach()
   }
 
-  handleSocket(sd) {
+  handleSocket = (sd) => {
     if (sd.type !== 'button') { return }
-
+    let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
       case 'up':
-        if (this.state.selectedFileIndex > 0) {
-          this.setState({
-            selectedFileIndex: this.state.selectedFileIndex - 1
-          })
+        if (tempSelectedFileIndex > 0) {
+          tempSelectedFileIndex--
         }
         break;
       case 'down':
-        if (this.state.selectedFileIndex < 5) {
-          this.setState({
-            selectedFileIndex: this.state.selectedFileIndex + 1
-          })
+        if (tempSelectedFileIndex < this.state.fileList.length - 1) {
+          tempSelectedFileIndex++
         }
+        break;
+      case 'back':
+        this.props.navigateTo('menuScreen')
         break;
 
 
       default:
         break;
     }
+
+    this.setState({
+      selectedFileIndex: tempSelectedFileIndex
+    }, () => {
+      this.scrollable.current.style.transform = `translateY(${parseInt(this.state.selectedFileIndex / 6) * -360}px)`
+      this.scrollhandle.current.style.transform = `translateY(${parseInt(this.state.selectedFileIndex) * (270 / this.state.fileList.length)}px)`
+    })
+
+    //270
   }
 
 
@@ -91,24 +102,28 @@ class Files extends React.Component {
             </div>
 
             <div className="file-list">
-              {
-                this.state.fileList.map((e, i) => {
-                  return (
-                    <div className={`file ${this.state.selectedFileIndex === i ? 'selected' : ''}`} key={i}>
-                      <div className="file-a">
-                        <img src={FILE_ICON} alt="file-icon" className="file-icon"></img>
-                        <div className="file-item">{e}</div>
+              <div className="scrollable" ref={this.scrollable}>
+
+                {
+                  this.state.fileList.map((e, i) => {
+                    return (
+                      <div className={`file ${this.state.selectedFileIndex === i ? 'selected' : ''}`} key={i}>
+                        <div className="file-a">
+                          <img src={FILE_ICON} alt="file-icon" className="file-icon"></img>
+                          <div className="file-item">{e}</div>
+                        </div>
+                        <div className="file-b">
+                          <div className="file-item">Advanced</div>
+                        </div>
+                        <div className="file-b">
+                          <div className="file-item">12:53 24.11:2020</div>
+                        </div>
                       </div>
-                      <div className="file-b">
-                        <div className="file-item">Advanced</div>
-                      </div>
-                      <div className="file-b">
-                        <div className="file-item">12:53 24.11:2020</div>
-                      </div>
-                    </div>
-                  )
-                })
-              }
+                    )
+                  })
+                }
+
+              </div>
 
             </div>
 
@@ -119,7 +134,7 @@ class Files extends React.Component {
             </div>
 
             <div className="file-scroll-bar">
-              <div className="file-scroll-handle"></div>
+              <div className="file-scroll-handle" ref={this.scrollhandle}></div>
             </div>
 
             <div className="file-scroll-bottom">

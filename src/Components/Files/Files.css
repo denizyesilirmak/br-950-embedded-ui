@@ -50,6 +50,7 @@
   background: #ffffff;
   display: flex;
   justify-content: flex-start;
+  font-weight: bold;
 }
 
 .file-list-title-a {
@@ -92,11 +93,12 @@
 .file-list {
   height: 360px;
   width: 100%;
+  overflow: hidden;
 }
 
 .file {
   width: 100%;
-  height: 60px;
+  height: 59px;
   border-bottom: 1px solid #aaaaaa;
   background: #ffffff40;
   display: flex;
@@ -129,5 +131,11 @@
 }
 
 .file.selected {
-  background: red;
+  background: #40acff;
+  color: white !important;
+  transition: background .5s;
+}
+
+.scrollable{
+  transition: all 1.7s;
 }
