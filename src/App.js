@@ -5,21 +5,29 @@ import StatusBar from './Components/Statusbar/Statusbar'
 //SCREENS
 import Mainmenu from './Components/Mainmenu/Mainmenu'
 import Settings from './Components/Settings/Settings'
+import Files from './Components/Files/Files'
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
-      activeScreen: 'settingsScreen'
+      activeScreen: 'menuScreen'
     }
+  }
+
+  navigateTo = (screenName) => {
+    this.setState({
+      activeScreen: screenName
+    })
   }
 
   renderActiveScreen = () => {
     switch (this.state.activeScreen) {
-      case 'menuScreen': return <Mainmenu/>
-      case 'settingsScreen': return <Settings/>
-    
+      case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} />
+      case 'settingsScreen': return <Settings navigateTo={this.navigateTo} />
+      case 'filesScreen': return <Files navigateTo={this.navigateTo} />
+
       default:
         break;
     }
@@ -29,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <StatusBar/>
+        <StatusBar />
         {
           this.renderActiveScreen()
         }

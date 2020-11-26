@@ -12,16 +12,12 @@ class Statusbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      batteryLevel: 0
+      batteryLevel: 50
     }
   }
 
   componentDidMount(){
-    setInterval(() => {
-      this.setState({
-        batteryLevel: parseInt(Math.random() * 100)
-      })
-    }, 650);
+
   }
 
   render() {

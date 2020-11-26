@@ -1,5 +1,6 @@
 import React from 'react'
 import './Settings.css'
+import socketHelper from '../../SocketHelper'
 
 import Language_Icon from '../../Assets/icons/settings/language.png'
 import Date_Icon from '../../Assets/icons/settings/date.png'
@@ -23,6 +24,48 @@ class Settings extends React.Component {
     }
   }
 
+  componentDidMount() {
+    socketHelper.attach(this.handleSocket)
+  }
+
+  componentWillUnmount() {
+    socketHelper.detach()
+  }
+
+  handleSocket = (sd) => {
+    if (sd.type !== 'button') { return }
+    switch (sd.payload) {
+      case 'up':
+        if (this.state.activeSettingsTab > 0) {
+          this.setState({
+            activeSettingsTab: this.state.activeSettingsTab - 1
+          })
+        }
+        break;
+      case 'down':
+        if (this.state.activeSettingsTab < 4) {
+          this.setState({
+            activeSettingsTab: this.state.activeSettingsTab + 1
+          })
+        }
+        break;
+      case 'back':
+        this.props.navigateTo('menuScreen')
+        break
+      default:
+        break;
+    }
+  }
+
+  renderSubSettings = () => {
+    switch (this.state.activeSettingsTab) {
+      case 0: return <LanguageSettings />
+
+
+      default:
+        break;
+    }
+  }
 
 
   render() {
@@ -53,7 +96,9 @@ class Settings extends React.Component {
               {SETTINGS_TABS[this.state.activeSettingsTab]}
             </div>
             <div className="settings-sub-container">
-              <LanguageSettings />
+              {
+                this.renderSubSettings()
+              }
             </div>
           </div>
 
