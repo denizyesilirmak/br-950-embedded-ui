@@ -16,6 +16,8 @@ class Mainmenu extends React.Component {
   constructor(props) {
     super(props)
 
+    this.menuContainer = React.createRef()
+
     this.state = {
       selectedButtonIndex: 0
     }
@@ -118,8 +120,8 @@ class Mainmenu extends React.Component {
           <Dashboard />
         </div>
         <div className="right">
-          <div className="menu-container">
 
+          <div className="menu-container" ref={this.menuContainer}>
             {
               this.buttons.map((e, i) => {
                 return (
@@ -130,8 +132,8 @@ class Mainmenu extends React.Component {
                 )
               })
             }
-
           </div>
+
         </div>
       </div>
     )

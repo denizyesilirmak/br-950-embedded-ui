@@ -10,6 +10,9 @@ import Info_Icon from '../../Assets/icons/settings/info.png'
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
 
+import DatePopup from './SettingsPopups/Date'
+import TimePopup from './SettingsPopups/Time'
+
 const SETTINGS_TABS = [
   "Language Settings",
   "Date & Time Settings",
@@ -21,7 +24,8 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeSettingsTab: 1
+      activeSettingsTab: 1,
+      activePopup: null
     }
   }
 
@@ -69,43 +73,57 @@ class Settings extends React.Component {
     }
   }
 
+  renderPopup = () => {
+    switch (this.state.activePopup) {
+      case 'date': return <DatePopup />
+      case 'time': return <TimePopup />
+      default: return;
+    }
+  }
+
 
   render() {
     return (
-      <div className="settings component">
-        <div className="settings-container">
+      <>
+        {
+          this.renderPopup()
+        }
 
-          <div className="left">
-            <div className={`settings-tab ${this.state.activeSettingsTab === 0 ? 'active' : ''}`}>
-              <img src={Language_Icon} alt="tab-icon" className="tab-icon" />
-            </div>
-            <div className={`settings-tab ${this.state.activeSettingsTab === 1 ? 'active' : ''}`}>
-              <img src={Date_Icon} alt="tab-icon" className="tab-icon" />
-            </div>
-            <div className={`settings-tab ${this.state.activeSettingsTab === 2 ? 'active' : ''}`}>
-              <img src={Volume_Icon} alt="tab-icon" className="tab-icon" />
-            </div>
-            <div className={`settings-tab ${this.state.activeSettingsTab === 3 ? 'active' : ''}`}>
-              <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
-            </div>
-            <div className={`settings-tab ${this.state.activeSettingsTab === 4 ? 'active' : ''}`}>
+        <div className="settings component">
+          <div className="settings-container">
 
+            <div className="left">
+              <div className={`settings-tab ${this.state.activeSettingsTab === 0 ? 'active' : ''}`}>
+                <img src={Language_Icon} alt="tab-icon" className="tab-icon" />
+              </div>
+              <div className={`settings-tab ${this.state.activeSettingsTab === 1 ? 'active' : ''}`}>
+                <img src={Date_Icon} alt="tab-icon" className="tab-icon" />
+              </div>
+              <div className={`settings-tab ${this.state.activeSettingsTab === 2 ? 'active' : ''}`}>
+                <img src={Volume_Icon} alt="tab-icon" className="tab-icon" />
+              </div>
+              <div className={`settings-tab ${this.state.activeSettingsTab === 3 ? 'active' : ''}`}>
+                <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
+              </div>
+              <div className={`settings-tab ${this.state.activeSettingsTab === 4 ? 'active' : ''}`}>
+
+              </div>
             </div>
+
+            <div className="right">
+              <div className="settings-sub-title">
+                {SETTINGS_TABS[this.state.activeSettingsTab]}
+              </div>
+              <div className="settings-sub-container">
+                {
+                  this.renderSubSettings()
+                }
+              </div>
+            </div>
+
           </div>
-
-          <div className="right">
-            <div className="settings-sub-title">
-              {SETTINGS_TABS[this.state.activeSettingsTab]}
-            </div>
-            <div className="settings-sub-container">
-              {
-                this.renderSubSettings()
-              }
-            </div>
-          </div>
-
         </div>
-      </div>
+      </>
     )
   }
 }
