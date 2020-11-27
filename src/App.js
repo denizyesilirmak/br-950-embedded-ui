@@ -6,13 +6,15 @@ import StatusBar from './Components/Statusbar/Statusbar'
 import Mainmenu from './Components/Mainmenu/Mainmenu'
 import Settings from './Components/Settings/Settings'
 import Files from './Components/Files/Files'
+import TurnOff from './Components/TurnOff/TurnOff'
+import ScanViewer from './Components/ScanViewer/ScanViewer'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      activeScreen: 'menuScreen'
+      activeScreen: 'scanViewerScreen'
     }
   }
 
@@ -27,7 +29,8 @@ class App extends React.Component {
       case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} />
       case 'settingsScreen': return <Settings navigateTo={this.navigateTo} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
-
+      case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
+      case 'scanViewerScreen': return <ScanViewer navigateTo={this.navigateTo} />
       default:
         break;
     }
@@ -37,7 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <StatusBar />
+        <StatusBar menuTitle={this.state.activeScreen} />
         {
           this.renderActiveScreen()
         }

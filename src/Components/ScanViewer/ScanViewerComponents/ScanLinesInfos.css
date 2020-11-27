@@ -1,0 +1,43 @@
+
+.scan-line-info {
+  width: 370px;
+  background: #00000093;
+  height: 80px;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.line-name {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+}
+
+.water-type-tag {
+  color: #ffffff;
+  font-size: 14px;
+  background: #3e98dd;
+  width: fit-content;
+  padding: 2px 4px 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.scan-lines-infos {
+  width: 780px;
+  height: 300px;
+  margin-left: 10px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
+  column-gap: 10px;
+  row-gap: 5px;
+}

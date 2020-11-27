@@ -1,0 +1,66 @@
+import React from 'react'
+import './TurnOff.css'
+import socketHelper from '../../SocketHelper'
+
+class TurnOff extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      selectedButtonIndex: true
+    }
+  }
+
+  componentDidMount() {
+    socketHelper.attach(this.handleSocket)
+  }
+
+  componentWillUnmount() {
+    socketHelper.detach()
+  }
+
+  handleSocket = (sd) => {
+    if (sd.type !== 'button') { return }
+    switch (sd.payload) {
+      case 'left':
+        this.setState({
+          selectedButtonIndex: true
+        })
+        break;
+      case 'right':
+        this.setState({
+          selectedButtonIndex: false
+        })
+        break;
+      case 'back':
+        this.props.navigateTo('menuScreen')
+        return;
+
+      default:
+        break;
+    }
+  }
+
+  render() {
+    return (
+      <div className="turn-off component">
+        <div className="turn-off-container">
+          <div className="turn-off-question">
+            Do you really want to turn off the device?
+          </div>
+
+          <div className="turn-off-answers">
+            <div className={`turn-off-button ${this.state.selectedButtonIndex ? 'selected' : ''}`}>
+              Yes
+            </div>
+            <div className={`turn-off-button ${!this.state.selectedButtonIndex ? 'selected' : ''}`}>
+              No
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default TurnOff

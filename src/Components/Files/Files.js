@@ -50,6 +50,9 @@ class Files extends React.Component {
     if (sd.type !== 'button') { return }
     let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
+      case 'ok':
+        this.props.navigateTo('scanViewerScreen')
+      return
       case 'up':
         if (tempSelectedFileIndex > 0) {
           tempSelectedFileIndex--
@@ -62,9 +65,7 @@ class Files extends React.Component {
         break;
       case 'back':
         this.props.navigateTo('menuScreen')
-        break;
-
-
+        return;
       default:
         break;
     }
@@ -116,7 +117,7 @@ class Files extends React.Component {
                           <div className="file-item">Advanced</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item">12:53 24.11:2020</div>
+                          <div className="file-item" style={{textDecoration: 'underline'}}>12:53 24.11:2020</div>
                         </div>
                       </div>
                     )

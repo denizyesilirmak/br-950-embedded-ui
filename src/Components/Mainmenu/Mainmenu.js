@@ -56,7 +56,7 @@ class Mainmenu extends React.Component {
       {
         name: "Turn Off",
         icon: TurnOffIcon,
-        screenName: 'settingsScreen',
+        screenName: 'turnOffScreen',
         cssTag: 'a6'
       },
 
@@ -103,7 +103,7 @@ class Mainmenu extends React.Component {
         break;
       case 'ok':
         this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
-        break;
+        return;
       default:
         break;
     }

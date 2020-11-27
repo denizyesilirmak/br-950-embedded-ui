@@ -6,7 +6,7 @@ class SettingsItem extends React.Component {
     return (
       <div className={`settings-item ${this.props.selected ? 'selected' : ''}`}>
           <div className="icon">
-            <img className="settings-prop-icon" src={this.props.icon} />
+            <img className="settings-prop-icon" src={this.props.icon} alt="icon" />
           </div>
 
           <div className="settings-prop-label">

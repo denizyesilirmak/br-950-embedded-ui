@@ -1,0 +1,26 @@
+.scan-title {
+  display: flex;
+  width: 780px;
+  background: #00000050;
+  color: #ffffff;
+  margin-left: 10px;
+  height: 40px;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.scan-title-label {
+  background: #00000090;
+  padding: 5px 10px 5px 10px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.scan-title-value {
+  background: #40acff;
+  padding: 5px 10px 5px 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+}
