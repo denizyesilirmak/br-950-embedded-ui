@@ -67,7 +67,7 @@ class Mainmenu extends React.Component {
     socketHelper.attach(this.handleSocket)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     socketHelper.detach()
   }
 
