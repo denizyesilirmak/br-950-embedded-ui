@@ -3,10 +3,17 @@ import './ScanViewer.css'
 import socketHelper from '../../SocketHelper'
 
 import ScanTitle from './ScanViewerComponents/Title'
-import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
+// import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
 import PlotViewer from './ScanViewerComponents/PlotViewer'
 
 class ScanViewer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      rotation_axis_x: 0,
+      rotation_axis_z: 0
+    }
+  }
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
@@ -20,16 +27,24 @@ class ScanViewer extends React.Component {
     if (sd.type !== 'button') { return }
     switch (sd.payload) {
       case 'up':
-
+        this.setState({
+          rotation_axis_x: this.state.rotation_axis_x - 0.314159 * 1
+        })
         break;
       case 'down':
-
+        this.setState({
+          rotation_axis_x: this.state.rotation_axis_x + 0.314159 * 1
+        })
         break;
       case 'left':
-
+        this.setState({
+          rotation_axis_z: this.state.rotation_axis_z + 0.314159 * 1
+        })
         break;
       case 'right':
-
+        this.setState({
+          rotation_axis_z: this.state.rotation_axis_z - 0.314159 * 1
+        })
         break;
       case 'ok':
 
@@ -59,9 +74,53 @@ class ScanViewer extends React.Component {
             }
           }
         /> */}
+        <div className="scan-3d-container">
+          <div className="left-panel">
 
-        <PlotViewer />
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
 
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
+
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
+
+
+          </div>
+          <PlotViewer rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} />
+          <div className="right-panel">
+
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
+
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
+
+            <div className="line-info">
+              <div className="line-name">
+                A
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     )
   }

@@ -1,4 +1,45 @@
 .scan-viewer {
-  background: #ffffffaa;
+  background: #000000;
   padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scan-3d-container {
+  width: 740px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scan-3d-container .left-panel {
+  width: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.scan-3d-container .right-panel {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.line-info {
+  height: 55px;
+  background: rgb(61, 61, 61);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 10px 5px 10px;
 }

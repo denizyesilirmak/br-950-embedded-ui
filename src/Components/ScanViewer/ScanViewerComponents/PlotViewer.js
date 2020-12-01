@@ -2,15 +2,14 @@ import React from 'react'
 import './PlotViewer.css'
 import * as THREE from "three";
 import Interpolation from './Interpolation'
-import { TorusBufferGeometry } from 'three';
 import gridImage from './grid.png'
 
 const data = {
   A: 300,
   B: 300,
   C: 300,
-  D: 350,
-  E: 300,
+  D: 450,
+  E: 600,
   F: 300
 }
 
@@ -34,28 +33,43 @@ class PlotViewer extends React.Component {
     super(props)
     this.canvasHolder = React.createRef()
 
+    this.state = {
+      ready: false
+    }
+
   }
 
   componentDidMount() {
-    const start = performance.now()
     const width = this.canvasHolder.current.clientWidth
     const height = this.canvasHolder.current.clientHeight
+    const scalar = 22
+    const min = Math.min.apply(null, Object.values(data))
+    const max = Math.max.apply(null, Object.values(data))
+
     this.scene = new THREE.Scene()
-    this.camera = new THREE.OrthographicCamera(width / - 18, width / 18, height / 18, height / - 18, 0, 1000)
-    this.renderer = new THREE.WebGLRenderer({ antialias: TorusBufferGeometry, precision: "lowp" })
+    this.camera = new THREE.OrthographicCamera(width / - scalar, width / scalar, height / scalar, height / - scalar, 0, 1000)
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.renderer.setClearColor(0xffffff, 0);
     this.renderer.setSize(width, height)
     this.canvasHolder.current.appendChild(this.renderer.domElement)
     this.initializeCamera()
-    this.drawPlot(data)
-    const end = performance.now()
-    console.log(end - start)
+
+    this.plotMesh = this.drawPlot(data, max, min)
+    this.gridMesh = this.createGrid(max, min)
+
+
+    this.scanMeshGroup = new THREE.Group()
+    this.scanMeshGroup.add(this.plotMesh)
+    this.scanMeshGroup.add(this.gridMesh)
+    this.scene.add(this.scanMeshGroup)
+
+
+    this.setState({ready: true})
+
     this.animate()
   }
 
-
-  drawPlot = (data) => {
-    const min = Math.min.apply(null, Object.values(data))
-    console.log(min)
+  drawPlot = (data, max, min) => {
 
     data = {
       A: data.A - min,
@@ -70,11 +84,12 @@ class PlotViewer extends React.Component {
     this.plotGeometry = new THREE.PlaneGeometry(18, 18, ScanMatrix.length - 1, ScanMatrix.length - 1)
 
     ScanMatrix.flat(1).forEach((e, i) => {
-      this.plotGeometry.vertices[i].z = e / (-48)
+      this.plotGeometry.vertices[i].z = e / (-32)
     })
 
     let sutun = 0
     let satir = 0
+
     for (let i = 0; i < this.plotGeometry.faces.length; i += 2) {
       satir = Math.trunc(i / ((ScanMatrix[0].length - 1) * 2))
       sutun = Math.trunc((i % ((ScanMatrix[0].length - 1) * 2)) / 2)
@@ -91,34 +106,24 @@ class PlotViewer extends React.Component {
     }
 
     this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
-    this.graphMesh = new THREE.Mesh(this.plotGeometry, this.material);
-    this.scene.add(this.graphMesh);
-    // this.graphMesh.rotation.x = 2
+    const m = new THREE.Mesh(this.plotGeometry, this.material)
+    m.position.z = (max / (32 * 2)) / 2
 
-    // this.graphMesh.rotation.x = Math.sin(-90 * Math.PI / 180)
-    // this.renderer.render(this.scene, this.camera);
-    this.plotGeometry.computeBoundingBox()
-
-    this.createGrid()
-
-
+    return m
   }
 
 
-  createGrid = async () => {
-    this.gridGeometry = new THREE.PlaneGeometry(25, 25, 30, 30)
-
+  createGrid = (max, min) => {
+    this.gridGeometry = new THREE.PlaneGeometry(23, 23, 1, 1)
     const gridTexture = new THREE.TextureLoader().load(gridImage)
     const material = new THREE.MeshBasicMaterial({ map: gridTexture, transparent: true })
-
-    this.gridMesh = new THREE.Mesh(this.gridGeometry, material);
-    this.gridMesh.position.z = 2
-    this.scene.add(this.gridMesh)
+    const gridMesh = new THREE.Mesh(this.gridGeometry, material);
+    gridMesh.position.z = ((max / (32 * 2)) / 2) + 0.02
+    return gridMesh
   }
 
   createMatrix = (data) => {
     const [a, b, c, d, e, f] = [data.A, data.B, data.C, data.D, data.E, data.F]
-
     const matrix = [
       [(a + d) / 2, a, a, a, (a + b) / 2],
       [d, e, a, f, b],
@@ -126,8 +131,7 @@ class PlotViewer extends React.Component {
       [d, f, c, e, b],
       [(d + c) / 2, c, c, c, (b + c) / 2]
     ]
-
-    return Interpolation(matrix, 5)
+    return Interpolation(matrix, 10)
   }
 
   getColor = (pct) => {
@@ -150,6 +154,21 @@ class PlotViewer extends React.Component {
     return 'rgb(' + [color.r, color.g, color.b].join(',') + ')';
   }
 
+  crazyLerp = (oldValue, newValue, step) => {
+    if(Math.abs(oldValue - newValue) < 0.05){
+      return newValue
+    }
+    else if (oldValue > newValue) {
+      return oldValue - step
+    }
+    else if (oldValue < newValue) {
+      return oldValue + step
+    }
+    else {
+      return oldValue
+    }
+  }
+
   initializeCamera() {
     this.camera.position.x = 0;
     this.camera.position.y = 0;
@@ -159,7 +178,8 @@ class PlotViewer extends React.Component {
 
   animate = () => {
     requestAnimationFrame(this.animate)
-    // this.graphMesh.rotation.z += 0.02
+    this.scanMeshGroup.rotation.z = this.crazyLerp(this.scanMeshGroup.rotation.z, this.props.rotZ, 0.1)
+    this.scanMeshGroup.rotation.x = this.crazyLerp(this.scanMeshGroup.rotation.x, this.props.rotX, 0.1)
     this.renderer.render(this.scene, this.camera)
   }
 
@@ -167,7 +187,9 @@ class PlotViewer extends React.Component {
   render() {
     return (
       <div className="plot-viewer" ref={this.canvasHolder}>
-
+        {
+          !this.state.ready ? <div className="loading-plot">Loading 3D Plot</div> : null
+        }
       </div>
     )
   }
