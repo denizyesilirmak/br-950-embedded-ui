@@ -2,16 +2,13 @@ import React from 'react'
 import './Settings.css'
 import socketHelper from '../../SocketHelper'
 
-import Language_Icon from '../../Assets/icons/settings/language.png'
-import Date_Icon from '../../Assets/icons/settings/date.png'
-import Volume_Icon from '../../Assets/icons/settings/volume.png'
-import Info_Icon from '../../Assets/icons/settings/info.png'
-
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
 
 import DatePopup from './SettingsPopups/Date'
 import TimePopup from './SettingsPopups/Time'
+
+import TabBar from './SettingsComponents/TabBar/TabBar'
 
 const SETTINGS_TABS = [
   "Language Settings",
@@ -25,7 +22,8 @@ class Settings extends React.Component {
     super(props)
     this.state = {
       activeSettingsTab: 1,
-      activePopup: null
+      activePopup: null,
+      tabBarActive: true
     }
   }
 
@@ -41,21 +39,45 @@ class Settings extends React.Component {
     if (sd.type !== 'button') { return }
     switch (sd.payload) {
       case 'up':
-        if (this.state.activeSettingsTab > 0) {
+        if (this.state.activeSettingsTab > 0 && this.state.tabBarActive) {
           this.setState({
             activeSettingsTab: this.state.activeSettingsTab - 1
           })
         }
         break;
       case 'down':
-        if (this.state.activeSettingsTab < 4) {
+        if (this.state.activeSettingsTab < 4 && this.state.tabBarActive) {
           this.setState({
             activeSettingsTab: this.state.activeSettingsTab + 1
           })
         }
         break;
+      case 'left':
+        break
+
+      case 'right':
+        break
+
+      case 'ok':
+        if (this.state.tabBarActive === true) {
+          //we are going left to right panel.
+          this.setState({
+            tabBarActive: false
+          }, () => {
+            console.log(this.state.tabBarActive)
+          })
+        } else {
+          // we're in the right panel.
+        }
+        break
       case 'back':
-        this.props.navigateTo('menuScreen')
+        if(this.state.tabBarActive){
+          this.props.navigateTo('menuScreen')
+        }else{
+          this.setState({
+            tabBarActive: true
+          })
+        }
         break
       default:
         break;
@@ -92,23 +114,7 @@ class Settings extends React.Component {
         <div className="settings component">
           <div className="settings-container">
 
-            <div className="left">
-              <div className={`settings-tab ${this.state.activeSettingsTab === 0 ? 'active' : ''}`}>
-                <img src={Language_Icon} alt="tab-icon" className="tab-icon" />
-              </div>
-              <div className={`settings-tab ${this.state.activeSettingsTab === 1 ? 'active' : ''}`}>
-                <img src={Date_Icon} alt="tab-icon" className="tab-icon" />
-              </div>
-              <div className={`settings-tab ${this.state.activeSettingsTab === 2 ? 'active' : ''}`}>
-                <img src={Volume_Icon} alt="tab-icon" className="tab-icon" />
-              </div>
-              <div className={`settings-tab ${this.state.activeSettingsTab === 3 ? 'active' : ''}`}>
-                <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
-              </div>
-              <div className={`settings-tab ${this.state.activeSettingsTab === 4 ? 'active' : ''}`}>
-
-              </div>
-            </div>
+            <TabBar activeTabIndex={this.state.activeSettingsTab} tabBarActive={this.state.tabBarActive} />
 
             <div className="right">
               <div className="settings-sub-title">

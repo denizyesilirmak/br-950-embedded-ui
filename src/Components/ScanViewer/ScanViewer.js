@@ -3,7 +3,7 @@ import './ScanViewer.css'
 import socketHelper from '../../SocketHelper'
 
 import ScanTitle from './ScanViewerComponents/Title'
-// import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
+import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
 import PlotViewer from './ScanViewerComponents/PlotViewer'
 
 class ScanViewer extends React.Component {
@@ -65,7 +65,8 @@ class ScanViewer extends React.Component {
           type="advanced"
           date="16:45 12.02.2020"
         />
-        {/* <ScanLinesInfos
+
+        <ScanLinesInfos
           data={
             {
               values: {
@@ -73,54 +74,75 @@ class ScanViewer extends React.Component {
               }
             }
           }
-        /> */}
-        <div className="scan-3d-container">
+        />
+
+        {/* <div className="scan-3d-container">
           <div className="left-panel">
 
             <div className="line-info">
               <div className="line-name">
-                A
+                A-
+              </div>
+              <div className="line-info-water-type">
+                Mineral Water
               </div>
             </div>
 
             <div className="line-info">
               <div className="line-name">
-                A
+                B-
+              </div>
+              <div className="line-info-water-type">
+                No Water
               </div>
             </div>
 
             <div className="line-info">
               <div className="line-name">
-                A
+                C-
+              </div>
+              <div className="line-info-water-type">
+                No Water
               </div>
             </div>
 
 
           </div>
+
           <PlotViewer rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} />
+
           <div className="right-panel">
 
             <div className="line-info">
               <div className="line-name">
-                A
+                -D
+              </div>
+              <div className="line-info-water-type">
+                Mineral Water
               </div>
             </div>
 
             <div className="line-info">
               <div className="line-name">
-                A
+                -E
+              </div>
+              <div className="line-info-water-type">
+                Mineral Water
               </div>
             </div>
 
             <div className="line-info">
               <div className="line-name">
-                A
+                -F
+              </div>
+              <div className="line-info-water-type">
+                Mineral Water
               </div>
             </div>
 
           </div>
 
-        </div>
+        </div> */}
       </div>
     )
   }

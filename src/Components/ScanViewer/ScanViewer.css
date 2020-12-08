@@ -43,3 +43,26 @@
   align-items: center;
   padding: 5px 10px 5px 10px;
 }
+
+.left-panel .line-info {
+  flex-direction: row;
+  background: linear-gradient(to right, rgba(180, 180, 180, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.right-panel .line-info {
+  flex-direction: row-reverse;
+  background: linear-gradient(to left, rgba(180, 180, 180, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.line-info-water-type {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.left-panel .line-info-water-type {
+  margin-left: 10px;
+}
+
+.right-panel .line-info-water-type {
+  margin-right: 10px;
+}

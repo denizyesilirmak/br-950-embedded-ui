@@ -65,12 +65,21 @@ class PlotViewer extends React.Component {
 
 
     this.setState({ready: true})
-
     this.animate()
   }
 
-  drawPlot = (data, max, min) => {
+  componentWillUnmount(){
+    this.clearMemory()
+  }
 
+  clearMemory = () => {
+    this.over = true
+    this.renderer.dispose()
+    this.plotGeometry.dispose()
+    this.animate = null
+  }
+
+  drawPlot = (data, max, min) => {
     data = {
       A: data.A - min,
       B: data.B - min,
@@ -177,7 +186,10 @@ class PlotViewer extends React.Component {
   }
 
   animate = () => {
-    requestAnimationFrame(this.animate)
+    if (this.over) {
+      return
+    }
+    window.requestAnimationFrame(this.animate)
     this.scanMeshGroup.rotation.z = this.crazyLerp(this.scanMeshGroup.rotation.z, this.props.rotZ, 0.1)
     this.scanMeshGroup.rotation.x = this.crazyLerp(this.scanMeshGroup.rotation.x, this.props.rotX, 0.1)
     this.renderer.render(this.scene, this.camera)
