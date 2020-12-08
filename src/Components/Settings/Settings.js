@@ -21,9 +21,11 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeSettingsTab: 1,
+      activeSettingsTab: 0,
       activePopup: null,
-      tabBarActive: true
+      tabBarActive: true,
+      languageIndex: 0,
+      dateTimeSettingsIndex: 0
     }
   }
 
@@ -44,6 +46,19 @@ class Settings extends React.Component {
             activeSettingsTab: this.state.activeSettingsTab - 1
           })
         }
+
+        if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
+          this.handleLanguageNavigation('up')
+        }
+
+        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false) {
+          //move up on datetime settings tab
+          if(this.state.dateTimeSettingsIndex >= 1){
+            this.setState({dateTimeSettingsIndex: this.state.dateTimeSettingsIndex - 1})
+          }
+        }
+
+
         break;
       case 'down':
         if (this.state.activeSettingsTab < 4 && this.state.tabBarActive) {
@@ -51,11 +66,30 @@ class Settings extends React.Component {
             activeSettingsTab: this.state.activeSettingsTab + 1
           })
         }
+
+        if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
+          this.handleLanguageNavigation('down')
+        }
+
+        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false) {
+          //move down on datetime settings tab
+          if(this.state.dateTimeSettingsIndex < 1){
+            this.setState({dateTimeSettingsIndex: this.state.dateTimeSettingsIndex + 1})
+          }
+        }
+
+
         break;
       case 'left':
+        if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
+          this.handleLanguageNavigation('left')
+        }
         break
 
       case 'right':
+        if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
+          this.handleLanguageNavigation('right')
+        }
         break
 
       case 'ok':
@@ -68,12 +102,18 @@ class Settings extends React.Component {
           })
         } else {
           // we're in the right panel.
+          if (this.state.activeSettingsTab === 0) {
+            //language selection
+          }
+          else if (this.state.activeSettingsTab === 1) {
+            //language selection
+          }
         }
         break
       case 'back':
-        if(this.state.tabBarActive){
+        if (this.state.tabBarActive) {
           this.props.navigateTo('menuScreen')
-        }else{
+        } else {
           this.setState({
             tabBarActive: true
           })
@@ -86,12 +126,50 @@ class Settings extends React.Component {
 
   renderSubSettings = () => {
     switch (this.state.activeSettingsTab) {
-      case 0: return <LanguageSettings />
-      case 1: return <DateTimeSettings />
+      case 0: return <LanguageSettings
+        index={this.state.languageIndex}
+      />
+      case 1: return <DateTimeSettings
+        index={this.state.dateTimeSettingsIndex}
+      />
 
 
       default:
         break;
+    }
+  }
+
+  handleLanguageNavigation = (direction) => {
+    if (this.state.activeSettingsTab === 0) {
+      switch (direction) {
+        case 'left':
+          if (this.state.languageIndex > 0)
+            this.setState({
+              languageIndex: this.state.languageIndex - 1
+            })
+          break;
+        case 'right':
+          if (this.state.languageIndex < 9)
+            this.setState({
+              languageIndex: this.state.languageIndex + 1
+            })
+          break;
+        case 'up':
+          if (this.state.languageIndex > 4)
+            this.setState({
+              languageIndex: this.state.languageIndex - 5
+            })
+          break;
+        case 'down':
+          if (this.state.languageIndex < 5)
+            this.setState({
+              languageIndex: this.state.languageIndex + 5
+            })
+          break;
+
+        default:
+          break;
+      }
     }
   }
 
@@ -116,7 +194,7 @@ class Settings extends React.Component {
 
             <TabBar activeTabIndex={this.state.activeSettingsTab} tabBarActive={this.state.tabBarActive} />
 
-            <div className="right">
+            <div className="right" style={{ background: this.state.tabBarActive ? '#ffffff90' : '#ffffffad' }}>
               <div className="settings-sub-title">
                 {SETTINGS_TABS[this.state.activeSettingsTab]}
               </div>

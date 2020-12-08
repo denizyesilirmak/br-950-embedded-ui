@@ -56,12 +56,6 @@ const LANGUAGES = [
 ]
 
 class LanguageSettings extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeLanguageIndex: 100 * 10
-    }
-  }
   render() {
     return (
       <div className="language-settings">
@@ -69,7 +63,7 @@ class LanguageSettings extends React.Component {
           {
             LANGUAGES.map((e, i) => {
               return (
-                <div className={`language ${this.state.activeLanguageIndex % 10 === i ? 'selected': ''}`} key={i}>
+                <div className={`language ${this.props.index % 10 === i ? 'selected' : ''}`} key={i}>
                   <img src={e.icon} alt="lang-icon" className="language-icon"></img>
                   <div className="language-name">{e.name}</div>
                 </div>

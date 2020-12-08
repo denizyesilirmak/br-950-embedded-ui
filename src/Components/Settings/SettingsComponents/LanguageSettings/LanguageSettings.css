@@ -25,6 +25,7 @@
 }
 
 .language-container .language .language-icon {
+  transition: all 0.2s;
   width: 60px;
 }
 

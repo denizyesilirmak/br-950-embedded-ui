@@ -66,7 +66,7 @@ class ScanViewer extends React.Component {
           date="16:45 12.02.2020"
         />
 
-        <ScanLinesInfos
+        {/* <ScanLinesInfos
           data={
             {
               values: {
@@ -74,9 +74,9 @@ class ScanViewer extends React.Component {
               }
             }
           }
-        />
+        /> */}
 
-        {/* <div className="scan-3d-container">
+        <div className="scan-3d-container">
           <div className="left-panel">
 
             <div className="line-info">
@@ -142,7 +142,7 @@ class ScanViewer extends React.Component {
 
           </div>
 
-        </div> */}
+        </div>
       </div>
     )
   }

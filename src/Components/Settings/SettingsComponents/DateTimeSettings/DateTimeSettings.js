@@ -16,14 +16,14 @@ class DateTimeSettings extends React.Component {
             icon={TimeIcon}
             label="Time"
             value="11:58"
-            selected={true}
+            selected={this.props.index === 0}
           />
 
           <SettingsItem
             icon={DateIcon}
             label="Date"
             value="13.11.1453"
-            selected={false}
+            selected={this.props.index === 1}
           />
 
         </div>
