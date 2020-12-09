@@ -17,9 +17,17 @@ class Mainmenu extends React.Component {
     super(props)
 
     this.menuContainer = React.createRef()
+    this.menuItemRefs = []
+
+
+    for (var i = 0; i < 6; i++) {
+      this.menuItemRefs[i] = React.createRef()
+    }
+    this.animationCounter = 0
 
     this.state = {
-      selectedButtonIndex: 0
+      selectedButtonIndex: 0,
+      key: 0
     }
 
     this.buttons = [
@@ -65,6 +73,7 @@ class Mainmenu extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
+
   }
 
   componentWillUnmount() {
@@ -102,7 +111,13 @@ class Mainmenu extends React.Component {
         tempSelectedButtonIndex = this.clamp(tempSelectedButtonIndex + 1, 0, 5)
         break;
       case 'ok':
-        this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
+        this.setState({
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
         return;
       default:
         break;
@@ -112,6 +127,14 @@ class Mainmenu extends React.Component {
       selectedButtonIndex: tempSelectedButtonIndex
     })
   }
+
+  handleAnimationEnd = (e) => {
+    this.animationCounter++
+    if (this.animationCounter === 2) {
+      this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
+    }
+  }
+
 
   render() {
     return (
@@ -125,7 +148,7 @@ class Mainmenu extends React.Component {
             {
               this.buttons.map((e, i) => {
                 return (
-                  <div className={`main-menu-item ${e.cssTag} ${this.state.selectedButtonIndex % 6 === i ? 'selected' : ''}`} key={i}>
+                  <div onAnimationEnd={i === 5 ? this.handleAnimationEnd : null} ref={this.menuItemRefs[i]} className={`main-menu-item ${e.cssTag} ${this.state.selectedButtonIndex % 6 === i ? 'selected' : ''}`} key={i + this.state.key}>
                     <img src={e.icon} alt="main-menu-icon" className="main-menu-icon" />
                     <div className="main-menu-item-title">{e.name}</div>
                   </div>

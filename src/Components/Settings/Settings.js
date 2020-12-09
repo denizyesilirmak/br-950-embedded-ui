@@ -22,10 +22,17 @@ class Settings extends React.Component {
     super(props)
     this.state = {
       activeSettingsTab: 0,
-      activePopup: null,
+      activePopup: '',
       tabBarActive: true,
       languageIndex: 0,
-      dateTimeSettingsIndex: 0
+      dateTimeSettingsIndex: 0,
+      day: 1,
+      month: 2,
+      year: 2019,
+      hour: 23,
+      minute: 56,
+      datePopupIndex: 0,
+      timePopupIndex: 0
     }
   }
 
@@ -51,10 +58,28 @@ class Settings extends React.Component {
           this.handleLanguageNavigation('up')
         }
 
-        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false) {
+        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false && this.state.activePopup === '') {
           //move up on datetime settings tab
-          if(this.state.dateTimeSettingsIndex >= 1){
-            this.setState({dateTimeSettingsIndex: this.state.dateTimeSettingsIndex - 1})
+          if (this.state.dateTimeSettingsIndex >= 1) {
+            this.setState({ dateTimeSettingsIndex: this.state.dateTimeSettingsIndex - 1 })
+          }
+        }
+
+        if (this.state.activePopup === 'date') {
+          if (this.state.datePopupIndex === 0) {
+            this.setState({
+              day: this.clamp(this.state.day + 1, 1, 31)
+            })
+          }
+          else if (this.state.datePopupIndex === 1) {
+            this.setState({
+              month: this.clamp(this.state.month + 1, 1, 12)
+            })
+          }
+          else if (this.state.datePopupIndex === 2) {
+            this.setState({
+              year: this.clamp(this.state.year + 1, 2019, 2035)
+            })
           }
         }
 
@@ -71,10 +96,28 @@ class Settings extends React.Component {
           this.handleLanguageNavigation('down')
         }
 
-        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false) {
+        if (this.state.activeSettingsTab === 1 && this.state.tabBarActive === false && this.state.activePopup === '') {
           //move down on datetime settings tab
-          if(this.state.dateTimeSettingsIndex < 1){
-            this.setState({dateTimeSettingsIndex: this.state.dateTimeSettingsIndex + 1})
+          if (this.state.dateTimeSettingsIndex < 1) {
+            this.setState({ dateTimeSettingsIndex: this.state.dateTimeSettingsIndex + 1 })
+          }
+        }
+
+        if (this.state.activePopup === 'date') {
+          if (this.state.datePopupIndex === 0) {
+            this.setState({
+              day: this.clamp(this.state.day - 1, 1, 31)
+            })
+          }
+          else if (this.state.datePopupIndex === 1) {
+            this.setState({
+              month: this.clamp(this.state.month - 1, 1, 12)
+            })
+          }
+          else if (this.state.datePopupIndex === 2) {
+            this.setState({
+              year: this.clamp(this.state.year - 1, 2019, 2035)
+            })
           }
         }
 
@@ -84,11 +127,21 @@ class Settings extends React.Component {
         if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
           this.handleLanguageNavigation('left')
         }
+        else if (this.state.activePopup === 'date' && this.state.datePopupIndex > 0) {
+          this.setState({
+            datePopupIndex: this.state.datePopupIndex - 1
+          })
+        }
         break
 
       case 'right':
         if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
           this.handleLanguageNavigation('right')
+        }
+        else if (this.state.activePopup === 'date' && this.state.datePopupIndex < 2) {
+          this.setState({
+            datePopupIndex: this.state.datePopupIndex + 1
+          })
         }
         break
 
@@ -105,8 +158,18 @@ class Settings extends React.Component {
           if (this.state.activeSettingsTab === 0) {
             //language selection
           }
-          else if (this.state.activeSettingsTab === 1) {
-            //language selection
+          else if (this.state.activeSettingsTab === 1 && this.state.activePopup === '') {
+            //date time settings item selection
+            if (this.state.dateTimeSettingsIndex === 0) {
+              this.setState({
+                activePopup: 'time'
+              })
+            }
+            else if (this.state.dateTimeSettingsIndex === 1) {
+              this.setState({
+                activePopup: 'date'
+              })
+            }
           }
         }
         break
@@ -114,9 +177,17 @@ class Settings extends React.Component {
         if (this.state.tabBarActive) {
           this.props.navigateTo('menuScreen')
         } else {
-          this.setState({
-            tabBarActive: true
-          })
+
+          if (this.state.activePopup !== '') {
+            this.setState({
+              activePopup: ''
+            })
+          } else {
+            this.setState({
+              tabBarActive: true
+            })
+          }
+
         }
         break
       default:
@@ -175,9 +246,30 @@ class Settings extends React.Component {
 
   renderPopup = () => {
     switch (this.state.activePopup) {
-      case 'date': return <DatePopup />
-      case 'time': return <TimePopup />
+      case 'date': return <DatePopup
+        index={this.state.datePopupIndex}
+        day={this.state.day}
+        month={this.state.month}
+        year={this.state.year}
+      />
+      case 'time': return <TimePopup
+        index={this.state.timePopupIndex}
+        hour={this.state.hour}
+        minute={this.state.minute}
+      />
       default: return;
+    }
+  }
+
+  clamp = (val, min, max) => {
+    if (val < min) {
+      return min
+    }
+    else if (val > max) {
+      return max
+    }
+    else {
+      return val
     }
   }
 
