@@ -83,6 +83,19 @@ class Settings extends React.Component {
           }
         }
 
+        if (this.state.activePopup === 'time') {
+          if (this.state.timePopupIndex === 0) {
+            this.setState({
+              hour: this.clamp(this.state.hour + 1, 0, 23)
+            })
+          }
+          else if (this.state.timePopupIndex === 1) {
+            this.setState({
+              minute: this.clamp(this.state.minute + 1, 0, 59)
+            })
+          }
+        }
+
 
         break;
       case 'down':
@@ -121,6 +134,19 @@ class Settings extends React.Component {
           }
         }
 
+        if (this.state.activePopup === 'time') {
+          if (this.state.timePopupIndex === 0) {
+            this.setState({
+              hour: this.clamp(this.state.hour - 1, 0, 23)
+            })
+          }
+          else if (this.state.timePopupIndex === 1) {
+            this.setState({
+              minute: this.clamp(this.state.minute - 1, 0, 59)
+            })
+          }
+        }
+
 
         break;
       case 'left':
@@ -132,6 +158,11 @@ class Settings extends React.Component {
             datePopupIndex: this.state.datePopupIndex - 1
           })
         }
+        else if (this.state.activePopup === 'time' && this.state.timePopupIndex > 0) {
+          this.setState({
+            timePopupIndex: this.state.timePopupIndex - 1
+          })
+        }
         break
 
       case 'right':
@@ -141,6 +172,11 @@ class Settings extends React.Component {
         else if (this.state.activePopup === 'date' && this.state.datePopupIndex < 2) {
           this.setState({
             datePopupIndex: this.state.datePopupIndex + 1
+          })
+        }
+        else if (this.state.activePopup === 'time' && this.state.timePopupIndex < 1) {
+          this.setState({
+            timePopupIndex: this.state.timePopupIndex + 1
           })
         }
         break
@@ -202,6 +238,11 @@ class Settings extends React.Component {
       />
       case 1: return <DateTimeSettings
         index={this.state.dateTimeSettingsIndex}
+        day={this.state.day}
+        month={this.state.month}
+        year={this.state.year}
+        hour={this.state.hour}
+        minute={this.state.minute}
       />
 
 
