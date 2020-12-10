@@ -1,0 +1,59 @@
+.quick-scan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quick-scan-container {
+  width: 700px;
+  height: 360px;
+  background: #c5edf7;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+}
+
+.quick-scan-container .lines {
+  background: linear-gradient(to right, #1c6d92, #64a4c9, #008793, #c5edf7);
+  width: 200px;
+  height: 360px;
+}
+
+.quick-scan-container .lines .line {
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.quick-scan-container .lines .line.selected {
+  background: #c5edf7;
+  font-size: 30px;
+  color: #000000;
+  transition: font-size 0.2s;
+}
+
+.quick-scan-container .right-panel {
+  width: 500px;
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.quick-scan-container .right-panel .quick-scan-bg-image {
+  width: 400px;
+  height: 240px;
+  background: blue;
+  color: #ffffff;
+}
+
+.quick-scan-container .right-panel .quick-scan-info {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}

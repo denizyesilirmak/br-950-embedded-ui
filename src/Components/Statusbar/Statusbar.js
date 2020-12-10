@@ -25,7 +25,7 @@ class Statusbar extends React.Component {
       <div className="status-bar">
         <div className="status-bar-left">
           <div className="menu-title">
-            Main Menu
+            {this.props.menuTitle}
           </div>
         </div>
         <div className="status-bar-right">

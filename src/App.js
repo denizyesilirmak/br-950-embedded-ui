@@ -8,6 +8,9 @@ import Settings from './Components/Settings/Settings'
 import Files from './Components/Files/Files'
 import TurnOff from './Components/TurnOff/TurnOff'
 import ScanViewer from './Components/ScanViewer/ScanViewer'
+import QuickScan from './Components/ScanModes/QuickScan/QuickScan'
+import QuickScanAction from './Components/ScanModes/QuickScan/QuickScanAction'
+import QuickScanResult from './Components/ScanModes/QuickScan/QuickScanResult'
 
 class App extends React.Component {
   constructor(props) {
@@ -31,6 +34,9 @@ class App extends React.Component {
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
       case 'scanViewerScreen': return <ScanViewer navigateTo={this.navigateTo} />
+      case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
+      case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
+      case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} />
       default:
         break;
     }

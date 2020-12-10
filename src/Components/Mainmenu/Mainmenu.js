@@ -34,11 +34,11 @@ class Mainmenu extends React.Component {
       {
         name: "Quick Scan",
         icon: QuicScanIcon,
-        screenName: 'settingsScreen',
+        screenName: 'quickScanScreen',
         cssTag: 'a1'
       },
       {
-        name: "Manual Scan",
+        name: "Automatic Scan",
         icon: ManualScanIcon,
         screenName: 'settingsScreen',
         cssTag: 'a2'
@@ -77,6 +77,7 @@ class Mainmenu extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log('detach')
     socketHelper.detach()
   }
 
@@ -111,6 +112,11 @@ class Mainmenu extends React.Component {
         tempSelectedButtonIndex = this.clamp(tempSelectedButtonIndex + 1, 0, 5)
         break;
       case 'ok':
+        if(this.animationCounter === 0){
+          socketHelper.detach()
+          this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
+          return
+        }
         this.setState({
           key: Math.random()
         }, () => {
@@ -131,6 +137,7 @@ class Mainmenu extends React.Component {
   handleAnimationEnd = (e) => {
     this.animationCounter++
     if (this.animationCounter === 2) {
+      socketHelper.detach()
       this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
     }
   }
