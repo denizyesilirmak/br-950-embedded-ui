@@ -1,5 +1,7 @@
 import React from 'react'
 import './Clock.css'
+import Utils from '../../../Utils'
+
 
 const TIME_INTERVAL = 5000
 
@@ -15,23 +17,16 @@ class Clock extends React.Component {
     //gets time on first run
     const time = new Date()
     this.setState({
-      time: `${this.pad(time.getHours())}:${this.pad(time.getMinutes())}`
+      time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`
     })
 
     //gets time every 5 seconds
     setInterval(() => {
       const time = new Date()
       this.setState({
-        time: `${this.pad(time.getHours())}:${this.pad(time.getMinutes())}`
+        time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`
       })
     }, TIME_INTERVAL)
-  }
-
-  pad = (val) => {
-    if(val < 10){
-      return '0' + val
-    }
-      return val
   }
 
   render() {
@@ -41,7 +36,7 @@ class Clock extends React.Component {
       </div>
     )
   }
-  
+
 }
 
 export default Clock
