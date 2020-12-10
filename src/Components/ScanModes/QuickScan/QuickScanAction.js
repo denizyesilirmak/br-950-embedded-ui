@@ -3,13 +3,13 @@ import './QuickScanAction.css'
 import socketHelper from '../../../SocketHelper'
 import quickScanVideo from '../../../Assets/videos/manual_scan_video.mp4'
 
-class QuickScanAction extends React.Component{
+class QuickScanAction extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     socketHelper.attach((a) => console.log())
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     socketHelper.detach()
   }
 
@@ -18,11 +18,11 @@ class QuickScanAction extends React.Component{
     this.props.navigateTo('quickScanResultScreen')
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="quick-scan-action component">
         <div className="quick-scan-video-container">
-          <video src={quickScanVideo} autoPlay muted className="quick-scan-video" onEnded={this.onVideoEnded}/>
+          <video src={quickScanVideo} autoPlay muted className="quick-scan-video" onEnded={this.onVideoEnded} />
         </div>
       </div>
     )
