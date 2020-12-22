@@ -17,13 +17,15 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      activeScreen: 'menuScreen'
+      activeScreen: 'menuScreen',
+      screenProps: null
     }
   }
 
-  navigateTo = (screenName) => {
+  navigateTo = (screenName, screenProps) => {
     this.setState({
-      activeScreen: screenName
+      screenProps: screenProps,
+      activeScreen: screenName,
     })
   }
 
@@ -36,7 +38,7 @@ class App extends React.Component {
       case 'scanViewerScreen': return <ScanViewer navigateTo={this.navigateTo} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
-      case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} />
+      case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps}/>
       default:
         break;
     }

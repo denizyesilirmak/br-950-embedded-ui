@@ -77,7 +77,7 @@ class Mainmenu extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('detach')
+    // console.log('detach')
     socketHelper.detach()
   }
 

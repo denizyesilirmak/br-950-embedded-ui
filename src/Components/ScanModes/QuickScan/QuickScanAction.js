@@ -14,8 +14,8 @@ class QuickScanAction extends React.Component {
   }
 
   onVideoEnded = () => {
-    console.log('video ended')
-    this.props.navigateTo('quickScanResultScreen')
+    // console.log('video ended')
+    this.props.navigateTo('quickScanResultScreen', { test: 'test' })
   }
 
   render() {
