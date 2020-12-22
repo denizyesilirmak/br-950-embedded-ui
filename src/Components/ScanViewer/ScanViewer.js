@@ -3,7 +3,7 @@ import './ScanViewer.css'
 import socketHelper from '../../SocketHelper'
 
 import ScanTitle from './ScanViewerComponents/Title'
-import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
+// import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
 import PlotViewer from './ScanViewerComponents/PlotViewer'
 
 class ScanViewer extends React.Component {

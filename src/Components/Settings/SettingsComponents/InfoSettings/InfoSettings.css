@@ -1,0 +1,11 @@
+.info-settings{
+  height: 320px;
+  width: 644px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-settings .info-logo{
+  width: 100px;
+}

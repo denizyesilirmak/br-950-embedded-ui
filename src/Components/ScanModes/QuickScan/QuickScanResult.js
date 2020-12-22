@@ -3,10 +3,10 @@ import './QuickScanResult.css'
 import socketHelper from '../../../SocketHelper'
 
 class QuickScanResult extends React.Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
 
-  }
+  // }
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
@@ -36,7 +36,9 @@ class QuickScanResult extends React.Component {
         break;
       case 'back':
         this.props.navigateTo('menuScreen')
-        return;
+        return
+      default:
+        return
     }
   }
 

@@ -23,6 +23,7 @@ class TabBar extends React.Component {
           <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
         </div>
         <div className={`settings-tab ${(this.props.activeTabIndex === 4 && this.props.tabBarActive === true) ? 'active' : ''}`}>
+          <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
         </div>
       </div>
     )

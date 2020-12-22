@@ -4,6 +4,8 @@ import socketHelper from '../../SocketHelper'
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
+import ResetSettings from './SettingsComponents/ResetSettings/ResetSettings'
+import InfoSettings from './SettingsComponents/InfoSettings/InfoSettings'
 
 import DatePopup from './SettingsPopups/Date'
 import TimePopup from './SettingsPopups/Time'
@@ -14,7 +16,8 @@ const SETTINGS_TABS = [
   "Language Settings",
   "Date & Time Settings",
   "Volume Settings",
-  "Info"
+  "Reset Settings",
+  "Device Info"
 ]
 
 class Settings extends React.Component {
@@ -26,6 +29,7 @@ class Settings extends React.Component {
       tabBarActive: true,
       languageIndex: 0,
       dateTimeSettingsIndex: 0,
+      resetSettingsIndex: 0,
       day: 1,
       month: 2,
       year: 2019,
@@ -62,6 +66,13 @@ class Settings extends React.Component {
           //move up on datetime settings tab
           if (this.state.dateTimeSettingsIndex >= 1) {
             this.setState({ dateTimeSettingsIndex: this.state.dateTimeSettingsIndex - 1 })
+          }
+        }
+
+        if (this.state.activeSettingsTab === 3 && this.state.tabBarActive === false && this.state.activePopup === '') {
+          //move up on reset settings tab
+          if (this.state.resetSettingsIndex >= 1) {
+            this.setState({ resetSettingsIndex: this.state.resetSettingsIndex - 1 })
           }
         }
 
@@ -113,6 +124,13 @@ class Settings extends React.Component {
           //move down on datetime settings tab
           if (this.state.dateTimeSettingsIndex < 1) {
             this.setState({ dateTimeSettingsIndex: this.state.dateTimeSettingsIndex + 1 })
+          }
+        }
+
+        if (this.state.activeSettingsTab === 3 && this.state.tabBarActive === false && this.state.activePopup === '') {
+          //move down on reset settings tab
+          if (this.state.resetSettingsIndex < 1) {
+            this.setState({ resetSettingsIndex: this.state.resetSettingsIndex + 1 })
           }
         }
 
@@ -243,6 +261,11 @@ class Settings extends React.Component {
         year={this.state.year}
         hour={this.state.hour}
         minute={this.state.minute}
+      />
+      case 3: return <ResetSettings
+        index={this.state.resetSettingsIndex}
+      />
+      case 4: return <InfoSettings 
       />
 
 

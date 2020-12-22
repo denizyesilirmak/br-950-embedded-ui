@@ -1,0 +1,13 @@
+.reset-settings {
+  height: 320px;
+  width: 644px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-settings-container {
+  width: 600px;
+  height: 100%;
+}
+

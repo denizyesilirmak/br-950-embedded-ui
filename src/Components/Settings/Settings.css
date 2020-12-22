@@ -36,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.2s, transform 0.3s;
+  transition: background 0.2s, transform 0.5s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform-origin: right;
   transform: rotateY(-45deg);
@@ -45,6 +45,7 @@
 .settings .settings-container .left .settings-tab.active {
 
   transform: rotateY(0deg);
+  z-index: 10;
 }
 
 
