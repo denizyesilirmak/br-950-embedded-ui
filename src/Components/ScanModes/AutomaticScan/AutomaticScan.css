@@ -1,0 +1,33 @@
+.automatic-scan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.automatic-scan .automatic-scan-container {
+  width: 700px;
+  height: 360px;
+  background: #c5edf7;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.automatic-scan-video-container {
+  width: 600px;
+  height: 200px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.automatic-scan-start-button{
+  background: rgb(17, 87, 179);
+  padding: 10px 20px 10px 20px;
+  font-size: 22px;
+  margin-top: 30px;
+  border-radius: 10px;
+  color: #ffffff;
+}

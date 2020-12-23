@@ -40,7 +40,7 @@ class Mainmenu extends React.Component {
       {
         name: "Automatic Scan",
         icon: ManualScanIcon,
-        screenName: 'settingsScreen',
+        screenName: 'automaticScanScreen',
         cssTag: 'a2'
       },
       {

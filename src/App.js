@@ -11,13 +11,15 @@ import ScanViewer from './Components/ScanViewer/ScanViewer'
 import QuickScan from './Components/ScanModes/QuickScan/QuickScan'
 import QuickScanAction from './Components/ScanModes/QuickScan/QuickScanAction'
 import QuickScanResult from './Components/ScanModes/QuickScan/QuickScanResult'
+import AutomaticScan from './Components/ScanModes/AutomaticScan/AutomaticScan'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      activeScreen: 'menuScreen',
+      activeScreen: 'automaticScanScreen',
       screenProps: null
     }
   }
@@ -39,6 +41,7 @@ class App extends React.Component {
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
       case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps}/>
+      case 'automaticScanScreen': return <AutomaticScan navigateTo={this.navigateTo} />
       default:
         break;
     }

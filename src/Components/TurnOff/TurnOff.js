@@ -6,12 +6,19 @@ class TurnOff extends React.Component {
   constructor(props) {
     super(props)
 
+    this.containerRef = React.createRef()
+
     this.state = {
       selectedButtonIndex: true
     }
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      console.log('test')
+      this.containerRef.current.style.transform = 'scale(1)'
+      this.containerRef.current.style.opacity = 1
+    }, 100);
     socketHelper.attach(this.handleSocket)
   }
 
@@ -44,7 +51,7 @@ class TurnOff extends React.Component {
   render() {
     return (
       <div className="turn-off component">
-        <div className="turn-off-container">
+        <div className="turn-off-container" ref={this.containerRef}>
           <div className="turn-off-question">
             Do you really want to turn off the device?
           </div>
