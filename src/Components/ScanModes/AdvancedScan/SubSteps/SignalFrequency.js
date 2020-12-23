@@ -7,17 +7,25 @@ class SignalFrequency extends React.Component {
   render() {
     return (
       <div className="signal-frequency">
-        <Selector />
+        <Selector value={this.props.frequency} unit="Hz" />
 
         <svg width="500" height="140" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="myGradient" gradientTransform="rotate(90)">
+              <stop offset="5%" stopColor="#0b264b" />
+              <stop offset="50%" stopColor="#c5edf7" />
+              <stop offset="95%" stopColor="#0b264b" />
+            </linearGradient>
+          </defs>
           <path
-            style={{d: this.props.pathString }}
+            style={{ d: this.props.pathString }}
             className="frequency-path"
             id="svg_1"
             strokeWidth="3"
-            stroke="#000"
+            stroke="url('#myGradient')"
             fill="none"
           />
+          <line x1="0" y1="70" x2="500" y2="70" stroke="#000000" strokeWidth="1" />
         </svg>
 
       </div>

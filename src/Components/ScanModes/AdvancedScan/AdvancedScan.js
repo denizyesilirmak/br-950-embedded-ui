@@ -4,12 +4,35 @@ import NextIcon from '../../../Assets/icons/next.png'
 import socketHelper from '../../../SocketHelper'
 
 import SignalFrequency from './SubSteps/SignalFrequency'
+import DirtType from './SubSteps/DirtType'
+
+import utils from '../../../Utils'
+
+const AdvancedScanTitles = [
+  {
+    title: "signal_frequency",
+    description: "Please select AC current frequency"
+  },
+  {
+    title: "dirt-type",
+    description: "Please select dirt type"
+  },
+  {
+    title: "sensitivity",
+    description: "Please select AC Current Frequency"
+  },
+  {
+    title: "probe-distance",
+    description: "Please select AC Current Frequency"
+  }
+]
 
 class AdvancedScan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      stepIndex: 0
+      stepIndex: 0,
+      signalFrequency: 50
     }
   }
 
@@ -24,11 +47,26 @@ class AdvancedScan extends React.Component {
   handleSocket = (sd) => {
     if (sd.type !== 'button') { return }
     switch (sd.payload) {
-      case 'back': 
+      case 'back':
         this.props.navigateTo('menuScreen')
         return
+      case 'left':
+        if (this.state.stepIndex === 0) {
+          this.setState({
+            signalFrequency: utils.clamp(this.state.signalFrequency - 10, 30, 150)
+          })
+        }
+        break
 
-    
+      case 'right':
+        if (this.state.stepIndex === 0) {
+          this.setState({
+            signalFrequency: utils.clamp(this.state.signalFrequency + 10, 30, 150)
+          })
+        }
+        break
+
+
       default:
         break;
     }
@@ -36,15 +74,17 @@ class AdvancedScan extends React.Component {
 
   renderSubMenu = () => {
     switch (this.state.stepIndex) {
-      case 0: return <SignalFrequency pathString={this.generatePathNodes(30)} />
+      case 0: return <SignalFrequency frequency={this.state.signalFrequency} pathString={this.generatePathNodes(this.state.signalFrequency)} />
+      case 1: return <DirtType />
       default:
         break;
     }
   }
 
   generatePathNodes = (width = 10) => {
+    width = (160 - width)
     let s = 'M 0 70 '
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 50; i++) {
       s += `Q ${(width) + (i * (width * 2))} ${i % 2 === 0 ? 0 : 140} ${(width * 2) + (i * (width * 2))} 70 `
     }
     return `path("${s}")`
@@ -55,10 +95,10 @@ class AdvancedScan extends React.Component {
       <div className="advanced-scan component">
         <div className="advanced-scan-container">
           <div className="step-title">
-            Signal Frequency
+            {AdvancedScanTitles[this.state.stepIndex].title}
           </div>
           <div className="step-description">
-            Please select AC current frequency
+            {AdvancedScanTitles[this.state.stepIndex].description}
           </div>
 
           <div className="next-sub-menu">

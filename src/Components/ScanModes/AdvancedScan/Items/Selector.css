@@ -21,6 +21,7 @@
   border-right: 1px solid #cccccc;
   display: flex;
   justify-content: center;
+
 }
 
 .selector-item .right {
@@ -28,8 +29,41 @@
   border-left: 1px solid #cccccc;
   display: flex;
   justify-content: center;
+  
 }
 
 .selector-item .unit {
   font-size: 20px;
+}
+
+.selector-item .right[animating='1'] {
+  animation: arrow-animation-right 0.3s 1;
+}
+
+.selector-item .left[animating='1'] {
+  animation: arrow-animation-left 0.3s 1;
+}
+
+@keyframes arrow-animation-right{
+  0%{
+    transform: translateX(0px);
+  }
+  80%{
+    transform: translateX(10px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+
+@keyframes arrow-animation-left{
+  0%{
+    transform: translateX(0px);
+  }
+  80%{
+    transform: translateX(-10px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
 }
