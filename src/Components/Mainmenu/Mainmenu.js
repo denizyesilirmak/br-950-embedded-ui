@@ -46,7 +46,7 @@ class Mainmenu extends React.Component {
       {
         name: "Advanced Scan",
         icon: AdvancedScanIcon,
-        screenName: 'settingsScreen',
+        screenName: 'advancedScanScreen',
         cssTag: 'a3'
       },
       {
