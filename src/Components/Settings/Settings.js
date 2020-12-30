@@ -1,6 +1,7 @@
 import React from 'react'
 import './Settings.css'
 import socketHelper from '../../SocketHelper'
+import Popup from '../Popup/Popup'
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
@@ -11,6 +12,9 @@ import DatePopup from './SettingsPopups/Date'
 import TimePopup from './SettingsPopups/Time'
 
 import TabBar from './SettingsComponents/TabBar/TabBar'
+
+
+
 
 const SETTINGS_TABS = [
   "Language Settings",
@@ -36,7 +40,14 @@ class Settings extends React.Component {
       hour: 23,
       minute: 56,
       datePopupIndex: 0,
-      timePopupIndex: 0
+      timePopupIndex: 0,
+      informationPopupActive: false,
+      informationPopupData: {
+        title: 'test',
+        text: 'test_text',
+        buttontext: 'test_button',
+        rtl: false
+      }
     }
   }
 
@@ -45,6 +56,7 @@ class Settings extends React.Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.notificationTimeOut)
     socketHelper.detach()
   }
 
@@ -211,6 +223,11 @@ class Settings extends React.Component {
           // we're in the right panel.
           if (this.state.activeSettingsTab === 0) {
             //language selection
+            this.showNotification(
+              "Settings",
+              "Current language changed successfuly",
+              false
+            )
           }
           else if (this.state.activeSettingsTab === 1 && this.state.activePopup === '') {
             //date time settings item selection
@@ -241,7 +258,6 @@ class Settings extends React.Component {
               tabBarActive: true
             })
           }
-
         }
         break
       default:
@@ -265,7 +281,7 @@ class Settings extends React.Component {
       case 3: return <ResetSettings
         index={this.state.resetSettingsIndex}
       />
-      case 4: return <InfoSettings 
+      case 4: return <InfoSettings
       />
 
 
@@ -325,6 +341,34 @@ class Settings extends React.Component {
     }
   }
 
+  renderInformationPopup = () => {
+    return (
+      <Popup
+        title={this.state.informationPopupData.title}
+        text={this.state.informationPopupData.text}
+        buttontext={this.state.informationPopupData.buttontext}
+        rtl={this.state.informationPopupData.rtl}
+      />
+    )
+  }
+
+  showNotification = (title = "empty", text = "empty", buttontext = "empty", rtl = false) => {
+    this.setState({
+      informationPopupData: {
+        title: title,
+        text: text,
+        buttontext: buttontext,
+        rtl: rtl
+      }
+    }, () => {
+      this.setState({ informationPopupActive: true }, () => {
+        this.notificationTimeOut = setTimeout(() => {
+          this.setState({ informationPopupActive: false })
+        }, 2000)
+      })
+    })
+  }
+
   clamp = (val, min, max) => {
     if (val < min) {
       return min
@@ -343,6 +387,10 @@ class Settings extends React.Component {
       <>
         {
           this.renderPopup()
+        }
+
+        {
+          this.state.informationPopupActive ? this.renderInformationPopup() : null
         }
 
         <div className="settings component">

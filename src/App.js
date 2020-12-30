@@ -15,12 +15,13 @@ import AutomaticScan from './Components/ScanModes/AutomaticScan/AutomaticScan'
 import AutomaticScanAction from './Components/ScanModes/AutomaticScan/AutomaticScanAction'
 import AdvancedScan from './Components/ScanModes/AdvancedScan/AdvancedScan'
 
+
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      activeScreen: 'advancedScanScreen',
+      activeScreen: 'settingsScreen',
       screenProps: null
     }
   }

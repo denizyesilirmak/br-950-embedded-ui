@@ -8,6 +8,11 @@ class DirtType extends React.Component {
     return (
       <div className="dirt-type">
         <Selector value="Neutral" fontSize={20} />
+
+        <div className="dirt-type-visual">
+          dirt-type-visual
+        </div>
+
       </div>
     )
   }

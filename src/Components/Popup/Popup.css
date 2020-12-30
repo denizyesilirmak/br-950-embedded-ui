@@ -1,0 +1,54 @@
+.app-popup-container {
+  width: 800px;
+  height: 480px;
+  background: #000000cc;
+  position: absolute;
+  z-index: 3000;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-popup-container .app-popup {
+  width: 600px;
+  height: 200px;
+  background: #cccccc;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid #cccccc;
+  transform: translateY(40px) scale(0.8);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.4s;
+}
+
+.app-popup-title {
+  width: 100%;
+  background: rgb(36, 79, 158);
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.app-popup-text {
+  width: 530px;
+  height: 50px;
+  padding: 20px;
+}
+
+.app-popup-button {
+  background: rgb(36, 79, 158);
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 15px;
+}
+

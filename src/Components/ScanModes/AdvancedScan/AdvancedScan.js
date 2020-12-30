@@ -5,6 +5,8 @@ import socketHelper from '../../../SocketHelper'
 
 import SignalFrequency from './SubSteps/SignalFrequency'
 import DirtType from './SubSteps/DirtType'
+import Sensitivity from './SubSteps/Sensitivity'
+import ProbeDistance from './SubSteps/ProbeDistance'
 
 import utils from '../../../Utils'
 
@@ -31,8 +33,10 @@ class AdvancedScan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      stepIndex: 0,
-      signalFrequency: 50
+      stepIndex: 3,
+      signalFrequency: 50,
+      dirtTypeIndex: 0,
+      sensitivity: 0
     }
   }
 
@@ -48,7 +52,13 @@ class AdvancedScan extends React.Component {
     if (sd.type !== 'button') { return }
     switch (sd.payload) {
       case 'back':
-        this.props.navigateTo('menuScreen')
+        if (this.state.stepIndex === 0)
+          this.props.navigateTo('menuScreen')
+        else {
+          this.setState({
+            stepIndex: this.state.stepIndex - 1
+          })
+        }
         return
       case 'left':
         if (this.state.stepIndex === 0) {
@@ -65,6 +75,12 @@ class AdvancedScan extends React.Component {
           })
         }
         break
+      case 'ok':
+        if (this.state.stepIndex >= 0 && this.state.stepIndex < AdvancedScanTitles.length - 1)
+          this.setState({
+            stepIndex: this.state.stepIndex + 1
+          })
+        break
 
 
       default:
@@ -76,6 +92,8 @@ class AdvancedScan extends React.Component {
     switch (this.state.stepIndex) {
       case 0: return <SignalFrequency frequency={this.state.signalFrequency} pathString={this.generatePathNodes(this.state.signalFrequency)} />
       case 1: return <DirtType />
+      case 2: return <Sensitivity />
+      case 3: return <ProbeDistance />
       default:
         break;
     }
