@@ -176,8 +176,6 @@ class Settings extends React.Component {
             })
           }
         }
-
-
         break;
       case 'left':
         if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
@@ -194,7 +192,6 @@ class Settings extends React.Component {
           })
         }
         break
-
       case 'right':
         if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
           this.handleLanguageNavigation('right')
@@ -210,7 +207,6 @@ class Settings extends React.Component {
           })
         }
         break
-
       case 'ok':
         if (this.state.tabBarActive === true) {
           //we are going left to right panel.
