@@ -21,11 +21,11 @@ const AdvancedScanTitles = [
   },
   {
     title: "sensitivity",
-    description: "Please select AC Current Frequency"
+    description: "Please select AC Voltage Frequency"
   },
   {
     title: "probe-distance",
-    description: "Please select AC Current Frequency"
+    description: "Select distance between probes"
   }
 ]
 
@@ -33,7 +33,7 @@ class AdvancedScan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      stepIndex: 3,
+      stepIndex: 0,
       signalFrequency: 50,
       dirtTypeIndex: 0,
       sensitivity: 0

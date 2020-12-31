@@ -35,7 +35,7 @@
 .popup-picker-item .up-arrow {
   width: 100%;
   height: 40px;
-  background: #65a2e690;
+  background: #d5ebff;
   padding: 0px 10px 0px 10px;
   display: flex;
   justify-content: center;
@@ -44,7 +44,7 @@
 .popup-picker-item .down-arrow {
   width: 100%;
   height: 40px;
-  background: #65a2e690;
+  background: #d5ebff;
   padding: 0px 10px 0px 10px;
   display: flex;
   justify-content: center;
@@ -67,11 +67,11 @@
 }
 
 .popup-picker-item.selected .value{
-  color: #000000;
+  color: #ffffff;
 }
 
 .popup-picker-item.selected {
-  background: rgb(51, 101, 158);
+  background: rgb(8, 56, 102);
 }
 
 .description {
@@ -83,4 +83,5 @@
   position: absolute;
   top: 45px;
   font-weight: bold;
+  font-size: 13px;
 }

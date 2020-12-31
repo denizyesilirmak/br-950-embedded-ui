@@ -61,7 +61,7 @@ class Settings extends React.Component {
   }
 
   handleSocket = (sd) => {
-    if (sd.type !== 'button') { return }
+    if (sd.type !== 'button' || this.state.informationPopupActive) { return }
     switch (sd.payload) {
       case 'up':
         if (this.state.activeSettingsTab > 0 && this.state.tabBarActive) {
