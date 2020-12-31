@@ -1,7 +1,9 @@
 import React from 'react'
 import './Settings.css'
 import socketHelper from '../../SocketHelper'
+import dbStorage from '../../DatabaseHelper'
 import Popup from '../Popup/Popup'
+
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
@@ -13,6 +15,70 @@ import TimePopup from './SettingsPopups/Time'
 
 import TabBar from './SettingsComponents/TabBar/TabBar'
 
+import en from '../../Assets/flags/settings/en.png'
+import de from '../../Assets/flags/settings/de.png'
+import tr from '../../Assets/flags/settings/tr.png'
+import ar from '../../Assets/flags/settings/ar.png'
+import fa from '../../Assets/flags/settings/fa.png'
+import ru from '../../Assets/flags/settings/ru.png'
+import zh from '../../Assets/flags/settings/zh.png'
+import fr from '../../Assets/flags/settings/fr.png'
+import es from '../../Assets/flags/settings/es.png'
+import it from '../../Assets/flags/settings/it.png'
+
+
+const LANGUAGES = [
+  {
+    name: "English",
+    code: "en",
+    icon: en
+  },
+  {
+    name: "German",
+    code: "de",
+    icon: de
+  },
+  {
+    name: "Turkish",
+    code: "tr",
+    icon: tr
+  },
+  {
+    name: "Arabic",
+    code: "ar",
+    icon: ar
+  },
+  {
+    name: "Persian",
+    code: "fa",
+    icon: fa
+  },
+  {
+    name: "Russian",
+    code: "ru",
+    icon: ru
+  },
+  {
+    name: "Chinese",
+    code: "zh",
+    icon: zh
+  },
+  {
+    name: "French",
+    code: "fr",
+    icon: fr
+  },
+  {
+    name: "Spanish",
+    code: "es",
+    icon: es
+  },
+  {
+    name: "Italian",
+    code: "it",
+    icon: it
+  }
+]
 
 
 
@@ -60,7 +126,7 @@ class Settings extends React.Component {
     socketHelper.detach()
   }
 
-  handleSocket = (sd) => {
+  handleSocket = async (sd) => {
     if (sd.type !== 'button' || this.state.informationPopupActive) { return }
     switch (sd.payload) {
       case 'up':
@@ -212,13 +278,14 @@ class Settings extends React.Component {
           //we are going left to right panel.
           this.setState({
             tabBarActive: false
-          }, () => {
-            console.log(this.state.tabBarActive)
           })
         } else {
           // we're in the right panel.
           if (this.state.activeSettingsTab === 0) {
             //language selection
+
+            this.props.setLanguage(LANGUAGES[this.state.languageIndex].code) //send language code to app.js
+            await dbStorage.setItem('lang', LANGUAGES[this.state.languageIndex].code)
             this.showNotification(
               "Settings",
               "Current language changed successfuly",
@@ -264,6 +331,7 @@ class Settings extends React.Component {
   renderSubSettings = () => {
     switch (this.state.activeSettingsTab) {
       case 0: return <LanguageSettings
+        languages={LANGUAGES}
         index={this.state.languageIndex}
       />
       case 1: return <DateTimeSettings

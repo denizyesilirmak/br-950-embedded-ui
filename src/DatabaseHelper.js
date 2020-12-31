@@ -1,10 +1,11 @@
 export default {
   init () {
+    console.log('db init')
     return new Promise((resolve, reject) => {
       const req = indexedDB.open('db')
       // Create if needed
       req.onupgradeneeded = () => {
-        req.result.createObjectStore('br950')
+        req.result.createObjectStore('brwater')
         resolve()
       }
       req.onerror = () => {
@@ -17,8 +18,8 @@ export default {
       const reqOpen = indexedDB.open('db')
       reqOpen.onsuccess = () => {
         const db = reqOpen.result
-        const transaction = db.transaction('br950', 'readonly')
-        const store = transaction.objectStore('br950')
+        const transaction = db.transaction('brwater', 'readonly')
+        const store = transaction.objectStore('brwater')
         let successCount = 0
         const reqGetValues = store.getAll()
         reqGetValues.onsuccess = () => {
@@ -52,8 +53,8 @@ export default {
       const reqOpen = indexedDB.open('db')
       reqOpen.onsuccess = () => {
         const db = reqOpen.result
-        const transaction = db.transaction('br950', 'readonly')
-        const store = transaction.objectStore('br950')
+        const transaction = db.transaction('brwater', 'readonly')
+        const store = transaction.objectStore('brwater')
         const reqGet = store.get(key)
         reqGet.onsuccess = () => {
           resolve(reqGet.result)
@@ -72,8 +73,8 @@ export default {
       const reqOpen = indexedDB.open('db')
       reqOpen.onsuccess = () => {
         const db = reqOpen.result
-        const transaction = db.transaction('br950', 'readwrite')
-        const store = transaction.objectStore('br950')
+        const transaction = db.transaction('brwater', 'readwrite')
+        const store = transaction.objectStore('brwater')
 
         // Multiple values
         if (typeof keyOrObj === 'object') {
@@ -102,8 +103,8 @@ export default {
       const reqOpen = indexedDB.open('db')
       reqOpen.onsuccess = function () {
         const db = reqOpen.result
-        const transaction = db.transaction('br950', 'readwrite')
-        const store = transaction.objectStore('br950')
+        const transaction = db.transaction('brwater', 'readwrite')
+        const store = transaction.objectStore('brwater')
         const reqDelete = store.delete(key)
         reqDelete.onsuccess = function () {
           resolve()

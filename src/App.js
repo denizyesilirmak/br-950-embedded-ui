@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import DeviceContextProvider from './Contexts/DeviceContext'
 
 import StatusBar from './Components/Statusbar/Statusbar'
 //SCREENS
@@ -15,15 +16,28 @@ import AutomaticScan from './Components/ScanModes/AutomaticScan/AutomaticScan'
 import AutomaticScanAction from './Components/ScanModes/AutomaticScan/AutomaticScanAction'
 import AdvancedScan from './Components/ScanModes/AdvancedScan/AdvancedScan'
 
+import dbStorage from './DatabaseHelper'
+dbStorage.init()
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      activeScreen: 'settingsScreen',
-      screenProps: null
+      ready: false,
+      activeScreen: 'menuScreen',
+      screenProps: null,
+      currentLanguage: "en"
     }
+
+    dbStorage.getAll()
+      .then(settings => {
+        this.setState({
+          ready: true,
+          currentLanguage: settings['lang'] || 'en'
+        })
+      })
+
   }
 
   navigateTo = (screenName, screenProps) => {
@@ -33,18 +47,23 @@ class App extends React.Component {
     })
   }
 
+  _getLanguage = (langCode) => {
+    console.log('App.js:_getLanguage', langCode)
+    this.setState({ currentLanguage: langCode })
+  }
+
   renderActiveScreen = () => {
     switch (this.state.activeScreen) {
       case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} />
-      case 'settingsScreen': return <Settings navigateTo={this.navigateTo} />
+      case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
       case 'scanViewerScreen': return <ScanViewer navigateTo={this.navigateTo} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
-      case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps}/>
+      case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'automaticScanScreen': return <AutomaticScan navigateTo={this.navigateTo} />
-      case 'automaticScanActionScreen': return <AutomaticScanAction navigateTo={this.navigateTo} /> 
+      case 'automaticScanActionScreen': return <AutomaticScanAction navigateTo={this.navigateTo} />
       case 'advancedScanScreen': return <AdvancedScan navigateTo={this.navigateTo} />
       default:
         break;
@@ -54,12 +73,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <StatusBar menuTitle={this.state.activeScreen} />
-        {
-          this.renderActiveScreen()
-        }
-      </div>
+      this.state.ready ?
+        <div className="App">
+          <DeviceContextProvider
+            language={this.state.currentLanguage}
+          >
+            <StatusBar menuTitle={this.state.activeScreen} />
+            {
+              this.renderActiveScreen()
+            }
+          </DeviceContextProvider>
+        </div>
+        : null
     )
   }
 }

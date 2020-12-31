@@ -7,13 +7,14 @@ import SignalFrequency from './SubSteps/SignalFrequency'
 import DirtType from './SubSteps/DirtType'
 import Sensitivity from './SubSteps/Sensitivity'
 import ProbeDistance from './SubSteps/ProbeDistance'
+import Summary from './SubSteps/Summary'
 
 import utils from '../../../Utils'
 
 const AdvancedScanTitles = [
   {
     title: "signal_frequency",
-    description: "Please select AC current frequency"
+    description: "Please select AC voltage frequency"
   },
   {
     title: "dirt-type",
@@ -26,6 +27,10 @@ const AdvancedScanTitles = [
   {
     title: "probe-distance",
     description: "Select distance between probes"
+  },
+  {
+    title: "scan-summary",
+    description: ""
   }
 ]
 
@@ -94,6 +99,7 @@ class AdvancedScan extends React.Component {
       case 1: return <DirtType />
       case 2: return <Sensitivity />
       case 3: return <ProbeDistance />
+      case 4: return <Summary />
       default:
         break;
     }
