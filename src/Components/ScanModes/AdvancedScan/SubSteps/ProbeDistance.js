@@ -7,7 +7,7 @@ class ProbeDistance extends React.Component {
   render() {
     return (
       <div className="probe-distance">
-        <Selector value="25 Metres" fontSize={20} />
+        <Selector value={`${this.props.distance} metres`} fontSize={20} />
 
         <div className="sensitivity-visual">
           <svg width="500" height="140" xmlns="http://www.w3.org/2000/svg">

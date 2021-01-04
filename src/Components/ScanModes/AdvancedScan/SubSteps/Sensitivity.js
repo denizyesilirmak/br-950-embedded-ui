@@ -6,7 +6,7 @@ class Sensitivity extends React.Component {
   render() {
     return (
       <div className="sensitivity">
-        <Selector value="20" fontSize={30} />
+        <Selector value={this.props.sensitivity} fontSize={30} />
 
         <div className="sensitivity-visual">
           <svg width="500" height="130" xmlns="http://www.w3.org/2000/svg">
