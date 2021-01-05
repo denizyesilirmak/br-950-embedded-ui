@@ -6,7 +6,7 @@ class ScanLinesInfos extends React.Component {
     return (
       <div className="scan-lines-infos">
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 0 ? 'selected' : ''}`}>
           <div className="line-name">A Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -29,7 +29,7 @@ class ScanLinesInfos extends React.Component {
           </div>
         </div>
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 1 ? 'selected' : ''}`}>
           <div className="line-name">B Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -53,7 +53,7 @@ class ScanLinesInfos extends React.Component {
         </div>
 
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 2 ? 'selected' : ''}`}>
           <div className="line-name">C Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -76,7 +76,7 @@ class ScanLinesInfos extends React.Component {
           </div>
         </div>
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 3 ? 'selected' : ''}`}>
           <div className="line-name">D Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -99,7 +99,7 @@ class ScanLinesInfos extends React.Component {
           </div>
         </div>
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 4 ? 'selected' : ''}`}>
           <div className="line-name">E Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -122,7 +122,7 @@ class ScanLinesInfos extends React.Component {
           </div>
         </div>
 
-        <div className="scan-line-info">
+        <div className={`scan-line-info ${this.props.index === 5 ? 'selected' : ''}`}>
           <div className="line-name">F Line</div>
           <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>

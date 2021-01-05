@@ -5,7 +5,7 @@ import Interpolation from './Interpolation'
 import gridImage from './grid.png'
 
 const data = {
-  A: 300,
+  A: 600,
   B: 300,
   C: 300,
   D: 450,
@@ -17,14 +17,14 @@ const COLORS = {
   jet: [
     { pct: 0, color: { r: 0x00, g: 0x94, b: 0x0c } },
     { pct: 300, color: { r: 0x00, g: 0x94, b: 0x0c } },
-    { pct: 320, color: { r: 0x00, g: 0xff, b: 0x77 } },
-    { pct: 360, color: { r: 0x00, g: 0xff, b: 0xfc } },
-    { pct: 400, color: { r: 0x00, g: 0xa4, b: 0xff } },
-    { pct: 440, color: { r: 0x00, g: 0x09, b: 0xff } },
-    { pct: 480, color: { r: 0xb3, g: 0x00, b: 0xff } },
-    { pct: 520, color: { r: 0x86, g: 0x00, b: 0x00 } },
-    { pct: 540, color: { r: 0x86, g: 0x00, b: 0x00 } },
-    { pct: 1024, color: { r: 0x86, g: 0x00, b: 0x00 } },
+    { pct: 320, color: { r: 0x23, g: 0xff, b: 0x89 } },
+    { pct: 360, color: { r: 0x00, g: 0xff, b: 0x89 } },
+    { pct: 400, color: { r: 0x00, g: 0xff, b: 0xfd } },
+    { pct: 440, color: { r: 0x00, g: 0xc5, b: 0xff } },
+    { pct: 480, color: { r: 0x00, g: 0x70, b: 0xff } },
+    { pct: 520, color: { r: 0x00, g: 0x0d, b: 0xa4 } },
+    { pct: 540, color: { r: 0x00, g: 0x00, b: 0x00 } },
+    { pct: 1024, color: { r: 0x09, g: 0x0d, b: 0x39 } },
   ]
 }
 
@@ -42,7 +42,7 @@ class PlotViewer extends React.Component {
   componentDidMount() {
     const width = this.canvasHolder.current.clientWidth
     const height = this.canvasHolder.current.clientHeight
-    const scalar = 22
+    const scalar = 35
     const min = Math.min.apply(null, Object.values(data))
     const max = Math.max.apply(null, Object.values(data))
 

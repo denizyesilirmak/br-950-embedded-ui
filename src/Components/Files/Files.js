@@ -51,7 +51,7 @@ class Files extends React.Component {
     let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
       case 'ok':
-        this.props.navigateTo('scanViewerScreen')
+        this.props.navigateTo('scanViewerAutomaticScreen')
       return
       case 'up':
         if (tempSelectedFileIndex > 0) {

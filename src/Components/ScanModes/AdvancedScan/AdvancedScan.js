@@ -3,6 +3,7 @@ import './AdvancedScan.css'
 import NextIcon from '../../../Assets/icons/next.png'
 import socketHelper from '../../../SocketHelper'
 
+
 import SignalFrequency from './SubSteps/SignalFrequency'
 import DirtType from './SubSteps/DirtType'
 import Sensitivity from './SubSteps/Sensitivity'
@@ -96,9 +97,7 @@ class AdvancedScan extends React.Component {
             probeDistance: utils.clamp(this.state.probeDistance - 5, PROBE_DISTANCE_MIN, PROBE_DISTANCE_MAX)
           })
         }
-
         break
-
       case 'right':
         if (this.state.stepIndex === 0) {
           this.setState({

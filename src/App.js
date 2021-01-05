@@ -8,7 +8,8 @@ import Mainmenu from './Components/Mainmenu/Mainmenu'
 import Settings from './Components/Settings/Settings'
 import Files from './Components/Files/Files'
 import TurnOff from './Components/TurnOff/TurnOff'
-import ScanViewer from './Components/ScanViewer/ScanViewer'
+import ScanViewerAutomatic from './Components/ScanViewerAutomatic/ScanViewerAutomatic'
+import ScanViewerAdvanced from './Components/ScanViewerAdvanced/ScanViewerAdvanced'
 import QuickScan from './Components/ScanModes/QuickScan/QuickScan'
 import QuickScanAction from './Components/ScanModes/QuickScan/QuickScanAction'
 import QuickScanResult from './Components/ScanModes/QuickScan/QuickScanResult'
@@ -25,7 +26,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'menuScreen',
+      activeScreen: 'scanViewerAdvancedScreen',
       screenProps: null,
       currentLanguage: "en"
     }
@@ -58,7 +59,8 @@ class App extends React.Component {
       case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
-      case 'scanViewerScreen': return <ScanViewer navigateTo={this.navigateTo} />
+      case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} />
+      case 'scanViewerAdvancedScreen': return <ScanViewerAdvanced navigateTo={this.navigateTo} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
       case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
