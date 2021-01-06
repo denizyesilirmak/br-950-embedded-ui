@@ -1,3 +1,48 @@
 .scan-viewer-advanced {
   background: black;
+  display: flex;
+  align-items: center;
+}
+
+.advanced-scan-lines-details {
+  width: 260px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.advanced-scan-lines-details .line-detail {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  border-bottom: 2px solid white;
+}
+
+.advanced-scan-lines-details .line-detail:last-of-type {
+  border-bottom: none;
+}
+
+.line-detail .line-name-ad {
+  width: 40px;
+  font-weight: bold;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-rate {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
