@@ -90,7 +90,7 @@ class ScanViewer extends React.Component {
           this.changeScreen('lineinfo')
         break;
       case 'back':
-        this.props.navigateTo('menuScreen')
+        this.props.navigateTo('filesScreen')
         return;
 
       default:

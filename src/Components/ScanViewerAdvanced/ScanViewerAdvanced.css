@@ -19,6 +19,10 @@
   border-bottom: 2px solid white;
 }
 
+.advanced-scan-lines-details .line-detail.selected{
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+}
+
 .advanced-scan-lines-details .line-detail:last-of-type {
   border-bottom: none;
 }

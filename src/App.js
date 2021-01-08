@@ -26,7 +26,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'menuScreen',
+      activeScreen: 'scanViewerAdvancedScreen',
       screenProps: null,
       currentLanguage: "en"
     }

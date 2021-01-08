@@ -7,22 +7,21 @@ import DOWN_ICON from '../../Assets/icons/files/down.png'
 import FILE_ICON from '../../Assets/icons/files/file1.png'
 
 const dummy_file_list = [
-  "0001",
-  "0002",
-  "0003",
-  "0004",
-  "0005",
-  "0006",
-  "0007",
-  "0008",
-  "0009",
-  "0010",
-  "0011",
-  "0012",
-  "0013",
-  "0014",
-  "0015",
-  "0016"
+  {
+    name: "001",
+    file_type: "advanced",
+    date: "12:23 12.05.2020"
+  },
+  {
+    name: "002",
+    file_type: "automatic",
+    date: "12:23 12.05.2020"
+  },
+  {
+    name: "003",
+    file_type: "advanced",
+    date: "12:23 12.05.2020"
+  }
 ]
 
 class Files extends React.Component {
@@ -51,8 +50,14 @@ class Files extends React.Component {
     let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
       case 'ok':
-        this.props.navigateTo('scanViewerAutomaticScreen')
-      return
+        if (this.state.fileList[this.state.selectedFileIndex].file_type === "advanced") {
+          this.props.navigateTo('scanViewerAdvancedScreen')
+          return
+        } else if (this.state.fileList[this.state.selectedFileIndex].file_type === "automatic") {
+          this.props.navigateTo('scanViewerAutomaticScreen')
+          return
+        }
+        return
       case 'up':
         if (tempSelectedFileIndex > 0) {
           tempSelectedFileIndex--
@@ -111,13 +116,13 @@ class Files extends React.Component {
                       <div className={`file ${this.state.selectedFileIndex === i ? 'selected' : ''}`} key={i}>
                         <div className="file-a">
                           <img src={FILE_ICON} alt="file-icon" className="file-icon"></img>
-                          <div className="file-item">{e}</div>
+                          <div className="file-item">{e.name}</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item">Advanced</div>
+                          <div className="file-item" style={{ backgroundColor: e.file_type === 'advanced' ? '#336699' : '#12aa12', padding: 5, borderRadius: 10 }}>{e.file_type}</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item" style={{textDecoration: 'underline'}}>12:53 24.11:2020</div>
+                          <div className="file-item" style={{ textDecoration: 'underline' }}>{e.date}</div>
                         </div>
                       </div>
                     )
