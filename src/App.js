@@ -28,7 +28,8 @@ class App extends React.Component {
       ready: false,
       activeScreen: 'scanViewerAdvancedScreen',
       screenProps: null,
-      currentLanguage: "en"
+      currentLanguage: "en",
+      _mainMenuCursorIndex: 0
     }
 
     dbStorage.getAll()

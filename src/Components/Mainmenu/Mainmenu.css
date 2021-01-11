@@ -47,8 +47,8 @@
 }
 
 .main-menu-item .main-menu-icon {
-  width: 90px;
-  transition: all 0.4s;
+  width: 120px;
+  transition: all 0.3s;
 }
 
 .main-menu-item .main-menu-item-title {
@@ -66,7 +66,7 @@
 }
 
 .main-menu-item.selected .main-menu-icon {
-  width: 130px;
+  width: 140px;
 }
 
 .main-menu-item.a1 {

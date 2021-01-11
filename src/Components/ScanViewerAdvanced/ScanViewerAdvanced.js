@@ -21,6 +21,7 @@ class ScanViewerAdvanced extends React.Component {
 
   componentDidMount() {
     SocketHelper.attach(this.handleSocket)
+    Utils.getWaterInfo(260, 21)
     // this.context.showSnackBar('You can see more scan details by pressing OK button', 2000)
   }
 
