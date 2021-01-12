@@ -18,10 +18,8 @@ class SignalFrequency extends React.Component {
             </linearGradient>
           </defs>
           <path
-            style={{ d: this.props.pathString }}
-            className="frequency-path"
-            id="svg_1"
-            strokeWidth="3"
+            d={this.props.pathString}
+            strokeWidth="4"
             stroke="url('#myGradient')"
             fill="none"
           />

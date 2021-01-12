@@ -1,6 +1,5 @@
 export default {
   init () {
-    console.log('db init')
     return new Promise((resolve, reject) => {
       const req = indexedDB.open('db')
       // Create if needed

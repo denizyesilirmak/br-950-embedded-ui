@@ -26,7 +26,7 @@ class Mainmenu extends React.Component {
     this.animationCounter = 0
 
     this.state = {
-      selectedButtonIndex: 0,
+      selectedButtonIndex: this.props.cursorIndex,
       key: 0
     }
 
@@ -112,8 +112,9 @@ class Mainmenu extends React.Component {
         tempSelectedButtonIndex = this.clamp(tempSelectedButtonIndex + 1, 0, 5)
         break;
       case 'ok':
-        if(this.animationCounter === 0){
+        if (this.animationCounter === 0) {
           socketHelper.detach()
+          this.props.setCursorIndex(this.state.selectedButtonIndex)
           this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
           return
         }
@@ -137,6 +138,7 @@ class Mainmenu extends React.Component {
   handleAnimationEnd = (e) => {
     this.animationCounter++
     if (this.animationCounter === 2) {
+      this.props.setCursorIndex(this.state.selectedButtonIndex)
       socketHelper.detach()
       this.props.navigateTo(this.buttons[this.state.selectedButtonIndex].screenName)
     }

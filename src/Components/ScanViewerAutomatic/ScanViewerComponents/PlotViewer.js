@@ -3,6 +3,7 @@ import './PlotViewer.css'
 import * as THREE from "three";
 import Interpolation from './Interpolation'
 import gridImage from './grid.png'
+import Utils from '../../../Utils'
 
 const data = {
   A: 600,
@@ -64,11 +65,11 @@ class PlotViewer extends React.Component {
     this.scene.add(this.scanMeshGroup)
 
 
-    this.setState({ready: true})
+    this.setState({ ready: true })
     this.animate()
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.clearMemory()
   }
 
@@ -92,7 +93,7 @@ class PlotViewer extends React.Component {
     const ScanMatrix = this.createMatrix(data)
     this.plotGeometry = new THREE.PlaneGeometry(18, 18, ScanMatrix.length - 1, ScanMatrix.length - 1)
 
-    ScanMatrix.flat(1).forEach((e, i) => {
+    Utils.flatMatrix(ScanMatrix, 1).forEach((e, i) => {
       this.plotGeometry.vertices[i].z = e / (-32)
     })
 
@@ -164,7 +165,7 @@ class PlotViewer extends React.Component {
   }
 
   crazyLerp = (oldValue, newValue, step) => {
-    if(Math.abs(oldValue - newValue) < 0.05){
+    if (Math.abs(oldValue - newValue) < 0.05) {
       return newValue
     }
     else if (oldValue > newValue) {

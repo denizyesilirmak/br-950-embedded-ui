@@ -8,8 +8,10 @@
 }
 
 .dirt-type-visual {
-  background: red;
+  background: #000000;
   width: 500px;
   height: 130px;
   margin-top: 10px;
+  border-radius: 20px;
+  border: 3px solid #336699;
 }

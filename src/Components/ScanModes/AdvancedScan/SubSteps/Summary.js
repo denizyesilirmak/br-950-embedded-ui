@@ -49,6 +49,10 @@ class Summary extends React.Component {
           </div>
 
         </div>
+
+        <div className="summary-button">
+          Press OK to start scan
+        </div>
       </div>
     )
   }

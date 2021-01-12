@@ -26,6 +26,12 @@ class Utils {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 
+  static flatMatrix = (arr, d = 1) => {
+    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? this.flatMatrix(val, d - 1) : val), [])
+      : arr.slice();
+  };
+
+
   static getWaterInfo = (value, depth = 45) => {
     let _waterType = ''
     let _waterDepth = 0
@@ -37,9 +43,9 @@ class Utils {
       _waterType = 'not_connected'
       _waterDepth = 0
     }
-    else if(value > 220 && value <=285){
+    else if (value > 220 && value <= 285) {
       _waterType = 'no_water'
-      _wet_dirt= true
+      _wet_dirt = true
     }
     else if (value > 285 && value <= 340) {
       _waterType = 'high_fresh_water'

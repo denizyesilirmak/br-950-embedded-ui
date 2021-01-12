@@ -16,6 +16,7 @@ import QuickScanResult from './Components/ScanModes/QuickScan/QuickScanResult'
 import AutomaticScan from './Components/ScanModes/AutomaticScan/AutomaticScan'
 import AutomaticScanAction from './Components/ScanModes/AutomaticScan/AutomaticScanAction'
 import AdvancedScan from './Components/ScanModes/AdvancedScan/AdvancedScan'
+import AdvancedScanAction from './Components/ScanModes/AdvancedScan/AdvancedScanAction'
 
 import dbStorage from './DatabaseHelper'
 dbStorage.init()
@@ -26,7 +27,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'scanViewerAdvancedScreen',
+      activeScreen: 'menuScreen',
       screenProps: null,
       currentLanguage: "en",
       _mainMenuCursorIndex: 0
@@ -54,9 +55,15 @@ class App extends React.Component {
     this.setState({ currentLanguage: langCode })
   }
 
+  _setCursorIndex = (index) => {
+    this.setState({
+      _mainMenuCursorIndex: index
+    })
+  }
+
   renderActiveScreen = () => {
     switch (this.state.activeScreen) {
-      case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} />
+      case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} cursorIndex={this.state._mainMenuCursorIndex} setCursorIndex={this._setCursorIndex} />
       case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
@@ -68,6 +75,7 @@ class App extends React.Component {
       case 'automaticScanScreen': return <AutomaticScan navigateTo={this.navigateTo} />
       case 'automaticScanActionScreen': return <AutomaticScanAction navigateTo={this.navigateTo} />
       case 'advancedScanScreen': return <AdvancedScan navigateTo={this.navigateTo} />
+      case 'advancedScanActionScreen': return <AdvancedScanAction navigateTo={this.navigateTo} />
       default:
         break;
     }

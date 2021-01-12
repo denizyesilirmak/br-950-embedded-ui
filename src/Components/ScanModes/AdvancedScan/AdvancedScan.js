@@ -125,6 +125,11 @@ class AdvancedScan extends React.Component {
           this.setState({
             stepIndex: this.state.stepIndex + 1
           })
+        else if (this.state.stepIndex === 4) {
+          this.props.navigateTo('advancedScanActionScreen')
+          return
+        }
+
         break
 
 
@@ -151,7 +156,7 @@ class AdvancedScan extends React.Component {
     for (let i = 0; i < 50; i++) {
       s += `Q ${(width) + (i * (width * 2))} ${i % 2 === 0 ? 0 : 140} ${(width * 2) + (i * (width * 2))} 70 `
     }
-    return `path("${s}")`
+    return `${s}`
   }
 
   render() {
