@@ -36,6 +36,7 @@ class AdvancedScanAction extends React.Component {
           break
         case 18:
           console.log('F')
+          break
         case 21:
           console.log('Z')
           clearInterval(this.interval)

@@ -1,17 +1,50 @@
 import React from 'react'
 import './Dashboard.css'
 import BR_LOGO from '../../Assets/icons/br-logo.png'
+import Utils from '../../Utils'
 
+const TIME_INTERVAL = 5000
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      time: '',
+      date: ''
+    }
+  }
+
+  componentDidMount() {
+    const time = new Date()
+    this.setState({
+      time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
+      date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth())}.${time.getFullYear()}`
+
+    })
+
+    //gets time every 5 seconds
+    this.interval = setInterval(() => {
+      const time = new Date()
+      this.setState({
+        time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
+        date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth())}.${time.getFullYear()}`
+      })
+    }, TIME_INTERVAL)
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
+
   render() {
     return (
       <div className="dashboard">
         <div className="clock">
-          25:12
+          {this.state.time}
         </div>
         <div className="date">
-          25.11.2020
+          {this.state.date}
         </div>
 
         <div className="battery">
