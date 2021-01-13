@@ -17,7 +17,7 @@ class Summary extends React.Component {
               Frequency
             </div>
             <div className="summary-table-value">
-              100 Hz
+              {this.props.frequency} Hz
             </div>
           </div>
 
@@ -26,7 +26,7 @@ class Summary extends React.Component {
               Dirt Type
             </div>
             <div className="summary-table-value">
-              Rock
+              {this.props.dirtTypeIndex}
             </div>
           </div>
 
@@ -35,7 +35,7 @@ class Summary extends React.Component {
               Sensitivty
             </div>
             <div className="summary-table-value">
-              90
+              {this.props.sensitivity}
             </div>
           </div>
 
@@ -44,7 +44,7 @@ class Summary extends React.Component {
               Probe Distance
             </div>
             <div className="summary-table-value">
-              20 M
+              {this.props.probeDistance} M
             </div>
           </div>
 

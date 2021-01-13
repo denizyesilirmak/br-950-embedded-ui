@@ -99,6 +99,36 @@ class Mainmenu extends React.Component {
     let tempSelectedButtonIndex = this.state.selectedButtonIndex
 
     switch (sd.payload) {
+      case 'settings':
+        this.setState({
+          selectedButtonIndex: 4,
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
+        return
+      case 'quick':
+        this.setState({
+          selectedButtonIndex: 0,
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
+        return
+      case 'auto':
+        this.setState({
+          selectedButtonIndex: 1,
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
+        return
       case 'up':
         tempSelectedButtonIndex = this.clamp(tempSelectedButtonIndex - 3, 0, 5)
         break;

@@ -19,7 +19,6 @@ class Dashboard extends React.Component {
     this.setState({
       time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
       date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth())}.${time.getFullYear()}`
-
     })
 
     //gets time every 5 seconds

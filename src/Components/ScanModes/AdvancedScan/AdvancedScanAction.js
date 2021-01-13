@@ -1,7 +1,7 @@
 import React from 'react'
 import './AdvancedScanAction.css'
 
-import ScanVideo from '../../../Assets/videos/automatic-scan-video.mp4'
+import ScanVideo from '../../../Assets/videos/scan.mp4'
 
 
 class AdvancedScanAction extends React.Component {
@@ -12,6 +12,7 @@ class AdvancedScanAction extends React.Component {
   }
   onVideoEnded = () => {
     // console.log('video ended')
+    clearInterval(this.interval)
     this.props.navigateTo('scanViewerAdvancedScreen', { test: 'test' })
   }
 

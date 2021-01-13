@@ -2,7 +2,7 @@ import React from 'react'
 import './AdvancedScan.css'
 import NextIcon from '../../../Assets/icons/next.png'
 import socketHelper from '../../../SocketHelper'
-
+import dbStorage from '../../../DatabaseHelper'
 
 import SignalFrequency from './SubSteps/SignalFrequency'
 import DirtType from './SubSteps/DirtType'
@@ -64,7 +64,7 @@ class AdvancedScan extends React.Component {
     socketHelper.detach()
   }
 
-  handleSocket = (sd) => {
+  handleSocket = async (sd) => {
     if (sd.type !== 'button') { return }
     switch (sd.payload) {
       case 'back':
@@ -126,6 +126,10 @@ class AdvancedScan extends React.Component {
             stepIndex: this.state.stepIndex + 1
           })
         else if (this.state.stepIndex === 4) {
+          await dbStorage.setItem('frequency', this.state.signalFrequency)
+          await dbStorage.setItem('dirtTypeIndex', this.state.dirtTypeIndex)
+          await dbStorage.setItem('sensitivity', this.state.sensitivity)
+          await dbStorage.setItem('distance', this.state.probeDistance)
           this.props.navigateTo('advancedScanActionScreen')
           return
         }
@@ -144,7 +148,12 @@ class AdvancedScan extends React.Component {
       case 1: return <DirtType dirtTypeIndex={this.state.dirtTypeIndex} />
       case 2: return <Sensitivity sensitivity={this.state.sensitivity} />
       case 3: return <ProbeDistance distance={this.state.probeDistance} />
-      case 4: return <Summary />
+      case 4: return <Summary
+        frequency={this.state.signalFrequency}
+        dirtTypeIndex={this.state.dirtTypeIndex}
+        sensitivity={this.state.sensitivity}
+        probeDistance={this.state.probeDistance}
+      />
       default:
         break;
     }

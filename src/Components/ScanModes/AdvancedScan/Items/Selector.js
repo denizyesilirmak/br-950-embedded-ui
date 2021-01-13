@@ -12,14 +12,11 @@ class Selector extends React.Component {
       leftAnimation: 0,
       rightAnimation: 0
     }
-
-
   }
 
   componentDidUpdate() {
     this.oldValue = this.props.value
   }
-
 
   render() {
     return (
@@ -27,7 +24,7 @@ class Selector extends React.Component {
         <div
           animating={this.props.value < this.oldValue ? 1 : 0}
           onAnimationEnd={() => { this.setState({ leftAnimation: 0 }) }}
-          className="left" >
+          className="left">
 
           <img src={ArrowLeftIcon} alt="icon"></img>
         </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import './Clock.css'
 import Utils from '../../../Utils'
 
-
 const TIME_INTERVAL = 5000
 
 class Clock extends React.Component {
