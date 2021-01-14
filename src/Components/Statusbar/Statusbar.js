@@ -54,12 +54,6 @@ const FLAGS = {
 
 class Statusbar extends React.Component {
   static contextType = DeviceContext
-  constructor(props) {
-    super(props)
-    this.state = {
-      batteryLevel: 50
-    }
-  }
 
   componentDidMount() {
     console.log('from context', this.context.language)
@@ -76,7 +70,7 @@ class Statusbar extends React.Component {
         <div className="status-bar-right">
           <Clock />
           <img src={WifiIcon} alt="wifi-icon" className="wifi-icon" />
-          <Battery level={this.state.batteryLevel} />
+          <Battery level={this.props.batteryLevel} />
           <div className="flag">
             <img src={FLAGS[this.context.language].img} alt="flag" />
           </div>

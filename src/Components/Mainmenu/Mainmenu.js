@@ -179,7 +179,7 @@ class Mainmenu extends React.Component {
     return (
       <div className="main-menu component">
         <div className="left">
-          <Dashboard />
+          <Dashboard batteryLevel={this.props.batteryLevel} />
         </div>
         <div className="right">
 

@@ -58,6 +58,9 @@ class AdvancedScan extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
+
+
+    
   }
 
   componentWillUnmount() {

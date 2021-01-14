@@ -15,24 +15,25 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    const time = new Date()
-    this.setState({
-      time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
-      date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth())}.${time.getFullYear()}`
-    })
+
+    this.updateDate()
 
     //gets time every 5 seconds
     this.interval = setInterval(() => {
-      const time = new Date()
-      this.setState({
-        time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
-        date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth())}.${time.getFullYear()}`
-      })
+      this.updateDate()
     }, TIME_INTERVAL)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.interval)
+  }
+
+  updateDate = () => {
+    const time = new Date()
+    this.setState({
+      time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
+      date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth() + 1)}.${time.getFullYear()}`
+    })
   }
 
 
@@ -58,7 +59,7 @@ class Dashboard extends React.Component {
               <rect rx="10" id="svg_2" height="46" width="150" y="28" x="25" strokeWidth="3.5" stroke="#ffffff" fill="none" />
               <rect stroke="null" rx="3" id="svg_3" height="21.27658" width="8.51063" y="40.36171" x="174.25525" strokeWidth="5.5" fill="#ffffff" />
               <rect rx="5" id="svg_4" height="33" width="138.29774" y="34.5" x="30.85113" strokeOpacity="null" strokeWidth="5.5" stroke="null" fill="url(#svg_5)" />
-              <text textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontWeight="bold" fontSize="24" id="svg_12" y="59.4375" x="100" strokeOpacity="null" fill="#ffffff">94%</text>
+              <text textAnchor="middle" fontFamily="Helvetica, Arial, sans-serif" fontWeight="bold" fontSize="24" id="svg_12" y="59.4375" x="100" strokeOpacity="null" fill="#ffffff">{this.props.batteryLevel}%</text>
             </g>
           </svg>
         </div>

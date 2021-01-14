@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import socketHelper from './SocketHelper'
 import DeviceContextProvider from './Contexts/DeviceContext'
 
 import StatusBar from './Components/Statusbar/Statusbar'
@@ -17,6 +18,7 @@ import AutomaticScan from './Components/ScanModes/AutomaticScan/AutomaticScan'
 import AutomaticScanAction from './Components/ScanModes/AutomaticScan/AutomaticScanAction'
 import AdvancedScan from './Components/ScanModes/AdvancedScan/AdvancedScan'
 import AdvancedScanAction from './Components/ScanModes/AdvancedScan/AdvancedScanAction'
+import TurnOffAction from './Components/TurnOff/TurnOffAction'
 
 import dbStorage from './DatabaseHelper'
 dbStorage.init()
@@ -30,7 +32,8 @@ class App extends React.Component {
       activeScreen: 'menuScreen',
       screenProps: null,
       currentLanguage: "en",
-      _mainMenuCursorIndex: 0
+      _mainMenuCursorIndex: 0,
+      batteryLevel: 0
     }
 
     dbStorage.getAll()
@@ -41,6 +44,17 @@ class App extends React.Component {
         })
       })
 
+  }
+
+  componentDidMount() {
+    socketHelper.attachSpecial('battery', (socketData) => {
+      if (socketData.type !== 'battery')
+        return
+      
+      this.setState({
+        batteryLevel: parseInt(socketData.payload)
+      })
+    })
   }
 
   navigateTo = (screenName, screenProps) => {
@@ -63,7 +77,7 @@ class App extends React.Component {
 
   renderActiveScreen = () => {
     switch (this.state.activeScreen) {
-      case 'menuScreen': return <Mainmenu navigateTo={this.navigateTo} cursorIndex={this.state._mainMenuCursorIndex} setCursorIndex={this._setCursorIndex} />
+      case 'menuScreen': return <Mainmenu batteryLevel={this.state.batteryLevel} navigateTo={this.navigateTo} cursorIndex={this.state._mainMenuCursorIndex} setCursorIndex={this._setCursorIndex} />
       case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
@@ -76,6 +90,7 @@ class App extends React.Component {
       case 'automaticScanActionScreen': return <AutomaticScanAction navigateTo={this.navigateTo} />
       case 'advancedScanScreen': return <AdvancedScan navigateTo={this.navigateTo} />
       case 'advancedScanActionScreen': return <AdvancedScanAction navigateTo={this.navigateTo} />
+      case 'turnOffActionScreen': return <TurnOffAction />
       default:
         break;
     }
@@ -89,7 +104,7 @@ class App extends React.Component {
           <DeviceContextProvider
             language={this.state.currentLanguage}
           >
-            <StatusBar menuTitle={this.state.activeScreen} />
+            <StatusBar menuTitle={this.state.activeScreen} batteryLevel={this.state.batteryLevel} />
             {
               this.renderActiveScreen()
             }

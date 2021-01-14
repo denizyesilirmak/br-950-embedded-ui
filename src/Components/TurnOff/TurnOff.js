@@ -42,7 +42,16 @@ class TurnOff extends React.Component {
       case 'back':
         this.props.navigateTo('menuScreen')
         return;
-
+      case 'ok': 
+        if(this.state.selectedButtonIndex){
+          //turnoffdevice
+          this.props.navigateTo('turnOffActionScreen')
+        }
+        else{
+          //go to main menu
+          this.props.navigateTo('menuScreen')
+        }
+        return
       default:
         break;
     }
