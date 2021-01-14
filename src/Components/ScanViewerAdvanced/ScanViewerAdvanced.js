@@ -15,7 +15,21 @@ class ScanViewerAdvanced extends React.Component {
       rotation_axis_x: 0,
       rotation_axis_z: 0,
       lineMode: 0,
-      selectedLineIndex: 0
+      selectedLineIndex: 0,
+      results: this.calculateWaterInfo()
+
+    }
+
+    if (Object.keys(this.props.screenProps).length !== 0) {
+      const results = {}
+      Object.keys(this.props.screenProps).forEach((e, i) => {
+        results[e] = Utils.getWaterInfo(this.props.screenProps[e])
+      })
+      this.setState({ results: results })
+
+    }
+    else {
+      console.log('No scan data to open')
     }
   }
 
@@ -27,6 +41,20 @@ class ScanViewerAdvanced extends React.Component {
 
   componentWillUnmount() {
     SocketHelper.detach()
+  }
+
+  calculateWaterInfo = () => {
+    if (Object.keys(this.props.screenProps).length !== 0) {
+      const results = {}
+      Object.keys(this.props.screenProps).forEach((e, i) => {
+        results[e] = Utils.getWaterInfo(this.props.screenProps[e])
+      })
+      return results
+    }
+    else {
+      console.log('No scan data to open')
+      return {}
+    }
   }
 
   handleSocket = (sd) => {
@@ -99,45 +127,45 @@ class ScanViewerAdvanced extends React.Component {
   render() {
     return (
       <div className="scan-viewer-advanced component">
-        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} />
+        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} plotData = {this.props.screenProps}/>
 
         <ScanLineDetail active={this.state.lineMode === 2} />
 
         <div className="advanced-scan-lines-details">
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 0 ? 'selected' : ''}`}>
             <div className="line-name-ad">A</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh Water</div>
+            <div className="line-rate">{this.state.results.A.rate}%</div>
+            <div className="line-type">{this.state.results.A.water_type}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 1 ? 'selected' : ''}`}>
             <div className="line-name-ad">B</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh</div>
+            <div className="line-rate">{this.state.results.B.rate}%</div>
+            <div className="line-type">{this.state.results.B.water_type}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 2 ? 'selected' : ''}`}>
             <div className="line-name-ad">C</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh</div>
+            <div className="line-rate">{this.state.results.C.rate}%</div>
+            <div className="line-type">{this.state.results.C.water_type}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 3 ? 'selected' : ''}`}>
             <div className="line-name-ad">D</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh</div>
+            <div className="line-rate">{this.state.results.D.rate}%</div>
+            <div className="line-type">{this.state.results.D.water_type}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 4 ? 'selected' : ''}`}>
             <div className="line-name-ad">E</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh</div>
+            <div className="line-rate">{this.state.results.E.rate}%</div>
+            <div className="line-type">{this.state.results.E.water_type}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 5 ? 'selected' : ''}`}>
             <div className="line-name-ad">F</div>
-            <div className="line-rate">25%</div>
-            <div className="line-type">Fresh</div>
+            <div className="line-rate">{this.state.results.F.rate}%</div>
+            <div className="line-type">{this.state.results.F.water_type}</div>
           </div>
         </div>
 

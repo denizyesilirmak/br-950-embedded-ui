@@ -21,7 +21,22 @@ class AdvancedScanAction extends React.Component {
   onVideoEnded = () => {
     // console.log('video ended')
     clearInterval(this.interval)
-    this.props.navigateTo('scanViewerAdvancedScreen', { test: 'test' })
+    this.saveScan()
+
+  }
+
+  saveScan = () => {
+    fetch('http://localhost:9090/savescan', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "data": this.scanData, "type": "advanced" })
+    }).then(res => res.json())
+      .then(data => {
+        this.props.navigateTo('scanViewerAdvancedScreen', this.scanData)
+      })
   }
 
   componentDidMount() {

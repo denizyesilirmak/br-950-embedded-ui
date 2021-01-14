@@ -88,7 +88,6 @@ class Utils {
       _waterDepth = 0
     }
     else {
-      console.log('g')
       _waterType = 'no_water'
       _waterDepth = 0
 
@@ -107,7 +106,7 @@ class Utils {
       wet_dirt: _wet_dirt
     }
 
-    console.log('get water info', result)
+    return result
   }
 
 }

@@ -29,8 +29,8 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'menuScreen',
-      screenProps: null,
+      activeScreen: 'filesScreen',
+      screenProps: {},
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
       batteryLevel: 0
@@ -82,7 +82,7 @@ class App extends React.Component {
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
       case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} />
-      case 'scanViewerAdvancedScreen': return <ScanViewerAdvanced navigateTo={this.navigateTo} />
+      case 'scanViewerAdvancedScreen': return <ScanViewerAdvanced navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
       case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps} />

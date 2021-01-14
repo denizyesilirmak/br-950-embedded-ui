@@ -39,10 +39,37 @@ class Files extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
+    this.getFileList()
   }
 
   componentWillUnmount() {
     socketHelper.detach()
+  }
+
+  getFileList = () => {
+    fetch('http://localhost:9090/filelist')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success)
+          
+
+          this.setState({
+            didFetchDone: true,
+            fileList: this.createFileObjectFromFileNameString(data.filelist)
+          })
+      })
+  }
+
+  createFileObjectFromFileNameString = (arr) => {
+    let newArray = arr.map((e,i) => {
+        const fileProps = e.split('-')
+        return {
+          name: fileProps[0],
+          date: fileProps[1],
+          file_type: fileProps[2]
+        }
+    })
+    return newArray.reverse()
   }
 
   handleSocket = (sd) => {

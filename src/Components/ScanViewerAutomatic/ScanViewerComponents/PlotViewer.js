@@ -5,13 +5,13 @@ import Interpolation from './Interpolation'
 import gridImage from './grid.png'
 import Utils from '../../../Utils'
 
-const data = {
-  A: 600,
-  B: 300,
-  C: 300,
-  D: 450,
-  E: 600,
-  F: 300
+let data = {
+  A: 1024,
+  B: 1024,
+  C: 1024,
+  D: 1024,
+  E: 1024,
+  F: 1024
 }
 
 const COLORS = {
@@ -37,6 +37,8 @@ class PlotViewer extends React.Component {
     this.state = {
       ready: false
     }
+
+    data = this.props.plotData
 
   }
 
