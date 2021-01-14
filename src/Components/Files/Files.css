@@ -136,6 +136,65 @@
   font-weight: bold;
 }
 
-.scrollable{
+.scrollable {
   transition: all 1.2s;
+}
+
+.delete-popup-container {
+  background: #000000ad;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-popup {
+  background: #ffffff;
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.delete-popup-file-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.delete-popup-text {
+  font-weight: bold;
+}
+
+.delete-button-group {
+  display: flex;
+  margin-top: 10px;
+  width: 260px;
+  justify-content: space-between;
+}
+
+.delete-button {
+  width: 120px;
+  height: 40px;
+  background-color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.delete-button.selected {
+  background-color: #40acff;
 }

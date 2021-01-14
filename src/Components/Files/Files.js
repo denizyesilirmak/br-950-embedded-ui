@@ -1,10 +1,12 @@
 import React from 'react'
 import './Files.css'
 import socketHelper from '../../SocketHelper'
+import { DeviceContext } from '../../Contexts/DeviceContext'
 
 import UP_ICON from '../../Assets/icons/files/up.png'
 import DOWN_ICON from '../../Assets/icons/files/down.png'
 import FILE_ICON from '../../Assets/icons/files/file1.png'
+import DELETE_ICON from '../../Assets/icons/delete.png'
 
 const dummy_file_list = [
   {
@@ -25,12 +27,15 @@ const dummy_file_list = [
 ]
 
 class Files extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
 
     this.state = {
       fileList: [],
-      selectedFileIndex: 0
+      selectedFileIndex: 0,
+      deletePopup: false,
+      deleteButtonIndex: false
     }
 
     this.scrollable = React.createRef()
@@ -38,6 +43,11 @@ class Files extends React.Component {
   }
 
   componentDidMount() {
+    const rnd = Math.random()
+    if (rnd < 0.5) {
+      this.context.showSnackBar("You can delete files by pressing Settings button.")
+    }
+
     socketHelper.attach(this.handleSocket)
     this.getFileList()
   }
@@ -86,7 +96,7 @@ class Files extends React.Component {
           return
         }
         else if (fileToOpen.file_type === "automatic") {
-        
+
         }
       })
   }
@@ -99,18 +109,42 @@ class Files extends React.Component {
         this.openFile()
         return
       case 'up':
-        if (tempSelectedFileIndex > 0) {
+        if (tempSelectedFileIndex > 0 && !this.state.deletePopup) {
           tempSelectedFileIndex--
         }
         break;
       case 'down':
-        if (tempSelectedFileIndex < this.state.fileList.length - 1) {
+        if (tempSelectedFileIndex < this.state.fileList.length - 1 && !this.state.deletePopup) {
           tempSelectedFileIndex++
         }
         break;
       case 'back':
-        this.props.navigateTo('menuScreen')
-        return;
+        if (this.state.deletePopup) {
+          this.setState({ deletePopup: false })
+          break
+        } else {
+          this.props.navigateTo('menuScreen')
+          return
+        }
+      case 'left':
+        if (this.state.deletePopup) {
+          this.setState({
+            deleteButtonIndex: !this.state.deleteButtonIndex
+          })
+        }
+        break
+      case 'right':
+        if (this.state.deletePopup) {
+          this.setState({
+            deleteButtonIndex: !this.state.deleteButtonIndex
+          })
+        }
+        break
+      case 'settings':
+        if (!this.state.deletePopup) {
+          this.setState({ deletePopup: true })
+        }
+        break;
       default:
         break;
     }
@@ -129,6 +163,29 @@ class Files extends React.Component {
   render() {
     return (
       <div className="files component">
+        {
+          this.state.deletePopup ?
+            <div className="delete-popup-container">
+
+              <div className="delete-popup">
+                <img src={DELETE_ICON} alt="delete"></img>
+                <div className="delete-popup-file-name"> 003 </div>
+                <div className="delete-popup-text"> Do you want to delete this file? </div>
+
+                <div className="delete-button-group">
+                  <div className={`delete-button ${this.state.deleteButtonIndex ? 'selected' : ''}`}>
+                    Yes
+                    </div>
+                  <div className={`delete-button ${!this.state.deleteButtonIndex ? 'selected' : ''}`}>
+                    No
+                    </div>
+                </div>
+              </div>
+
+            </div> : null
+        }
+
+
         <div className="files-container">
           <div className="file-list-container">
             <div className="file-list-titles">
