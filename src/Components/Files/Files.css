@@ -133,10 +133,9 @@
 .file.selected {
   background: #40acff;
   color: white !important;
-  transition: background .2s;
   font-weight: bold;
 }
 
 .scrollable{
-  transition: all 1.7s;
+  transition: all 1.2s;
 }

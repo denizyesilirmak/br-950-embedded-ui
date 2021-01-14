@@ -29,7 +29,7 @@ class Files extends React.Component {
     super(props)
 
     this.state = {
-      fileList: dummy_file_list,
+      fileList: [],
       selectedFileIndex: 0
     }
 
@@ -51,7 +51,7 @@ class Files extends React.Component {
       .then(res => res.json())
       .then(data => {
         if (data.success)
-          
+
 
           this.setState({
             didFetchDone: true,
@@ -61,15 +61,34 @@ class Files extends React.Component {
   }
 
   createFileObjectFromFileNameString = (arr) => {
-    let newArray = arr.map((e,i) => {
-        const fileProps = e.split('-')
-        return {
-          name: fileProps[0],
-          date: fileProps[1],
-          file_type: fileProps[2]
-        }
+    let newArray = arr.map((e, i) => {
+      const fileProps = e.split('-')
+      const date = new Date(parseInt(fileProps[1])).toLocaleString('tr')
+
+
+      return {
+        name: fileProps[0],
+        date: date,
+        file_type: fileProps[2],
+        raw_file_name: e
+      }
     })
     return newArray.reverse()
+  }
+
+  openFile = () => {
+    const fileToOpen = this.state.fileList[this.state.selectedFileIndex]
+    fetch('http://localhost:9090/readfile/' + fileToOpen.raw_file_name)
+      .then(res => res.json())
+      .then(data => {
+        if (fileToOpen.file_type === "advanced") {
+          this.props.navigateTo('scanViewerAdvancedScreen', data.data)
+          return
+        }
+        else if (fileToOpen.file_type === "automatic") {
+        
+        }
+      })
   }
 
   handleSocket = (sd) => {
@@ -77,13 +96,7 @@ class Files extends React.Component {
     let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
       case 'ok':
-        if (this.state.fileList[this.state.selectedFileIndex].file_type === "advanced") {
-          this.props.navigateTo('scanViewerAdvancedScreen')
-          return
-        } else if (this.state.fileList[this.state.selectedFileIndex].file_type === "automatic") {
-          this.props.navigateTo('scanViewerAutomaticScreen')
-          return
-        }
+        this.openFile()
         return
       case 'up':
         if (tempSelectedFileIndex > 0) {
@@ -146,10 +159,10 @@ class Files extends React.Component {
                           <div className="file-item">{e.name}</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item" style={{ backgroundColor: e.file_type === 'advanced' ? '#336699' : '#12aa12', padding: 5, borderRadius: 10 }}>{e.file_type}</div>
+                          <div className="file-item" style={{ backgroundColor: e.file_type === 'advanced' ? '#fc8c03' : '#12aa12', padding: 5, borderRadius: 10 }}>{e.file_type}</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item" style={{ textDecoration: 'underline' }}>{e.date}</div>
+                          <div className="file-item">{e.date}</div>
                         </div>
                       </div>
                     )
