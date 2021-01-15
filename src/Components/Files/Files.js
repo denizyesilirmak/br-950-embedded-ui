@@ -44,7 +44,7 @@ class Files extends React.Component {
 
   componentDidMount() {
     const rnd = Math.random()
-    if (rnd < 0.5) {
+    if (rnd < 0.2) {
       this.context.showSnackBar("You can delete files by pressing Settings button.")
     }
 

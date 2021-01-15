@@ -129,6 +129,16 @@ class Mainmenu extends React.Component {
           })
         })
         return
+      case 'turnoff':
+        this.setState({
+          selectedButtonIndex: 5,
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
+        return
       case 'up':
         tempSelectedButtonIndex = this.clamp(tempSelectedButtonIndex - 3, 0, 5)
         break;
