@@ -6,36 +6,7 @@ class AutomaticScan extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.socketHandler)
-    
-    //FIXME: update timespamps with exact ones.
-    this.interval = setInterval(() => {
-      switch (Math.trunc(this.scanVideoRef.current.currentTime)) {
-        case 3:
-          socketHelper.send('A')
-          break
-        case 6:
-          socketHelper.send('B')
-          break
-        case 9:
-          socketHelper.send('C')
-          break
-        case 11:
-          socketHelper.send('D')
-          break
-        case 14:
-          socketHelper.send('E')
-          break
-        case 17:
-          socketHelper.send('F')
-          break
-        case 18:
-          socketHelper.send('Z')
-          clearInterval(this.interval)
-          break
-        default:
-          break;
-      }
-    }, 500);
+
   }
 
   componentWillUnmount() {
@@ -51,6 +22,41 @@ class AutomaticScan extends React.Component {
       case 'ok':
         this.props.navigateTo('automaticScanActionScreen')
         return;
+
+      default:
+        break;
+    }
+  }
+
+  handleSocket = (socketData) => {
+    if (socketData.type !== 'scan')
+      return
+
+    switch (socketData.probe) {
+      case 'A':
+        this.scanData.A = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'B':
+        this.scanData.B = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'C':
+        this.scanData.C = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'D':
+        this.scanData.D = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'E':
+        this.scanData.E = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'F':
+        this.scanData.F = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
 
       default:
         break;

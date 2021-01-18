@@ -18,6 +18,36 @@ class AutomaticScanAction extends React.Component {
   }
   componentDidMount() {
     socketHelper.attach((a) => console.log())
+        
+    //FIXME: update timespamps with exact ones.
+    this.interval = setInterval(() => {
+      switch (Math.trunc(this.scanVideoRef.current.currentTime)) {
+        case 3:
+          socketHelper.send('A')
+          break
+        case 6:
+          socketHelper.send('B')
+          break
+        case 9:
+          socketHelper.send('C')
+          break
+        case 11:
+          socketHelper.send('D')
+          break
+        case 14:
+          socketHelper.send('E')
+          break
+        case 17:
+          socketHelper.send('F')
+          break
+        case 18:
+          socketHelper.send('Z')
+          clearInterval(this.interval)
+          break
+        default:
+          break;
+      }
+    }, 500);
   }
 
   componentWillUnmount() {
