@@ -57,7 +57,7 @@ class Files extends React.Component {
   }
 
   getFileList = () => {
-    fetch('http://localhost:9090/filelist')
+    fetch('http://192.168.1.250:9090/filelist')
       .then(res => res.json())
       .then(data => {
         if (data.success)
@@ -88,7 +88,7 @@ class Files extends React.Component {
 
   openFile = () => {
     const fileToOpen = this.state.fileList[this.state.selectedFileIndex]
-    fetch('http://localhost:9090/readfile/' + fileToOpen.raw_file_name)
+    fetch('http://192.168.1.250:9090/readfile/' + fileToOpen.raw_file_name)
       .then(res => res.json())
       .then(data => {
         if (fileToOpen.file_type === "advanced") {
@@ -101,12 +101,40 @@ class Files extends React.Component {
       })
   }
 
+  deleteFile = () => {
+    const fileToOpen = this.state.fileList[this.state.selectedFileIndex]
+    fetch('http://192.168.1.250:9090/deletefile/' + fileToOpen.raw_file_name)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          deletePopup: false
+        })
+        this.getFileList()
+        this.context.showSnackBar('File deleted', 1500)
+      })
+  }
+
   handleSocket = (sd) => {
     if (sd.type !== 'button') { return }
     let tempSelectedFileIndex = this.state.selectedFileIndex
     switch (sd.payload) {
       case 'ok':
-        this.openFile()
+        if (this.state.deletePopup) {
+          //delete popup open
+          if (this.state.deleteButtonIndex) {
+            console.log('delete file')
+            this.deleteFile()
+          } else {
+            console.log('close popup')
+            this.setState({
+              deletePopup: false
+            })
+          }
+        }
+        else {
+          //delete popup off
+          this.openFile()
+        }
         return
       case 'up':
         if (tempSelectedFileIndex > 0 && !this.state.deletePopup) {
@@ -169,7 +197,7 @@ class Files extends React.Component {
 
               <div className="delete-popup">
                 <img src={DELETE_ICON} alt="delete"></img>
-                <div className="delete-popup-file-name"> 003 </div>
+                <div className="delete-popup-file-name"> {this.state.fileList[this.state.selectedFileIndex].name} </div>
                 <div className="delete-popup-text"> Do you want to delete this file? </div>
 
                 <div className="delete-button-group">

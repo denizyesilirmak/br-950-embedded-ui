@@ -3,12 +3,14 @@ import './Settings.css'
 import socketHelper from '../../SocketHelper'
 import dbStorage from '../../DatabaseHelper'
 import Popup from '../Popup/Popup'
+import Utils from '../../Utils'
 
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
 import DateTimeSettings from './SettingsComponents/DateTimeSettings/DateTimeSettings'
 import ResetSettings from './SettingsComponents/ResetSettings/ResetSettings'
 import InfoSettings from './SettingsComponents/InfoSettings/InfoSettings'
+import VolumeSettings from './SettingsComponents/VolumeSettings/VolumeSettings'
 
 import DatePopup from './SettingsPopups/Date'
 import TimePopup from './SettingsPopups/Time'
@@ -94,7 +96,7 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeSettingsTab: 0,
+      activeSettingsTab: 2,
       activePopup: '',
       tabBarActive: true,
       languageIndex: 0,
@@ -107,6 +109,7 @@ class Settings extends React.Component {
       minute: 56,
       datePopupIndex: 0,
       timePopupIndex: 0,
+      volume: 0,
       informationPopupActive: false,
       informationPopupData: {
         title: 'test',
@@ -257,6 +260,11 @@ class Settings extends React.Component {
             timePopupIndex: this.state.timePopupIndex - 1
           })
         }
+        if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
+          this.setState({
+            volume: Utils.clamp(this.state.volume - 10, 0 , 100)
+          })
+        }
         break
       case 'right':
         if (this.state.activeSettingsTab === 0 && this.state.tabBarActive === false) {
@@ -270,6 +278,11 @@ class Settings extends React.Component {
         else if (this.state.activePopup === 'time' && this.state.timePopupIndex < 1) {
           this.setState({
             timePopupIndex: this.state.timePopupIndex + 1
+          })
+        }
+        if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
+          this.setState({
+            volume: Utils.clamp(this.state.volume + 10, 0 , 100)
           })
         }
         break
@@ -341,6 +354,9 @@ class Settings extends React.Component {
         year={this.state.year}
         hour={this.state.hour}
         minute={this.state.minute}
+      />
+      case 2: return <VolumeSettings
+        volume={this.state.volume}
       />
       case 3: return <ResetSettings
         index={this.state.resetSettingsIndex}

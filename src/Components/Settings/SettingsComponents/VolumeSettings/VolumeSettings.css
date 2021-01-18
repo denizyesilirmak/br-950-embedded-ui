@@ -1,0 +1,52 @@
+.volume-settings {
+  height: 320px;
+  width: 644px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.slider-volume {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffffad;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.slider-volume .title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.volume-value {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.slider-container {
+  width: 400px;
+  height: 40px;
+  background: rgb(39, 39, 39);
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+.slider-container .slider-value {
+  transition: width 0.4s;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to bottom, #9cecfb, #65c7f7, #0052d4);
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

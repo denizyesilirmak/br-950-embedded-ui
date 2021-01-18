@@ -96,7 +96,7 @@ class PlotViewer extends React.Component {
     this.plotGeometry = new THREE.PlaneGeometry(18, 18, ScanMatrix.length - 1, ScanMatrix.length - 1)
 
     Utils.flatMatrix(ScanMatrix, 1).forEach((e, i) => {
-      this.plotGeometry.vertices[i].z = e / (-32)
+      this.plotGeometry.vertices[i].z = e / (-48)
     })
 
     let sutun = 0

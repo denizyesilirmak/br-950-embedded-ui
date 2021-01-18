@@ -29,7 +29,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'filesScreen',
+      activeScreen: 'settingsScreen',
       screenProps: {},
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
