@@ -17,7 +17,8 @@ class AutomaticScanAction extends React.Component {
     }
   }
   componentDidMount() {
-    socketHelper.attach((a) => console.log())
+    socketHelper.attach(this.handleSocket)
+
         
     //FIXME: update timespamps with exact ones.
     this.interval = setInterval(() => {
@@ -74,6 +75,42 @@ class AutomaticScanAction extends React.Component {
     clearInterval(this.interval)
     this.saveScan()
 
+  }
+
+
+  handleSocket = (socketData) => {
+    if (socketData.type !== 'scan')
+      return
+
+    switch (socketData.probe) {
+      case 'A':
+        this.scanData.A = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'B':
+        this.scanData.B = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'C':
+        this.scanData.C = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'D':
+        this.scanData.D = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'E':
+        this.scanData.E = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+      case 'F':
+        this.scanData.F = parseInt(socketData.value)
+        console.log(this.scanData)
+        break;
+
+      default:
+        break;
+    }
   }
 
   render() {
