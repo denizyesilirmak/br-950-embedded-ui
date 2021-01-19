@@ -2,6 +2,10 @@ import React from 'react'
 import './ScanViewerAnimation.css'
 
 class ScanViewerAnimation extends React.Component {
+  constructor(props){
+    super(props)
+    console.log(this.props.result)
+  }
   render() {
     return (
       <div className="scan-viewer-animation">

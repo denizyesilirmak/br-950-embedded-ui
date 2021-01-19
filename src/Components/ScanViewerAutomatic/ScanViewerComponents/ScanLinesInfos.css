@@ -1,8 +1,7 @@
-
 .scan-line-info {
   width: 370px;
   background: #00000093;
-  height: 80px;
+  height: 90px;
   border-radius: 10px;
   padding-top: 10px;
   padding-left: 10px;
@@ -13,11 +12,13 @@
   color: #ffffff;
   font-weight: bold;
   font-size: 22px;
+  margin-bottom: 5px;
 }
 
 .tags {
   display: flex;
   justify-content: center;
+  margin-top: 5px;
 }
 
 .water-type-tag {
@@ -43,6 +44,6 @@
   row-gap: 5px;
 }
 
-.scan-line-info.selected{
+.scan-line-info.selected {
   background: rgb(23, 82, 150);
 }

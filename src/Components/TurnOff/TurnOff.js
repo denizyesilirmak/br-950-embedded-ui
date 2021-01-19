@@ -31,12 +31,12 @@ class TurnOff extends React.Component {
     switch (sd.payload) {
       case 'left':
         this.setState({
-          selectedButtonIndex: true
+          selectedButtonIndex: !this.state.selectedButtonIndex
         })
         break;
       case 'right':
         this.setState({
-          selectedButtonIndex: false
+          selectedButtonIndex: !this.state.selectedButtonIndex
         })
         break;
       case 'back':

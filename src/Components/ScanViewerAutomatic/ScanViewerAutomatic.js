@@ -12,14 +12,24 @@ import Utils from '../../Utils'
 class ScanViewer extends React.Component {
   constructor(props) {
     super(props)
+
+
+    let scanResults = {}
+    Object.keys(this.props.screenProps).forEach(e => {
+      scanResults[e] = Utils.getWaterInfo(this.props.screenProps[e])
+    })
+
     this.state = {
       screen: 'lineinfo',
-      scanLineInfoIndex: 0
+      scanLineInfoIndex: 0,
+      scanLineResults: scanResults
     }
+
   }
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
+
   }
 
   componentWillUnmount() {
@@ -32,18 +42,13 @@ class ScanViewer extends React.Component {
         return (
           <ScanLinesInfos
             index={this.state.scanLineInfoIndex}
-            data={
-              {
-                values: {
-                  A: 1024, B: 1024, C: 1024, D: 1024, E: 1024, F: 1025
-                }
-              }
-            }
+            values={this.props.screenProps}
+            results={this.state.scanLineResults}
           />
         )
       case 'animation':
         return (
-          <ScanViewerAnimation />
+          <ScanViewerAnimation result={this.state.scanLineResults[Object.keys(this.state.scanLineResults)[this.state.scanLineInfoIndex]]} /> //FIXME: Ugly
         )
       default:
         break;
@@ -90,8 +95,12 @@ class ScanViewer extends React.Component {
           this.changeScreen('lineinfo')
         break;
       case 'back':
-        this.props.navigateTo('filesScreen')
-        return;
+        if (this.state.screen === 'animation') {
+          this.changeScreen('lineinfo')
+        } else {
+          this.props.navigateTo('filesScreen')
+          return;
+        }
 
       default:
         break;

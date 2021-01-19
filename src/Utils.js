@@ -26,6 +26,7 @@ class Utils {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
   }
 
+
   static flatMatrix = (arr, d = 1) => {
     return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? this.flatMatrix(val, d - 1) : val), [])
       : arr.slice();

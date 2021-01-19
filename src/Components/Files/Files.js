@@ -96,7 +96,8 @@ class Files extends React.Component {
           return
         }
         else if (fileToOpen.file_type === "automatic") {
-
+          this.props.navigateTo('scanViewerAutomaticScreen', data.data)
+          return
         }
       })
   }

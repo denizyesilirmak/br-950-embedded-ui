@@ -29,8 +29,8 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'settingsScreen',
-      screenProps: {},
+      activeScreen: 'scanViewerAutomaticScreen',
+      screenProps: {A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
       batteryLevel: 0
@@ -81,7 +81,7 @@ class App extends React.Component {
       case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
-      case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} />
+      case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'scanViewerAdvancedScreen': return <ScanViewerAdvanced navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
       case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
