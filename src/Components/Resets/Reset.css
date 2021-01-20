@@ -20,6 +20,11 @@
   margin: 10px;
 }
 
+.reset-text{
+  width: 500px;
+  text-align: center;
+}
+
 .reset-title {
   width: 100%;
   height: 40px;

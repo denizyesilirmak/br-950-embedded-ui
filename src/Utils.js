@@ -79,7 +79,7 @@ class Utils {
 
     }
     else if (value > 500 && value <= 540) {
-      _waterType = 'salty_water'
+      _waterType = 'very_salty_water'
       _waterDepth = Math.round((value / 2) - 45) + depth
       _rate = Math.trunc(this.map(value, 500, 540, 0, 75))
 

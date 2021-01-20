@@ -1,8 +1,10 @@
 import React from 'react'
 import './QuickScanResult.css'
 import socketHelper from '../../../SocketHelper'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 class QuickScanResult extends React.Component {
+  static contextType = DeviceContext
   // constructor(props) {
   //   super(props)
 
@@ -53,7 +55,7 @@ class QuickScanResult extends React.Component {
 
             <div className="quick-scan-result-row">
               <div className="left">
-                Value
+                {this.context.strings['value']}
               </div>
               <div className="right">
                 {this.props.screenProps.line.value}
@@ -62,28 +64,28 @@ class QuickScanResult extends React.Component {
 
             <div className="quick-scan-result-row">
               <div className="left">
-                Salinity
+                {this.context.strings['salinity']}
               </div>
               <div className="right">
-                {this.props.screenProps.result.salinity}
+                {this.props.screenProps.result.salinity + ' ppm'}
               </div>
             </div>
 
             <div className="quick-scan-result-row">
               <div className="left">
-                Depth
+                {this.context.strings['depth']}
               </div>
               <div className="right">
-              {this.props.screenProps.result.water_depth}
+                {this.props.screenProps.result.water_depth + ' m'}
               </div>
             </div>
 
             <div className="quick-scan-result-row">
               <div className="left">
-                Type
+                {this.context.strings['type']}
               </div>
               <div className="right">
-              {this.props.screenProps.result.water_type}
+                {this.context.strings[this.props.screenProps.result.water_type]}
               </div>
             </div>
 

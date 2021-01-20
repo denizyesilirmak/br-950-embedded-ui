@@ -1,8 +1,10 @@
 import React from 'react'
 import './TurnOff.css'
 import socketHelper from '../../SocketHelper'
+import { DeviceContext } from '../../Contexts/DeviceContext'
 
 class TurnOff extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
 
@@ -71,15 +73,15 @@ class TurnOff extends React.Component {
       <div className="turn-off component">
         <div className="turn-off-container" ref={this.containerRef}>
           <div className="turn-off-question">
-            Do you really want to turn off the device?
+            {this.context.strings['turn_off_question']}
           </div>
 
           <div className="turn-off-answers">
             <div className={`turn-off-button ${this.state.selectedButtonIndex ? 'selected' : ''}`}>
-              Yes
+              {this.context.strings['yes']}
             </div>
             <div className={`turn-off-button ${!this.state.selectedButtonIndex ? 'selected' : ''}`}>
-              No
+              {this.context.strings['no']}
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Summary.css'
+import { DeviceContext } from '../../../../Contexts/DeviceContext'
 
 import Icon_FrequencyIcon from '../../../../Assets/icons/summary/frequency.png'
 import Icon_DirtType from '../../../../Assets/icons/summary/dirt-type.png'
@@ -7,6 +8,7 @@ import Icon_Sensitivity from '../../../../Assets/icons/summary/sensitivity.png'
 import Icon_ProbeDistance from '../../../../Assets/icons/summary/distance.png'
 
 class Summary extends React.Component {
+  static contextType = DeviceContext
   render() {
     return (
       <div className="summary">
@@ -14,7 +16,7 @@ class Summary extends React.Component {
 
           <div className="summary-prop" style={{ backgroundImage: `url(${Icon_FrequencyIcon})` }}>
             <div className="summary-table-title">
-              Frequency
+              {this.context.strings['frequency']}
             </div>
             <div className="summary-table-value">
               {this.props.frequency} Hz
@@ -23,7 +25,7 @@ class Summary extends React.Component {
 
           <div className="summary-prop" style={{ backgroundImage: `url(${Icon_DirtType})` }}>
             <div className="summary-table-title">
-              Dirt Type
+              {this.context.strings['dirt_type']}
             </div>
             <div className="summary-table-value">
               {this.props.dirtTypeIndex}
@@ -32,7 +34,7 @@ class Summary extends React.Component {
 
           <div className="summary-prop" style={{ backgroundImage: `url(${Icon_Sensitivity})` }}>
             <div className="summary-table-title">
-              Sensitivty
+              {this.context.strings['sensitivity']}
             </div>
             <div className="summary-table-value">
               {this.props.sensitivity}
@@ -41,7 +43,7 @@ class Summary extends React.Component {
 
           <div className="summary-prop" style={{ backgroundImage: `url(${Icon_ProbeDistance})` }}>
             <div className="summary-table-title">
-              Probe Distance
+              {this.context.strings['probe_distance']}
             </div>
             <div className="summary-table-value">
               {this.props.probeDistance} M
@@ -51,7 +53,7 @@ class Summary extends React.Component {
         </div>
 
         <div className="summary-button">
-          Press OK to start scan
+          {this.context.strings['press_ok_to_start']}
         </div>
       </div>
     )

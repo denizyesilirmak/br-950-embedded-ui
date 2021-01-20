@@ -1,6 +1,7 @@
 import React from 'react'
 import './Mainmenu.css'
 import socketHelper from '../../SocketHelper'
+import { DeviceContext } from '../../Contexts/DeviceContext'
 
 import QuicScanIcon from '../../Assets/icons/mainmenu/quickscan.png'
 import ManualScanIcon from '../../Assets/icons/mainmenu/manualscan.png'
@@ -12,7 +13,7 @@ import TurnOffIcon from '../../Assets/icons/mainmenu/turnoff.png'
 import Dashboard from './Dashboard'
 
 class Mainmenu extends React.Component {
-
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
 
@@ -32,37 +33,37 @@ class Mainmenu extends React.Component {
 
     this.buttons = [
       {
-        name: "Quick Scan",
+        name: "quick_scan",
         icon: QuicScanIcon,
         screenName: 'quickScanScreen',
         cssTag: 'a1'
       },
       {
-        name: "Automatic Scan",
+        name: "automatic_scan",
         icon: ManualScanIcon,
         screenName: 'automaticScanScreen',
         cssTag: 'a2'
       },
       {
-        name: "Advanced Scan",
+        name: "advanced_scan",
         icon: AdvancedScanIcon,
         screenName: 'advancedScanScreen',
         cssTag: 'a3'
       },
       {
-        name: "Files",
+        name: "files",
         icon: FilesIcon,
         screenName: 'filesScreen',
         cssTag: 'a4'
       },
       {
-        name: "Settings",
+        name: "settings",
         icon: SettingsIcon,
         screenName: 'settingsScreen',
         cssTag: 'a5'
       },
       {
-        name: "Turn Off",
+        name: "turn_off",
         icon: TurnOffIcon,
         screenName: 'turnOffScreen',
         cssTag: 'a6'
@@ -199,7 +200,7 @@ class Mainmenu extends React.Component {
                 return (
                   <div onAnimationEnd={i === 5 ? this.handleAnimationEnd : null} ref={this.menuItemRefs[i]} className={`main-menu-item ${e.cssTag} ${this.state.selectedButtonIndex % 6 === i ? 'selected' : ''}`} key={i + this.state.key}>
                     <img src={e.icon} alt="main-menu-icon" className="main-menu-icon" />
-                    <div className="main-menu-item-title">{e.name}</div>
+                    <div className="main-menu-item-title">{this.context.strings[e.name]}</div>
                   </div>
                 )
               })

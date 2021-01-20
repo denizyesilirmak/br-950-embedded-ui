@@ -64,7 +64,7 @@ class Statusbar extends React.Component {
       <div className="status-bar">
         <div className="status-bar-left">
           <div className="menu-title">
-            {this.props.menuTitle}
+            {this.context.strings[this.props.menuTitle]}
           </div>
         </div>
         <div className="status-bar-right">

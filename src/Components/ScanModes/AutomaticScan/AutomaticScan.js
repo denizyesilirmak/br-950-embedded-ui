@@ -1,9 +1,10 @@
 import React from 'react'
 import './AutomaticScan.css'
 import socketHelper from '../../../SocketHelper'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 class AutomaticScan extends React.Component {
-
+  static contextType = DeviceContext
   componentDidMount() {
     socketHelper.attach(this.socketHandler)
 
@@ -38,7 +39,7 @@ class AutomaticScan extends React.Component {
           </div>
 
           <div className="automatic-scan-start-button">
-            Press OK to start scan
+            {this.context.strings['press_ok_to_start']}
           </div>
         </div>
       </div>

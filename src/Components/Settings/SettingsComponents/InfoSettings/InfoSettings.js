@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './InfoSettings.css'
+import { DeviceContext } from '../../../../Contexts/DeviceContext'
 import BrLogo from '../../../../Assets/icons/br-logo.png'
 
 
 class InfoSettings extends Component {
+  static contextType = DeviceContext
   render() {
     return (
       <div className="info-settings">
@@ -11,7 +13,7 @@ class InfoSettings extends Component {
 
         <div className="info-property">
           <div className="label">
-            Brand
+            {this.context.strings['brand']}
           </div>
           <div className="value">
             Br Systems
@@ -20,7 +22,7 @@ class InfoSettings extends Component {
 
         <div className="info-property">
           <div className="label">
-            Model
+            {this.context.strings['model']}
           </div>
           <div className="value">
             BR-950 Pro
@@ -29,19 +31,19 @@ class InfoSettings extends Component {
 
         <div className="info-property">
           <div className="label">
-            Brand
+          {this.context.strings['software_version']}
           </div>
           <div className="value">
-            Br Systems
+            2.0
           </div>
         </div>
 
         <div className="info-property">
           <div className="label">
-            Brand
+          {this.context.strings['build_number']}
           </div>
           <div className="value">
-            Br Systems
+            100500D.001
           </div>
         </div>
 

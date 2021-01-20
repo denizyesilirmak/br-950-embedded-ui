@@ -1,6 +1,7 @@
 import React from 'react'
 import './ScanViewer.css'
 import socketHelper from '../../SocketHelper'
+import { DeviceContext } from '../../Contexts/DeviceContext'
 
 import ScanTitle from './ScanViewerComponents/Title'
 import ScanLinesInfos from './ScanViewerComponents/ScanLinesInfos'
@@ -10,6 +11,7 @@ import ScanViewerAnimation from './ScanViewerComponents/ScanVieverAnimation/Scan
 import Utils from '../../Utils'
 
 class ScanViewer extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
 

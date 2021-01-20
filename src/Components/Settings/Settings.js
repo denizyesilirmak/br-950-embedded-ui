@@ -4,6 +4,7 @@ import socketHelper from '../../SocketHelper'
 import dbStorage from '../../DatabaseHelper'
 import Popup from '../Popup/Popup'
 import Utils from '../../Utils'
+import { DeviceContext } from '../../Contexts/DeviceContext'
 
 
 import LanguageSettings from './SettingsComponents/LanguageSettings/LanguageSettings'
@@ -32,51 +33,61 @@ import it from '../../Assets/flags/settings/it.png'
 const LANGUAGES = [
   {
     name: "English",
+    originalName: "English",
     code: "en",
     icon: en
   },
   {
     name: "German",
+    originalName: "Deutsch",
     code: "de",
     icon: de
   },
   {
     name: "Turkish",
+    originalName: "Türkçe",
     code: "tr",
     icon: tr
   },
   {
     name: "Arabic",
+    originalName: "عربى",
     code: "ar",
     icon: ar
   },
   {
     name: "Persian",
+    originalName: "فارسی",
     code: "fa",
     icon: fa
   },
   {
     name: "Russian",
+    originalName: "Русский язык",
     code: "ru",
     icon: ru
   },
   {
     name: "Chinese",
+    originalName: "汉语",
     code: "zh",
     icon: zh
   },
   {
     name: "French",
+    originalName: "Français ",
     code: "fr",
     icon: fr
   },
   {
     name: "Spanish",
+    originalName: "Español",
     code: "es",
     icon: es
   },
   {
     name: "Italian",
+    originalName: "Italiano",
     code: "it",
     icon: it
   }
@@ -85,14 +96,15 @@ const LANGUAGES = [
 
 
 const SETTINGS_TABS = [
-  "Language Settings",
-  "Date & Time Settings",
-  "Volume Settings",
-  "Reset Settings",
-  "Device Info"
+  "language_settings",
+  "date_time_settings",
+  "volume_settings",
+  "reset_settings",
+  "device_info"
 ]
 
 class Settings extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
     this.state = {
@@ -300,8 +312,8 @@ class Settings extends React.Component {
             this.props.setLanguage(LANGUAGES[this.state.languageIndex].code) //send language code to app.js
             await dbStorage.setItem('lang', LANGUAGES[this.state.languageIndex].code)
             this.showNotification(
-              "Settings",
-              "Current language changed successfuly",
+              this.context.strings['settings'],
+              this.context.strings['language_changed'],
               false
             )
           }
@@ -320,12 +332,12 @@ class Settings extends React.Component {
           }
           else if (this.state.activeSettingsTab === 3 && this.state.activePopup === '') {
             //reset
-            if(this.state.resetSettingsIndex === 0){
+            if (this.state.resetSettingsIndex === 0) {
               //clear memory
               this.props.navigateTo('clearMemoryScreen')
               return
             }
-            else if(this.state.resetSettingsIndex === 1){
+            else if (this.state.resetSettingsIndex === 1) {
               //factory reset
             }
           }
@@ -491,7 +503,7 @@ class Settings extends React.Component {
 
             <div className="right" style={{ background: this.state.tabBarActive ? '#ffffff90' : '#ffffffad' }}>
               <div className="settings-sub-title">
-                {SETTINGS_TABS[this.state.activeSettingsTab]}
+                {this.context.strings[SETTINGS_TABS[this.state.activeSettingsTab]]}
               </div>
               <div className="settings-sub-container">
                 {

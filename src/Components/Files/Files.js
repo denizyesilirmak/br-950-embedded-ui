@@ -45,7 +45,7 @@ class Files extends React.Component {
   componentDidMount() {
     const rnd = Math.random()
     if (rnd < 0.2) {
-      this.context.showSnackBar("You can delete files by pressing Settings button.")
+      this.context.showSnackBar(this.context.strings['delete_help'])
     }
 
     socketHelper.attach(this.handleSocket)
@@ -199,15 +199,15 @@ class Files extends React.Component {
               <div className="delete-popup">
                 <img src={DELETE_ICON} alt="delete"></img>
                 <div className="delete-popup-file-name"> {this.state.fileList[this.state.selectedFileIndex].name} </div>
-                <div className="delete-popup-text"> Do you want to delete this file? </div>
+                <div className="delete-popup-text"> {this.context.strings['delete_question']} </div>
 
                 <div className="delete-button-group">
                   <div className={`delete-button ${this.state.deleteButtonIndex ? 'selected' : ''}`}>
-                    Yes
-                    </div>
+                    {this.context.strings['yes']}
+                  </div>
                   <div className={`delete-button ${!this.state.deleteButtonIndex ? 'selected' : ''}`}>
-                    No
-                    </div>
+                    {this.context.strings['no']}
+                  </div>
                 </div>
               </div>
 
@@ -220,15 +220,15 @@ class Files extends React.Component {
             <div className="file-list-titles">
 
               <div className="file-list-title file-list-title-a">
-                File Name
+                {this.context.strings['file_name']}
               </div>
 
               <div className="file-list-title file-list-title-b">
-                File Type
+                {this.context.strings['file_type']}
               </div>
 
               <div className="file-list-title file-list-title-c">
-                Creation Date
+                {this.context.strings['creation_date']}
               </div>
 
             </div>

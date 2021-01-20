@@ -21,6 +21,7 @@ import AdvancedScanAction from './Components/ScanModes/AdvancedScan/AdvancedScan
 import TurnOffAction from './Components/TurnOff/TurnOffAction'
 import Calibration from './Components/Calibration/Calibration'
 import ClearMemory from './Components/Resets/ClearMemory'
+import FactoryReset from './Components/Resets/FactoryReset'
 
 
 import dbStorage from './DatabaseHelper'
@@ -32,7 +33,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'settingsScreen',
+      activeScreen: 'menuScreen',
       screenProps: { A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
@@ -96,6 +97,7 @@ class App extends React.Component {
       case 'turnOffActionScreen': return <TurnOffAction />
       case 'calibrationScreen': return <Calibration navigateTo={this.navigateTo} />
       case 'clearMemoryScreen': return <ClearMemory navigateTo={this.navigateTo} />
+      case 'factoryResetScreen': return <FactoryReset navigateTo={this.navigateTo} />
       default:
         break;
     }

@@ -3,6 +3,7 @@ import './AdvancedScan.css'
 import NextIcon from '../../../Assets/icons/next.png'
 import socketHelper from '../../../SocketHelper'
 import dbStorage from '../../../DatabaseHelper'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 import SignalFrequency from './SubSteps/SignalFrequency'
 import DirtType from './SubSteps/DirtType'
@@ -24,27 +25,28 @@ const PROBE_DISTANCE_MAX = 50
 const AdvancedScanTitles = [
   {
     title: "signal_frequency",
-    description: "Please select AC voltage frequency"
+    description: "frequency_dis"
   },
   {
-    title: "dirt-type",
-    description: "Please select dirt type"
+    title: "dirt_type",
+    description: "dirt_type_dis"
   },
   {
     title: "sensitivity",
-    description: "Please select AC Voltage Frequency"
+    description: "sensitivity_dis"
   },
   {
-    title: "probe-distance",
-    description: "Select distance between probes"
+    title: "probe_distance",
+    description: "probe_distance_dis"
   },
   {
-    title: "scan-summary",
+    title: "scan_summary",
     description: ""
   }
 ]
 
 class AdvancedScan extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
     this.state = {
@@ -60,7 +62,7 @@ class AdvancedScan extends React.Component {
     socketHelper.attach(this.handleSocket)
 
 
-    
+
   }
 
   componentWillUnmount() {
@@ -176,10 +178,10 @@ class AdvancedScan extends React.Component {
       <div className="advanced-scan component">
         <div className="advanced-scan-container">
           <div className="step-title">
-            {AdvancedScanTitles[this.state.stepIndex].title}
+            {this.context.strings[AdvancedScanTitles[this.state.stepIndex].title]}
           </div>
           <div className="step-description">
-            {AdvancedScanTitles[this.state.stepIndex].description}
+            {this.context.strings[AdvancedScanTitles[this.state.stepIndex].description]}
           </div>
 
           <div className="next-sub-menu">

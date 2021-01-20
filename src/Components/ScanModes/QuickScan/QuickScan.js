@@ -1,8 +1,10 @@
 import React from 'react'
 import './QuickScan.css'
 import socketHelper from '../../../SocketHelper'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 class QuickScan extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
     this.state = {
@@ -54,7 +56,7 @@ class QuickScan extends React.Component {
 
         break;
       case 'ok':
-        this.props.navigateTo('quickScanActionScreen', {line: this.lines[this.state.selectedLineIndex]})
+        this.props.navigateTo('quickScanActionScreen', { line: this.lines[this.state.selectedLineIndex] })
         break;
       case 'back':
         this.props.navigateTo('menuScreen')
@@ -75,7 +77,7 @@ class QuickScan extends React.Component {
               this.lines.map((e, i) => {
                 return (
                   <div className={`line ${this.state.selectedLineIndex === i ? 'selected' : ''}`} key={i}>
-                    {`${e.toLocaleLowerCase()}_line`}
+                    {this.context.strings[`${e.toLocaleLowerCase()}_line`]}
                   </div>
                 )
               })
@@ -89,7 +91,7 @@ class QuickScan extends React.Component {
               Line image holder
             </div>
             <div className="quick-scan-info">
-              Press OK to start scan
+              {this.context.strings.press_ok_to_start}
             </div>
 
           </div>

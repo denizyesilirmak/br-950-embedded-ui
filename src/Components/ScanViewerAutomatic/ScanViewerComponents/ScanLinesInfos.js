@@ -1,7 +1,9 @@
 import React from 'react'
 import './ScanLinesInfos.css'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 class ScanLinesInfos extends React.Component {
+  static contextType = DeviceContext
   render() {
     return (
       <div className="scan-lines-infos">
@@ -10,7 +12,7 @@ class ScanLinesInfos extends React.Component {
           Object.keys(this.props.results).map((e, i) => {
             return (
               <div className={`scan-line-info ${this.props.index === i ? 'selected' : ''}`} key={i}>
-                <div className="line-name">{`${e.toLocaleLowerCase()}_line`}</div>
+                <div className="line-name">{this.context.strings[`${e.toLocaleLowerCase()}_line`]}</div>
 
                 <svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
                   <rect x="5" y="0" width="90" height="5" fill="#9ff734"></rect>
@@ -21,15 +23,15 @@ class ScanLinesInfos extends React.Component {
 
                 <div className="tags">
                   <div className="water-type-tag">
-                    {this.props.results[e].water_type}
+                    {this.context.strings[this.props.results[e].water_type]}
                   </div>
 
                   <div className="water-type-tag">
-                    Rate: <span>{this.props.results[e].rate}%</span>
+                    {this.context.strings['rate']} <span>{this.props.results[e].rate}%</span>
                   </div>
 
                   <div className="water-type-tag">
-                    Salinity: <span>{this.props.results[e].salinity}</span>
+                    {this.context.strings['salinity']} <span>{this.props.results[e].salinity + ' ppm'}</span>
                   </div>
                 </div>
               </div>

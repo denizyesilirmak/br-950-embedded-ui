@@ -1,8 +1,10 @@
 import React from 'react'
 import './ScanViewerAnimation.css'
+import { DeviceContext } from '../../../../Contexts/DeviceContext'
 
 class ScanViewerAnimation extends React.Component {
-  constructor(props){
+  static contextType = DeviceContext
+  constructor(props) {
     super(props)
     console.log(this.props.result)
   }
@@ -17,7 +19,7 @@ class ScanViewerAnimation extends React.Component {
 
           <div className="item">
             <div className="title">
-              Rate
+              {this.context.strings['rate']}
             </div>
             <div className="value">
               30%
@@ -26,7 +28,7 @@ class ScanViewerAnimation extends React.Component {
 
           <div className="item">
             <div className="title">
-              Type
+              {this.context.strings['type']}
             </div>
 
             <div className="value">
@@ -36,7 +38,7 @@ class ScanViewerAnimation extends React.Component {
 
           <div className="item">
             <div className="title">
-              Salinity
+              {this.context.strings['salinity']}
             </div>
             <div className="value">
               0,0003
@@ -45,10 +47,10 @@ class ScanViewerAnimation extends React.Component {
 
           <div className="item">
             <div className="title">
-              Rate
+              {this.context.strings['depth']}
             </div>
             <div className="value">
-              30%
+              30 m
             </div>
           </div>
 
