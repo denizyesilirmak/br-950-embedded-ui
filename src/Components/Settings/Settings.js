@@ -96,7 +96,7 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeSettingsTab: 2,
+      activeSettingsTab: 0,
       activePopup: '',
       tabBarActive: true,
       languageIndex: 0,
@@ -262,7 +262,7 @@ class Settings extends React.Component {
         }
         if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
           this.setState({
-            volume: Utils.clamp(this.state.volume - 10, 0 , 100)
+            volume: Utils.clamp(this.state.volume - 10, 0, 100)
           })
         }
         break
@@ -282,7 +282,7 @@ class Settings extends React.Component {
         }
         if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
           this.setState({
-            volume: Utils.clamp(this.state.volume + 10, 0 , 100)
+            volume: Utils.clamp(this.state.volume + 10, 0, 100)
           })
         }
         break
@@ -316,6 +316,17 @@ class Settings extends React.Component {
               this.setState({
                 activePopup: 'date'
               })
+            }
+          }
+          else if (this.state.activeSettingsTab === 3 && this.state.activePopup === '') {
+            //reset
+            if(this.state.resetSettingsIndex === 0){
+              //clear memory
+              this.props.navigateTo('clearMemoryScreen')
+              return
+            }
+            else if(this.state.resetSettingsIndex === 1){
+              //factory reset
             }
           }
         }

@@ -10,7 +10,6 @@ class QuickScanResult extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
-    console.log(this.props.screenProps)
 
   }
 
@@ -47,7 +46,7 @@ class QuickScanResult extends React.Component {
       <div className="quick-scan-result component">
         <div className="quick-scan-container">
           <div className="quick-scan-result-video-container">
-
+            {this.props.screenProps.line.probe}
           </div>
 
           <div className="quick-scan-result-table">
@@ -57,7 +56,7 @@ class QuickScanResult extends React.Component {
                 Value
               </div>
               <div className="right">
-                123
+                {this.props.screenProps.line.value}
               </div>
             </div>
 
@@ -66,7 +65,7 @@ class QuickScanResult extends React.Component {
                 Salinity
               </div>
               <div className="right">
-                123
+                {this.props.screenProps.result.salinity}
               </div>
             </div>
 
@@ -75,7 +74,7 @@ class QuickScanResult extends React.Component {
                 Depth
               </div>
               <div className="right">
-                123
+              {this.props.screenProps.result.water_depth}
               </div>
             </div>
 
@@ -84,7 +83,7 @@ class QuickScanResult extends React.Component {
                 Type
               </div>
               <div className="right">
-                Fresh Water
+              {this.props.screenProps.result.water_type}
               </div>
             </div>
 

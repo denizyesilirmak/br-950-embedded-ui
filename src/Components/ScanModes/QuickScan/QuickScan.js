@@ -8,6 +8,15 @@ class QuickScan extends React.Component {
     this.state = {
       selectedLineIndex: 0
     }
+
+    this.lines = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ]
   }
 
   componentDidMount() {
@@ -45,7 +54,7 @@ class QuickScan extends React.Component {
 
         break;
       case 'ok':
-        this.props.navigateTo('quickScanActionScreen')
+        this.props.navigateTo('quickScanActionScreen', {line: this.lines[this.state.selectedLineIndex]})
         break;
       case 'back':
         this.props.navigateTo('menuScreen')
@@ -62,24 +71,17 @@ class QuickScan extends React.Component {
         <div className="quick-scan-container">
 
           <div className="lines">
-            <div className={`line ${this.state.selectedLineIndex === 0 ? 'selected' : ''}`}>
-              A Line
-            </div>
-            <div className={`line ${this.state.selectedLineIndex === 1 ? 'selected' : ''}`}>
-              B Line
-            </div>
-            <div className={`line ${this.state.selectedLineIndex === 2 ? 'selected' : ''}`}>
-              C Line
-            </div>
-            <div className={`line ${this.state.selectedLineIndex === 3 ? 'selected' : ''}`}>
-              D Line
-            </div>
-            <div className={`line ${this.state.selectedLineIndex === 4 ? 'selected' : ''}`}>
-              E Line
-            </div>
-            <div className={`line ${this.state.selectedLineIndex === 5 ? 'selected' : ''}`}>
-              F Line
-            </div>
+            {
+              this.lines.map((e, i) => {
+                return (
+                  <div className={`line ${this.state.selectedLineIndex === i ? 'selected' : ''}`} key={i}>
+                    {`${e.toLocaleLowerCase()}_line`}
+                  </div>
+                )
+              })
+            }
+
+
           </div>
 
           <div className="right-panel">

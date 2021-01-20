@@ -1,0 +1,19 @@
+.calibration {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calibration-value {
+  color: lime;
+  font-size: 150px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.calibration-button {
+  color: lightblue;
+  font-size: 50px;
+}

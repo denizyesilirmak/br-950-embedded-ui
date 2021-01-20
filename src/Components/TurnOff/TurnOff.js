@@ -7,6 +7,7 @@ class TurnOff extends React.Component {
     super(props)
 
     this.containerRef = React.createRef()
+    this.calibrationCounter = 0
 
     this.state = {
       selectedButtonIndex: true
@@ -42,12 +43,20 @@ class TurnOff extends React.Component {
       case 'back':
         this.props.navigateTo('menuScreen')
         return;
-      case 'ok': 
-        if(this.state.selectedButtonIndex){
+      case 'down':
+        this.calibrationCounter++;
+        if (this.calibrationCounter === 11) {
+          this.props.navigateTo('calibrationScreen')
+          return
+        }
+        break;
+      case 'ok':
+        if (this.state.selectedButtonIndex) {
           //turnoffdevice
           this.props.navigateTo('turnOffActionScreen')
+          return
         }
-        else{
+        else {
           //go to main menu
           this.props.navigateTo('menuScreen')
         }

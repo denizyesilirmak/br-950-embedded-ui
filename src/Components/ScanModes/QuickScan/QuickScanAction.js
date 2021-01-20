@@ -2,20 +2,36 @@ import React from 'react'
 import './QuickScanAction.css'
 import socketHelper from '../../../SocketHelper'
 import quickScanVideo from '../../../Assets/videos/manual_scan_video.mp4'
+import Utils from '../../../Utils'
 
 class QuickScanAction extends React.Component {
+  constructor(props) {
+    super(props)
+    this.result = {}
+  }
 
   componentDidMount() {
-    socketHelper.attach((a) => console.log())
+    socketHelper.attach(this.handleSocket)
+    this.interval = setTimeout(() => {
+      socketHelper.send(this.props.screenProps.line)
+      clearInterval(this.interval)
+    }, 1500);
   }
 
   componentWillUnmount() {
     socketHelper.detach()
   }
 
+  handleSocket = (sd) => {
+    if (sd.type === 'scan') {
+      this.result = sd
+    }
+  }
+
   onVideoEnded = () => {
     // console.log('video ended')
-    this.props.navigateTo('quickScanResultScreen', { test: 'test' })
+    socketHelper.send('Z')
+    this.props.navigateTo('quickScanResultScreen', { line: this.result, result: Utils.getWaterInfo(this.result.value) })
   }
 
   render() {

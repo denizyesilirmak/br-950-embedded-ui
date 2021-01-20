@@ -19,6 +19,9 @@ import AutomaticScanAction from './Components/ScanModes/AutomaticScan/AutomaticS
 import AdvancedScan from './Components/ScanModes/AdvancedScan/AdvancedScan'
 import AdvancedScanAction from './Components/ScanModes/AdvancedScan/AdvancedScanAction'
 import TurnOffAction from './Components/TurnOff/TurnOffAction'
+import Calibration from './Components/Calibration/Calibration'
+import ClearMemory from './Components/Resets/ClearMemory'
+
 
 import dbStorage from './DatabaseHelper'
 dbStorage.init()
@@ -29,8 +32,8 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'scanViewerAutomaticScreen',
-      screenProps: {A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
+      activeScreen: 'settingsScreen',
+      screenProps: { A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
       batteryLevel: 0
@@ -50,7 +53,7 @@ class App extends React.Component {
     socketHelper.attachSpecial('battery', (socketData) => {
       if (socketData.type !== 'battery')
         return
-      
+
       this.setState({
         batteryLevel: parseInt(socketData.payload)
       })
@@ -84,13 +87,15 @@ class App extends React.Component {
       case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'scanViewerAdvancedScreen': return <ScanViewerAdvanced navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'quickScanScreen': return <QuickScan navigateTo={this.navigateTo} />
-      case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} />
+      case 'quickScanActionScreen': return <QuickScanAction navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'quickScanResultScreen': return <QuickScanResult navigateTo={this.navigateTo} screenProps={this.state.screenProps} />
       case 'automaticScanScreen': return <AutomaticScan navigateTo={this.navigateTo} />
       case 'automaticScanActionScreen': return <AutomaticScanAction navigateTo={this.navigateTo} />
       case 'advancedScanScreen': return <AdvancedScan navigateTo={this.navigateTo} />
       case 'advancedScanActionScreen': return <AdvancedScanAction navigateTo={this.navigateTo} />
       case 'turnOffActionScreen': return <TurnOffAction />
+      case 'calibrationScreen': return <Calibration navigateTo={this.navigateTo} />
+      case 'clearMemoryScreen': return <ClearMemory navigateTo={this.navigateTo} />
       default:
         break;
     }
