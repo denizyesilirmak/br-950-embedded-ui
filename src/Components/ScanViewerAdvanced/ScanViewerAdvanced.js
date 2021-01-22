@@ -14,7 +14,7 @@ class ScanViewerAdvanced extends React.Component {
     this.state = {
       rotation_axis_x: 0,
       rotation_axis_z: 0,
-      lineMode: 0,
+      lineMode: 0, //0
       selectedLineIndex: 0,
       results: this.calculateWaterInfo()
 
@@ -127,9 +127,9 @@ class ScanViewerAdvanced extends React.Component {
   render() {
     return (
       <div className="scan-viewer-advanced component">
-        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} plotData = {this.props.screenProps}/>
+        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} plotData={this.props.screenProps} />
 
-        <ScanLineDetail active={this.state.lineMode === 2} />
+        <ScanLineDetail active={this.state.lineMode === 2} line={Object.keys(this.state.results)[this.state.selectedLineIndex]} data={this.state.results[Object.keys(this.state.results)[this.state.selectedLineIndex]]} />
 
         <div className="advanced-scan-lines-details">
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 0 ? 'selected' : ''}`}>

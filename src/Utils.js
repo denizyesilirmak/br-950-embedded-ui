@@ -37,6 +37,7 @@ class Utils {
     let _waterType = ''
     let _waterDepth = 0
     let _salinity = 0
+    let _salinity_percent = 0
     let _rate = 0
     let _wet_dirt = false
 
@@ -96,6 +97,7 @@ class Utils {
 
     if (value >= 285 && value <= 540) {
       _salinity = Math.trunc(this.map(value, 285, 540, 600, 1200))
+      _salinity_percent = Math.trunc(this.map(value, 285, 540, 0, 100))
     }
 
     const result = {
@@ -103,6 +105,7 @@ class Utils {
       water_depth: _waterDepth,
       sensor_value: value,
       salinity: _salinity,
+      salinity_percent: _salinity_percent,
       rate: _rate,
       wet_dirt: _wet_dirt
     }
