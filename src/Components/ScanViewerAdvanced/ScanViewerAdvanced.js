@@ -135,37 +135,37 @@ class ScanViewerAdvanced extends React.Component {
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 0 ? 'selected' : ''}`}>
             <div className="line-name-ad">A</div>
             <div className="line-rate">{this.state.results.A.rate}%</div>
-            <div className="line-type">{this.state.results.A.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.A.water_type]}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 1 ? 'selected' : ''}`}>
             <div className="line-name-ad">B</div>
             <div className="line-rate">{this.state.results.B.rate}%</div>
-            <div className="line-type">{this.state.results.B.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.B.water_type]}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 2 ? 'selected' : ''}`}>
             <div className="line-name-ad">C</div>
             <div className="line-rate">{this.state.results.C.rate}%</div>
-            <div className="line-type">{this.state.results.C.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.C.water_type]}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 3 ? 'selected' : ''}`}>
             <div className="line-name-ad">D</div>
             <div className="line-rate">{this.state.results.D.rate}%</div>
-            <div className="line-type">{this.state.results.D.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.D.water_type]}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 4 ? 'selected' : ''}`}>
             <div className="line-name-ad">E</div>
             <div className="line-rate">{this.state.results.E.rate}%</div>
-            <div className="line-type">{this.state.results.E.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.E.water_type]}</div>
           </div>
 
           <div className={`line-detail ${this.state.lineMode === 1 && this.state.selectedLineIndex === 5 ? 'selected' : ''}`}>
             <div className="line-name-ad">F</div>
             <div className="line-rate">{this.state.results.F.rate}%</div>
-            <div className="line-type">{this.state.results.F.water_type}</div>
+            <div className="line-type">{this.context.strings[this.state.results.F.water_type]}</div>
           </div>
         </div>
 

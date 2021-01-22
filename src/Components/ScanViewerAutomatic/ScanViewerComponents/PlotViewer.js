@@ -14,6 +14,21 @@ let data = {
   F: 1024
 }
 
+// const COLORS = {
+//   jet: [
+//     { pct: 0, color: { r: 0x00, g: 0x94, b: 0x0c } },
+//     { pct: 300, color: { r: 0x00, g: 0x94, b: 0x0c } },
+//     { pct: 320, color: { r: 0x23, g: 0xff, b: 0x89 } },
+//     { pct: 360, color: { r: 0x00, g: 0xff, b: 0x89 } },
+//     { pct: 400, color: { r: 0x00, g: 0xff, b: 0xfd } },
+//     { pct: 440, color: { r: 0x00, g: 0xc5, b: 0xff } },
+//     { pct: 480, color: { r: 0x00, g: 0x70, b: 0xff } },
+//     { pct: 520, color: { r: 0x00, g: 0x0d, b: 0xa4 } },
+//     { pct: 540, color: { r: 0x00, g: 0x00, b: 0x00 } },
+//     { pct: 1024, color: { r: 0x09, g: 0x0d, b: 0x39 } },
+//   ]
+// }
+
 const COLORS = {
   jet: [
     { pct: 0, color: { r: 0x00, g: 0x94, b: 0x0c } },
@@ -24,7 +39,7 @@ const COLORS = {
     { pct: 440, color: { r: 0x00, g: 0xc5, b: 0xff } },
     { pct: 480, color: { r: 0x00, g: 0x70, b: 0xff } },
     { pct: 520, color: { r: 0x00, g: 0x0d, b: 0xa4 } },
-    { pct: 540, color: { r: 0x00, g: 0x00, b: 0x00 } },
+    { pct: 540, color: { r: 0x5, g: 0x5, b: 0x30 } },
     { pct: 1024, color: { r: 0x09, g: 0x0d, b: 0x39 } },
   ]
 }
@@ -57,13 +72,19 @@ class PlotViewer extends React.Component {
     this.canvasHolder.current.appendChild(this.renderer.domElement)
     this.initializeCamera()
 
+
+    //creating meshes
     this.plotMesh = this.drawPlot(data, max, min)
     this.gridMesh = this.createGrid(max, min)
+
+    const box = new THREE.BoxHelper(this.plotMesh, 0xffffff);
+    this.scene.add(box);
 
 
     this.scanMeshGroup = new THREE.Group()
     this.scanMeshGroup.add(this.plotMesh)
     this.scanMeshGroup.add(this.gridMesh)
+    this.scanMeshGroup.add(box)
     this.scene.add(this.scanMeshGroup)
 
 

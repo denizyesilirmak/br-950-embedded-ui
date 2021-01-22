@@ -14,7 +14,7 @@ class ScanLineDetail extends React.Component {
       <div className="scan-line-detail" style={{ right: this.props.active ? '30px' : '-320px' }}>
 
         <div className="sld-line-name">
-          <span>Line</span> <span>{this.props.line}</span>
+          <span>{this.context.strings[`${this.props.line.toLowerCase()}_line`]}</span>
         </div>
 
         <div className="sld-line-prop">
@@ -65,16 +65,20 @@ class ScanLineDetail extends React.Component {
                 <stop offset="0" stopColor="#e5e5e5" />
                 <stop offset="1" stopOpacity="0.99609" stopColor="#56aaff" />
               </radialGradient>
+              <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_17">
+                <stop offset="0" stopColor="#00bf00" />
+                <stop offset="0.47656" stopColor="#ffe900" />
+                <stop offset="1" stopColor="#ff1e1e" />
+              </linearGradient>
             </defs>
             <g>
-              <ellipse stroke="#000" ry="62" rx="62" cy="104" cx="75" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
-              <ellipse stroke="#000" ry="62" rx="62" cy="104" cx="226" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
+              
+              <ellipse stroke="url(#svg_17)" ry="62" rx="62" cy="104" cx="75" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
+              <ellipse stroke="url(#svg_17)" ry="62" rx="62" cy="104" cx="226" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
 
               <line transform={`rotate(${this.props.data.rate * 1.8} 75,104)`} stroke="#ff0000" strokeDasharray="50" strokeLinecap="round" strokeLinejoin="round" y2="104" x2="122" y1="104" x1="27" strokeWidth="5" fill="none" />
               <line transform={`rotate(${this.props.data.salinity_percent * 1.8} 226,104)`} stroke="#ff0000" strokeDasharray="50" strokeLinecap="round" strokeLinejoin="round" y2="104" x2="274" y1="104" x1="179" strokeWidth="5" fill="none" />
 
-              <ellipse stroke="#000000" strokeDasharray="10 10" ry="60" rx="60" cy="105" cx="75" strokeOpacity="null" strokeWidth="5" fill="none" />
-              <ellipse stroke="#000000" strokeDasharray="10 10" ry="60" rx="60" cy="105" cx="226" strokeOpacity="null" strokeWidth="5" fill="none" />
 
               <ellipse stroke="#000" ry="8" rx="8" cy="104" cx="75" strokeOpacity="null" strokeWidth="5" fill="#e5e5e5" />
               <ellipse stroke="#000" ry="8" rx="8" cy="104" cx="226" strokeOpacity="null" strokeWidth="5" fill="#e5e5e5" />

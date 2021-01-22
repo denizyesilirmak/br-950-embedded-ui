@@ -245,7 +245,7 @@ class Files extends React.Component {
                           <div className="file-item">{e.name}</div>
                         </div>
                         <div className="file-b">
-                          <div className="file-item" style={{ backgroundColor: e.file_type === 'advanced' ? '#fc8c03' : '#12aa12', padding: 5, borderRadius: 10 }}>{e.file_type}</div>
+                          <div className="file-item" style={{ backgroundColor: e.file_type === 'advanced' ? '#fc8c03' : '#12aa12', padding: 5, borderRadius: 10 }}>{this.context.strings[e.file_type]}</div>
                         </div>
                         <div className="file-b">
                           <div className="file-item">{e.date}</div>

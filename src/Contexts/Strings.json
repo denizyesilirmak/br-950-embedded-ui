@@ -161,7 +161,9 @@
     "dirt_type_dis": "Please select ground type",
     "sensitivity_dis": "Please select sensitivity level",
     "probe_distance_dis": "Select distance between probes",
-    "frequency": "Frequency"
+    "frequency": "Frequency",
+    "advanced": "Advanced",
+    "automatic": "Automatic"
   },
   "es": {
     "AAA_TEST": "Test"
