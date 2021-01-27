@@ -60,13 +60,25 @@ class AdvancedScan extends React.Component {
 
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
-
+    this.getLastState()
 
 
   }
 
   componentWillUnmount() {
     socketHelper.detach()
+  }
+
+  getLastState = () => {
+    dbStorage.getAll()
+    .then(lastState => {
+      this.setState({
+        signalFrequency: lastState.frequency || 50,
+        dirtTypeIndex: lastState.dirtTypeIndex || 0,
+        sensitivity: lastState.sensitivity || 0 ,
+        probeDistance: lastState.probeDistance || 10
+      })
+    })
   }
 
   handleSocket = async (sd) => {

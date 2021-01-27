@@ -1,7 +1,7 @@
 import React from 'react'
 import './QuickScanAction.css'
 import socketHelper from '../../../SocketHelper'
-import quickScanVideo from '../../../Assets/videos/manual_scan_video.mp4'
+import quickScanVideo from '../../../Assets/videos/qscan.mp4'
 import Utils from '../../../Utils'
 
 class QuickScanAction extends React.Component {
