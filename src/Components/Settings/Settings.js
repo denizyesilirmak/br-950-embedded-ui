@@ -111,7 +111,7 @@ class Settings extends React.Component {
       activeSettingsTab: 0,
       activePopup: '',
       tabBarActive: true,
-      languageIndex: 0,
+      languageIndex: null,
       dateTimeSettingsIndex: 0,
       resetSettingsIndex: 0,
       day: 1,
@@ -133,12 +133,48 @@ class Settings extends React.Component {
   }
 
   componentDidMount() {
+    this.getLastSettingsState()
     socketHelper.attach(this.handleSocket)
   }
 
   componentWillUnmount() {
     clearTimeout(this.notificationTimeOut)
     socketHelper.detach()
+  }
+
+  getLastSettingsState = async () => {
+    const lastState = await dbStorage.getAll()
+
+    console.log(lastState)
+    LANGUAGES.forEach((e, i) => {
+      if (e.code === lastState.lang) {
+        this.setState({
+          languageIndex: i
+        })
+      }
+    })
+
+    this.setState({
+      volume: lastState.volume || 0 
+    })
+
+    this.getCurrentDateTime()
+  }
+
+  saveLastSettingsState = async () => {
+    console.log('saving last settings state')
+    await dbStorage.setItem('volume', this.state.volume)
+  }
+
+  getCurrentDateTime = () => {
+    const currentDate = new Date();
+    this.setState({
+      hour: currentDate.getHours(),
+      minute: currentDate.getMinutes(),
+      day: currentDate.getDate(),
+      month: currentDate.getMonth() + 1,
+      year: currentDate.getFullYear()
+    })
   }
 
   handleSocket = async (sd) => {
@@ -273,6 +309,11 @@ class Settings extends React.Component {
           })
         }
         if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
+          socketHelper.send(JSON.stringify({
+            type: 'settings',
+            mode: 'volume',
+            payload: this.state.volume
+          }))
           this.setState({
             volume: Utils.clamp(this.state.volume - 10, 0, 100)
           })
@@ -293,6 +334,11 @@ class Settings extends React.Component {
           })
         }
         if (this.state.activeSettingsTab === 2 && this.state.tabBarActive === false) {
+          socketHelper.send(JSON.stringify({
+            type: 'settings',
+            mode: 'volume',
+            payload: this.state.volume
+          }))
           this.setState({
             volume: Utils.clamp(this.state.volume + 10, 0, 100)
           })
@@ -347,7 +393,7 @@ class Settings extends React.Component {
         if (this.state.tabBarActive) {
           this.props.navigateTo('menuScreen')
         } else {
-
+          this.saveLastSettingsState()
           if (this.state.activePopup !== '') {
             this.setState({
               activePopup: ''

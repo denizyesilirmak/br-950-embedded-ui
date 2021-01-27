@@ -33,7 +33,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'scanViewerAdvancedScreen',
+      activeScreen: 'settingsScreen',
       screenProps: { A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,
@@ -44,7 +44,8 @@ class App extends React.Component {
       .then(settings => {
         this.setState({
           ready: true,
-          currentLanguage: settings['lang'] || 'en'
+          currentLanguage: settings['lang'] || 'en',
+          volume: settings.volume || 0
         })
       })
 
@@ -79,10 +80,11 @@ class App extends React.Component {
     })
   }
 
+
   renderActiveScreen = () => {
     switch (this.state.activeScreen) {
       case 'menuScreen': return <Mainmenu batteryLevel={this.state.batteryLevel} navigateTo={this.navigateTo} cursorIndex={this.state._mainMenuCursorIndex} setCursorIndex={this._setCursorIndex} />
-      case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} />
+      case 'settingsScreen': return <Settings navigateTo={this.navigateTo} setLanguage={this._getLanguage} volume={this.setVolume} />
       case 'filesScreen': return <Files navigateTo={this.navigateTo} />
       case 'turnOffScreen': return <TurnOff navigateTo={this.navigateTo} />
       case 'scanViewerAutomaticScreen': return <ScanViewerAutomatic navigateTo={this.navigateTo} screenProps={this.state.screenProps} />

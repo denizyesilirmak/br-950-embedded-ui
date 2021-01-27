@@ -8,7 +8,6 @@ class SocketHelper {
   constructor() {
     if (!SocketHelper.instance) {
       // Init
-      this._keypressInterceptor = null
       this._currentMessageHandler = VOID
       this._messageHandlerStack = []
       this._socket = null
@@ -82,10 +81,6 @@ class SocketHelper {
     if (last !== VOID) {
       this._setMessageHandler(last)
     }
-  }
-
-  addKeypressInterceptor = (fn) => {
-    this._keypressInterceptor = fn
   }
 
 }
