@@ -38,7 +38,8 @@
 }
 
 .slider-container .slider-value {
-  transition: width 0.4s;
+  transition: width 0.1s;
+  transition-timing-function: linear;
   width: 50%;
   height: 100%;
   background: linear-gradient(to bottom, #9cecfb, #65c7f7, #0052d4);

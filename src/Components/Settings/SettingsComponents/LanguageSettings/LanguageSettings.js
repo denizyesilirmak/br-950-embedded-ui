@@ -35,7 +35,7 @@ export default LanguageSettings
 //ar
 //fa
 //ru
-//zh
+//ur
 //fr
 //es
 //it

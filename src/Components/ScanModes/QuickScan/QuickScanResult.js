@@ -3,6 +3,10 @@ import './QuickScanResult.css'
 import socketHelper from '../../../SocketHelper'
 import { DeviceContext } from '../../../Contexts/DeviceContext'
 
+import fresh_video from '../../../Assets/videos/q_fresh.mp4'
+import mineral_video from '../../../Assets/videos/q_mineral.mp4'
+import salty_video from '../../../Assets/videos/q_salty.mp4'
+
 class QuickScanResult extends React.Component {
   static contextType = DeviceContext
   // constructor(props) {
@@ -43,12 +47,31 @@ class QuickScanResult extends React.Component {
     }
   }
 
+  getWaterVideo = () => {
+    switch (this.props.screenProps.result.water_type) {
+      case 'high_fresh_water':
+        return fresh_video
+      case 'fresh_water':
+        return fresh_video
+      case 'mineral_water':
+        return mineral_video
+      case 'high_mineral_water':
+        return mineral_video
+      case 'salty_water':
+        return salty_video
+      case 'very_salty_water':
+        return salty_video
+      default:
+        return null
+    }
+  }
+
   render() {
     return (
       <div className="quick-scan-result component">
         <div className="quick-scan-container">
           <div className="quick-scan-result-video-container">
-            {this.props.screenProps.line.probe}
+            <video src={this.getWaterVideo()} autoPlay muted loop />
           </div>
 
           <div className="quick-scan-result-table">

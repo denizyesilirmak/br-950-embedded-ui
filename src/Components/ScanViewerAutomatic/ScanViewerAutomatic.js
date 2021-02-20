@@ -103,7 +103,7 @@ class ScanViewer extends React.Component {
           this.props.navigateTo('filesScreen')
           return;
         }
-
+        return
       default:
         break;
     }

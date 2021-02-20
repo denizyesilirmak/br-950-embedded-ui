@@ -34,6 +34,8 @@ class QuickScanAction extends React.Component {
     this.props.navigateTo('quickScanResultScreen', { line: this.result, result: Utils.getWaterInfo(this.result.value) })
   }
 
+
+
   render() {
     return (
       <div className="quick-scan-action component">

@@ -222,7 +222,7 @@ class PlotViewer extends React.Component {
 
   render() {
     return (
-      <div className="plot-viewer" ref={this.canvasHolder}>
+      <div className={`plot-viewer ${this.props.active ? 'active' : ''}`} ref={this.canvasHolder}>
         {
           !this.state.ready ? <div className="loading-plot">Loading 3D Plot</div> : null
         }

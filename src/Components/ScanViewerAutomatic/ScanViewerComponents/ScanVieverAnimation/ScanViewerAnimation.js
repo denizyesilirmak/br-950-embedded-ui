@@ -2,6 +2,10 @@ import React from 'react'
 import './ScanViewerAnimation.css'
 import { DeviceContext } from '../../../../Contexts/DeviceContext'
 
+import freshWater from '../../../../Assets/videos/auto_fresh_water.mp4'
+import mineralWater from '../../../../Assets/videos/auto_mineral_water.mp4'
+import saltyWater from '../../../../Assets/videos/auto_salty_water.mp4'
+
 class ScanViewerAnimation extends React.Component {
   static contextType = DeviceContext
   constructor(props) {
@@ -12,7 +16,7 @@ class ScanViewerAnimation extends React.Component {
     return (
       <div className="scan-viewer-animation">
         <div className="animation-video">
-          video container
+          <video src={freshWater} muted autoPlay />
         </div>
 
         <div className="animation-data">

@@ -4,10 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: red; */
 }
 
-.loading-plot{
+.loading-plot {
   color: black;
   position: absolute;
+}
+
+.plot-viewer.active{
+  background: radial-gradient(ellipse at center, #8f8f8f 0%, #000000 80%);
 }

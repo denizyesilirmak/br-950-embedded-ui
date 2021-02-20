@@ -18,16 +18,16 @@ import TimePopup from './SettingsPopups/Time'
 
 import TabBar from './SettingsComponents/TabBar/TabBar'
 
-import en from '../../Assets/flags/settings/en.png'
-import de from '../../Assets/flags/settings/de.png'
-import tr from '../../Assets/flags/settings/tr.png'
-import ar from '../../Assets/flags/settings/ar.png'
-import fa from '../../Assets/flags/settings/fa.png'
-import ru from '../../Assets/flags/settings/ru.png'
-import zh from '../../Assets/flags/settings/zh.png'
-import fr from '../../Assets/flags/settings/fr.png'
-import es from '../../Assets/flags/settings/es.png'
-import it from '../../Assets/flags/settings/it.png'
+import en from '../../Assets/flags/settings/out/en.png'
+import de from '../../Assets/flags/settings/out/de.png'
+import tr from '../../Assets/flags/settings/out/tr.png'
+import ar from '../../Assets/flags/settings/out/ar.png'
+import fa from '../../Assets/flags/settings/out/fa.png'
+import ru from '../../Assets/flags/settings/out/ru.png'
+import ur from '../../Assets/flags/settings/out/ur.png'
+import fr from '../../Assets/flags/settings/out/fr.png'
+import es from '../../Assets/flags/settings/out/es.png'
+import it from '../../Assets/flags/settings/out/it.png'
 
 
 const LANGUAGES = [
@@ -68,10 +68,10 @@ const LANGUAGES = [
     icon: ru
   },
   {
-    name: "Chinese",
-    originalName: "汉语",
-    code: "zh",
-    icon: zh
+    name: "Urdu",
+    originalName: "Urdu",
+    code: "ur",
+    icon: ur
   },
   {
     name: "French",
