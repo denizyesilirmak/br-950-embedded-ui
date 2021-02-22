@@ -43,7 +43,7 @@ class ScanLineDetail extends React.Component {
             <div className="sld-title">{this.context.strings['depth']}</div>
           </div>
           <div className="sld-line-value">
-            {this.props.data.water_depth} m
+            {` ${this.props.data.water_type !== 'no_water' ? this.props.data.water_depth : '- - - '} m`}
           </div>
         </div>
 
@@ -72,7 +72,7 @@ class ScanLineDetail extends React.Component {
               </linearGradient>
             </defs>
             <g>
-              
+
               <ellipse stroke="url(#svg_17)" ry="62" rx="62" cy="104" cx="75" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
               <ellipse stroke="url(#svg_17)" ry="62" rx="62" cy="104" cx="226" strokeOpacity="null" strokeWidth="5" fill="url(#gradient)" />
 

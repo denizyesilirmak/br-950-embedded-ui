@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
     const time = new Date()
     this.setState({
       time: `${Utils.pad(time.getHours())}:${Utils.pad(time.getMinutes())}`,
-      date: `${Utils.pad(time.getDay())}.${Utils.pad(time.getMonth() + 1)}.${time.getFullYear()}`
+      date: `${Utils.pad(time.getDate())}.${Utils.pad(time.getMonth() + 1)}.${time.getFullYear()}`
     })
   }
 
