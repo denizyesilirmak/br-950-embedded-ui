@@ -2,6 +2,7 @@ import React from 'react'
 import './AdvancedScanAction.css'
 import ScanVideo from '../../../Assets/videos/ascan.mp4'
 import socketHelper from '../../../SocketHelper'
+import Api from '../../../Api.json'
 import { DeviceContext } from '../../../Contexts/DeviceContext'
 
 
@@ -33,7 +34,7 @@ class AdvancedScanAction extends React.Component {
   }
 
   saveScan = () => {
-    fetch('http://localhost:9090/savescan', {
+    fetch(Api.url + '/savescan', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

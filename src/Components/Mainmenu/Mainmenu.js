@@ -188,8 +188,16 @@ class Mainmenu extends React.Component {
 
   render() {
     return (
-      <div className="main-menu component">
-        <div className="left">
+      <div className="main-menu component"
+        style={{
+          flexDirection: (this.context.language === 'ar' || this.context.language === 'fa') ? 'row-reverse' : 'row',
+        }}
+      >
+        <div className="left"
+          style={{
+            animationName: (this.context.language === 'ar' || this.context.language === 'fa') ? 'right-to-left' : 'left-to-right'
+          }}
+        >
           <Dashboard batteryLevel={this.props.batteryLevel} />
         </div>
         <div className="right">

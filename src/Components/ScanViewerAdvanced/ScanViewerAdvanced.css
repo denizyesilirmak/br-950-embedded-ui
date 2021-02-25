@@ -19,7 +19,7 @@
   border-bottom: 2px solid white;
 }
 
-.advanced-scan-lines-details .line-detail.selected{
+.advanced-scan-lines-details .line-detail.selected {
   background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
 }
 
@@ -50,4 +50,24 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
+}
+
+.color-ramp {
+  position: absolute;
+  width: 20px;
+  height: 320px;
+  top: 100px;
+  left: 20px;
+  border: 2px solid white;
+  background: linear-gradient(180deg, rgba(0, 148, 12, 1) 0%, rgba(0, 148, 12, 1) 7%, rgba(35, 255, 137, 1) 13%, rgba(0, 255, 137, 1) 19%, rgba(0, 255, 253, 1) 30%, rgba(0, 197, 255, 1) 43%, rgba(0, 112, 255, 1) 57%, rgba(0, 13, 164, 1) 73%, rgba(5, 5, 48, 1) 88%, rgba(9, 13, 57, 1) 100%);
+  animation: color-ramp-in 1s ease-in-out 1s 1 both;
+}
+
+@keyframes color-ramp-in {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }

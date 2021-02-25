@@ -2,7 +2,8 @@ import React from 'react'
 import './AutomaticScanAction.css'
 import socketHelper from '../../../SocketHelper'
 import ScanVideo from '../../../Assets/videos/scan.mp4'
-import{ DeviceContext } from '../../../Contexts/DeviceContext'
+import { DeviceContext } from '../../../Contexts/DeviceContext'
+import Api from '../../../Api.json'
 
 class AutomaticScanAction extends React.Component {
   static contextType = DeviceContext
@@ -24,37 +25,37 @@ class AutomaticScanAction extends React.Component {
   componentDidMount() {
     socketHelper.attach(this.handleSocket)
 
-        
+
     //FIXME: update timespamps with exact ones.
     this.interval = setInterval(() => {
       switch (Math.trunc(this.scanVideoRef.current.currentTime)) {
         case 3:
           socketHelper.send('A')
-          this.setState({currentLine: 'a_line'})
+          this.setState({ currentLine: 'a_line' })
           break
         case 6:
           socketHelper.send('B')
-          this.setState({currentLine: 'b_line'})
+          this.setState({ currentLine: 'b_line' })
           break
         case 9:
           socketHelper.send('C')
-          this.setState({currentLine: 'c_line'})
+          this.setState({ currentLine: 'c_line' })
           break
         case 11:
           socketHelper.send('D')
-          this.setState({currentLine: 'd_line'})
+          this.setState({ currentLine: 'd_line' })
           break
         case 14:
           socketHelper.send('E')
-          this.setState({currentLine: 'e_line'})
+          this.setState({ currentLine: 'e_line' })
           break
         case 17:
           socketHelper.send('F')
-          this.setState({currentLine: 'f_line'})
+          this.setState({ currentLine: 'f_line' })
           break
         case 18:
           socketHelper.send('Z')
-          this.setState({currentLine: 'null'})
+          this.setState({ currentLine: 'null' })
           clearInterval(this.interval)
           break
         default:
@@ -68,7 +69,7 @@ class AutomaticScanAction extends React.Component {
   }
 
   saveScan = () => {
-    fetch('http://localhost:9090/savescan', {
+    fetch(Api.url + '/savescan', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -131,8 +132,8 @@ class AutomaticScanAction extends React.Component {
 
         <video src={ScanVideo} autoPlay muted onEnded={this.onVideoEnded} ref={this.scanVideoRef} />
 
-      
-        <div className="automatic-scan-action-current-line" style={{display: this.state.currentLine !== null ? 'flex' : 'none'}}>
+
+        <div className="automatic-scan-action-current-line" style={{ display: this.state.currentLine !== null ? 'flex' : 'none' }}>
           {this.context.strings[this.state.currentLine]}
         </div>
 

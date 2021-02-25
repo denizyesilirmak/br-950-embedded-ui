@@ -6,12 +6,26 @@
   background: #ffffff20;
   width: 200px;
   height: 100%;
-  animation: left-to-right 0.5s ease-in-out 0.2s 1 both;
+  animation-name: left-to-right;
+  animation-duration: 0.5s;
+  animation-delay: 0.2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+
 }
 
 @keyframes left-to-right {
   0% {
     transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes right-to-left {
+  0% {
+    transform: translateX(300px);
   }
   100% {
     transform: translateX(0px);
@@ -47,7 +61,7 @@
 }
 
 .main-menu-item .main-menu-icon {
-  width: 120px;
+  width: 100px;
   transition: all 0.3s;
 }
 

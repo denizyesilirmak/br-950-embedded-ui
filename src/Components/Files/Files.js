@@ -1,6 +1,7 @@
 import React from 'react'
 import './Files.css'
 import socketHelper from '../../SocketHelper'
+import Api from '../../Api.json'
 import { DeviceContext } from '../../Contexts/DeviceContext'
 
 import UP_ICON from '../../Assets/icons/files/up.png'
@@ -57,7 +58,7 @@ class Files extends React.Component {
   }
 
   getFileList = () => {
-    fetch('http://192.168.1.250:9090/filelist')
+    fetch(Api.url + '/filelist')
       .then(res => res.json())
       .then(data => {
         if (data.success)
@@ -88,7 +89,7 @@ class Files extends React.Component {
 
   openFile = () => {
     const fileToOpen = this.state.fileList[this.state.selectedFileIndex]
-    fetch('http://192.168.1.250:9090/readfile/' + fileToOpen.raw_file_name)
+    fetch(Api.url + '/readfile/' + fileToOpen.raw_file_name)
       .then(res => res.json())
       .then(data => {
         if (fileToOpen.file_type === "advanced") {
@@ -104,7 +105,7 @@ class Files extends React.Component {
 
   deleteFile = () => {
     const fileToOpen = this.state.fileList[this.state.selectedFileIndex]
-    fetch('http://192.168.1.250:9090/deletefile/' + fileToOpen.raw_file_name)
+    fetch(Api.url + '/deletefile/' + fileToOpen.raw_file_name)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -217,7 +218,7 @@ class Files extends React.Component {
 
         <div className="files-container">
           <div className="file-list-container">
-            <div className="file-list-titles">
+            <div className="file-list-titles" style={{ flexDirection: (this.context.language === 'ar' || this.context.language === 'fa') ? 'row-reverse' : 'row' }}>
 
               <div className="file-list-title file-list-title-a">
                 {this.context.strings['file_name']}
@@ -239,8 +240,8 @@ class Files extends React.Component {
                 {
                   this.state.fileList.map((e, i) => {
                     return (
-                      <div className={`file ${this.state.selectedFileIndex === i ? 'selected' : ''}`} key={i}>
-                        <div className="file-a">
+                      <div className={`file ${this.state.selectedFileIndex === i ? 'selected' : ''}`} key={i} style={{ flexDirection: (this.context.language === 'ar' || this.context.language === 'fa') ? 'row-reverse' : 'row' }}>
+                        <div className="file-a" style={{ flexDirection: (this.context.language === 'ar' || this.context.language === 'fa') ? 'row-reverse' : 'row' }}>
                           <img src={FILE_ICON} alt="file-icon" className="file-icon"></img>
                           <div className="file-item">{e.name}</div>
                         </div>

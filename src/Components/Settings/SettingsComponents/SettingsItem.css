@@ -4,7 +4,7 @@
   background: #ffffff40;
   margin-bottom: 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   transition: background 0.4s;
@@ -25,15 +25,14 @@
 .settings-item .settings-prop-label {
   font-weight: bold;
   font-size: 20px;
-  width: 300px;
+  margin-right: 20px;
 }
 
 .settings-item .settings-prop-value {
-  width: 210px;
   font-size: 20px;
-  display: flex;
-  justify-content: flex-end;
   font-weight: bold;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .settings-item.selected {

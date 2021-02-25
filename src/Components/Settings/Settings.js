@@ -155,7 +155,7 @@ class Settings extends React.Component {
     })
 
     this.setState({
-      volume: lastState.volume || 0 
+      volume: lastState.volume || 0
     })
 
     this.getCurrentDateTime()
@@ -360,7 +360,8 @@ class Settings extends React.Component {
             this.showNotification(
               this.context.strings['settings'],
               this.context.strings['language_changed'],
-              false
+              false,
+              (this.context.language === 'ar' || this.context.language === 'fa')
             )
           }
           else if (this.state.activeSettingsTab === 1 && this.state.activePopup === '') {

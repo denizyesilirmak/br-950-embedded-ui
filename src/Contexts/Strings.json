@@ -77,7 +77,10 @@
     "frequency_dis": "يرجى تحديد تردد جهد التيار المتردد",
     "dirt_type_dis": "الرجاء تحديد نوع الأرض",
     "sensitivity_dis": "الرجاء تحديد مستوى الحساسية",
-    "probe_distance_dis": "حدد المسافة بين المجسات"
+    "probe_distance_dis": "حدد المسافة بين المجسات",
+    "frequency": "Frequency",
+    "advanced": "Advanced",
+    "automatic": "Automatic"
   },
   "de": {
     "AAA_TEST": "Test"

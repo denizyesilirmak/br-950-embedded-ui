@@ -39,7 +39,7 @@ const COLORS = {
     { pct: 440, color: { r: 0x00, g: 0xc5, b: 0xff } },
     { pct: 480, color: { r: 0x00, g: 0x70, b: 0xff } },
     { pct: 520, color: { r: 0x00, g: 0x0d, b: 0xa4 } },
-    { pct: 540, color: { r: 0x5, g: 0x5, b: 0x30 } },
+    { pct: 540, color: { r: 0x05, g: 0x05, b: 0x30 } },
     { pct: 1024, color: { r: 0x09, g: 0x0d, b: 0x39 } },
   ]
 }
@@ -138,7 +138,7 @@ class PlotViewer extends React.Component {
       face.vertexColors[2] = new THREE.Color(this.getColor(ScanMatrix[(satir)][sutun + 1] + min))
     }
 
-    this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
+    this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false, vertexColors: THREE.VertexColors, side: THREE.DoubleSide, shading: THREE.SmoothShading });
     const m = new THREE.Mesh(this.plotGeometry, this.material)
     m.position.z = (max / (32 * 2)) / 2
 

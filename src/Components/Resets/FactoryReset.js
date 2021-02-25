@@ -1,6 +1,7 @@
 import React from 'react'
 import './Reset.css'
 import socketHelper from '../../SocketHelper'
+import Api from '../../Api.json'
 
 import ClearMemoryIcon from '../../Assets/icons/reset-factory.png'
 
@@ -24,11 +25,11 @@ class FactoryReset extends React.Component {
   }
 
   factoryReset = () => {
-    fetch('http://192.168.1.250:9090/deleteAllFiles')
-    .then(res => res.json())
-    .then(data => {
-      console.log('all files deleted', data)
-    })
+    fetch(Api.url + '/deleteAllFiles')
+      .then(res => res.json())
+      .then(data => {
+        console.log('all files deleted', data)
+      })
   }
 
   handleSocket = (sd) => {

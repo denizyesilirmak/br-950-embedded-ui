@@ -4,6 +4,7 @@ import Language_Icon from '../../../../Assets/icons/settings/language.png'
 import Date_Icon from '../../../../Assets/icons/settings/date.png'
 import Volume_Icon from '../../../../Assets/icons/settings/volume.png'
 import Info_Icon from '../../../../Assets/icons/settings/info.png'
+import Reset_Icon from '../../../../Assets/icons/reset-memory.png'
 
 class TabBar extends React.Component {
 
@@ -20,7 +21,7 @@ class TabBar extends React.Component {
           <img src={Volume_Icon} alt="tab-icon" className="tab-icon" />
         </div>
         <div className={`settings-tab ${(this.props.activeTabIndex === 3 && this.props.tabBarActive === true) ? 'active' : ''}`}>
-          <img src={Info_Icon} alt="tab-icon" className="tab-icon" />
+          <img src={Reset_Icon} alt="tab-icon" className="tab-icon" />
         </div>
         <div className={`settings-tab ${(this.props.activeTabIndex === 4 && this.props.tabBarActive === true) ? 'active' : ''}`}>
           <img src={Info_Icon} alt="tab-icon" className="tab-icon" />

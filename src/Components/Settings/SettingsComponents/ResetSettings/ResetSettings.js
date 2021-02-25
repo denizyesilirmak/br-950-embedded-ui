@@ -3,8 +3,8 @@ import './ResetSettings.css'
 import { DeviceContext } from '../../../../Contexts/DeviceContext'
 
 import SettingsItem from '../SettingsItem'
-import DateIcon from '../../../../Assets/icons/settings/d-date.png'
-import TimeIcon from '../../../../Assets/icons/settings/d-time.png'
+import MemoryIcon from '../../../../Assets/icons/reset-memory.png'
+import FactoryIcon from '../../../../Assets/icons/reset-factory.png'
 
 class ResetSettings extends React.Component {
   static contextType = DeviceContext
@@ -13,14 +13,14 @@ class ResetSettings extends React.Component {
       <div className="reset-settings">
         <div className="reset-settings-container">
           <SettingsItem
-            icon={TimeIcon}
+            icon={MemoryIcon}
             label={this.context.strings['clearMemoryScreen']}
             value={null}
             selected={this.props.index === 0}
           />
 
           <SettingsItem
-            icon={DateIcon}
+            icon={FactoryIcon}
             label={this.context.strings['factoryResetScreen']}
             value={null}
             selected={this.props.index === 1}
