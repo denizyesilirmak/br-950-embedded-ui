@@ -68,7 +68,8 @@
 .main-menu-item .main-menu-item-title {
   color: #ffffff;
   font-weight: bold;
-  margin-top: 10px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .main-menu-item.selected {

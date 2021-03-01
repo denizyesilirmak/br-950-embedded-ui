@@ -33,7 +33,7 @@ class App extends React.Component {
 
     this.state = {
       ready: false,
-      activeScreen: 'filesScreen',
+      activeScreen: 'menuScreen',
       screenProps: { A: 368, B: 340, C: 440, D: 340, E: 800, F: 330 },
       currentLanguage: "en",
       _mainMenuCursorIndex: 0,

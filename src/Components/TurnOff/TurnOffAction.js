@@ -6,6 +6,9 @@ class TurnOffAction extends React.Component {
 
   componentDidMount(){
     socketHelper.attach(this.handleSocket)
+    setTimeout(() => {
+      socketHelper.send('T')
+    }, 4200);
   }
 
   handleSocket = () => {

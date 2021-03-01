@@ -60,7 +60,3 @@
 .line-overlay {
   position: absolute;
 }
-
-.quick-scan-line{
-  transition: stroke-opacity 0.5s, stroke 1s;
-}

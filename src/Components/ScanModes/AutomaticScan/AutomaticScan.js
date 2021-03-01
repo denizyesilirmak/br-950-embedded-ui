@@ -3,6 +3,7 @@ import './AutomaticScan.css'
 import socketHelper from '../../../SocketHelper'
 import { DeviceContext } from '../../../Contexts/DeviceContext'
 import AutomaticScanIcon from '../../../Assets/grounds/automaticscan.png'
+import AutomaticScanPrepare from '../../../Assets/videos/auto-scan-intro.mp4'
 
 class AutomaticScan extends React.Component {
   static contextType = DeviceContext
@@ -36,7 +37,12 @@ class AutomaticScan extends React.Component {
       <div className="automatic-scan component">
         <div className="automatic-scan-container">
           <div className="automatic-scan-video-container">
-            <img alt="as" src={AutomaticScanIcon} />
+            {/* <img alt="as" src={AutomaticScanIcon} /> */}
+            <video
+              src={AutomaticScanPrepare}
+              autoPlay
+              muted
+            />
           </div>
 
           <div className="automatic-scan-start-button">

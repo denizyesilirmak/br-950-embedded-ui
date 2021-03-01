@@ -14,6 +14,7 @@ import zh from '../../Assets/flags/settings/zh.png'
 import fr from '../../Assets/flags/settings/fr.png'
 import es from '../../Assets/flags/settings/es.png'
 import it from '../../Assets/flags/settings/it.png'
+import ur from '../../Assets/flags/settings/ur.png'
 
 import Battery from './Statusbar-Items/Battery'
 import Clock from './Statusbar-Items/Clock'
@@ -37,8 +38,8 @@ const FLAGS = {
   ru: {
     img: ru
   },
-  zh: {
-    img: zh
+  ur: {
+    img: ur
   },
   fr: {
     img: fr

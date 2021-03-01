@@ -1,6 +1,6 @@
 import React from 'react'
 import './AdvancedScanAction.css'
-import ScanVideo from '../../../Assets/videos/ascan.mp4'
+import ScanVideo from '../../../Assets/videos/advancescan.mp4'
 import socketHelper from '../../../SocketHelper'
 import Api from '../../../Api.json'
 import { DeviceContext } from '../../../Contexts/DeviceContext'

@@ -366,12 +366,12 @@ class Settings extends React.Component {
           }
           else if (this.state.activeSettingsTab === 1 && this.state.activePopup === '') {
             //date time settings item selection
-            if (this.state.dateTimeSettingsIndex === 0) {
+            if (this.state.dateTimeSettingsIndex === 0 && this.state.activePopup !== "time") {
               this.setState({
                 activePopup: 'time'
               })
             }
-            else if (this.state.dateTimeSettingsIndex === 1) {
+            else if (this.state.dateTimeSettingsIndex === 1 && this.state.activePopup !== "date") {
               this.setState({
                 activePopup: 'date'
               })
