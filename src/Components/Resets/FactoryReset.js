@@ -2,10 +2,11 @@ import React from 'react'
 import './Reset.css'
 import socketHelper from '../../SocketHelper'
 import Api from '../../Api.json'
-
+import { DeviceContext } from '../../Contexts/DeviceContext'
 import ClearMemoryIcon from '../../Assets/icons/reset-factory.png'
 
 class FactoryReset extends React.Component {
+  static contextType = DeviceContext
   constructor(props) {
     super(props)
     this.progressBarRef = React.createRef()
@@ -101,28 +102,28 @@ class FactoryReset extends React.Component {
 
 
         <div className="reset-container">
-          <div className="reset-title">Clear Memory</div>
+          <div className="reset-title">{this.context.strings['factory_reset_title']}</div>
 
           {
             this.state.reset === false ?
               <>
                 <img src={ClearMemoryIcon} alt="icon" className="reset-icon" />
                 <div className="reset-text">
-                  Factory Reset will delete all your files and resets all your settings. Are you sure?
+                  {this.context.strings['factory_reset_warn']}
                 </div>
                 <div className="reset-buttons">
                   <div className={`reset-button ${this.state.cursor ? 'selected' : ''}`}>
-                    Yes
-              </div>
+                    {this.context.strings['yes']}
+                  </div>
                   <div className={`reset-button ${!this.state.cursor ? 'selected' : ''}`}>
-                    No
-              </div>
+                    {this.context.strings['no']}
+                  </div>
                 </div>
               </>
               :
               <>
                 <div className="reset-text">
-                  Clearing memory please wait.
+                  {this.context.strings['reset_wait']}
                 </div>
 
                 <div className="reset-progress-bar">

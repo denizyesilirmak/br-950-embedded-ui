@@ -81,7 +81,7 @@ class QuickScanResult extends React.Component {
                 {this.context.strings['value']}
               </div>
               <div className="right">
-                {this.props.screenProps.line.value}
+                {this.props.screenProps.result.rate}
               </div>
             </div>
 

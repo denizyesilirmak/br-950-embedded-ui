@@ -8,24 +8,8 @@ import UP_ICON from '../../Assets/icons/files/up.png'
 import DOWN_ICON from '../../Assets/icons/files/down.png'
 import FILE_ICON from '../../Assets/icons/files/file1.png'
 import DELETE_ICON from '../../Assets/icons/delete.png'
+import Utils from '../../Utils'
 
-const dummy_file_list = [
-  {
-    name: "001",
-    file_type: "advanced",
-    date: "12:23 12.05.2020"
-  },
-  {
-    name: "002",
-    file_type: "automatic",
-    date: "12:23 12.05.2020"
-  },
-  {
-    name: "003",
-    file_type: "advanced",
-    date: "12:23 12.05.2020"
-  }
-]
 
 class Files extends React.Component {
   static contextType = DeviceContext
@@ -74,7 +58,20 @@ class Files extends React.Component {
   createFileObjectFromFileNameString = (arr) => {
     let newArray = arr.map((e, i) => {
       const fileProps = e.split('-')
-      const date = new Date(parseInt(fileProps[1])).toLocaleString('tr')
+
+      const date_object = new Date(parseInt(fileProps[1]))
+
+      const day = Utils.pad(date_object.getDate())
+      const month = Utils.pad(date_object.getMonth() + 1)
+      const year = Utils.pad(date_object.getFullYear())
+
+      const hour = Utils.pad(date_object.getHours())
+      const minutes = Utils.pad(date_object.getMinutes())
+
+
+      const date = `${day}.${month}.${year} ${hour}:${minutes}`
+
+
 
 
       return {
@@ -220,15 +217,15 @@ class Files extends React.Component {
           <div className="file-list-container">
             <div className="file-list-titles" style={{ flexDirection: (this.context.language === 'ar' || this.context.language === 'fa') ? 'row-reverse' : 'row' }}>
 
-              <div className="file-list-title file-list-title-a">
+              <div className="file-list-title file-list-title-a" style={{ placeContent: (this.context.language === 'ar' || this.context.language === 'fa') ? 'flex-end' : 'flex-start' }}>
                 {this.context.strings['file_name']}
               </div>
 
-              <div className="file-list-title file-list-title-b">
+              <div className="file-list-title file-list-title-b" style={{ placeContent: (this.context.language === 'ar' || this.context.language === 'fa') ? 'flex-end' : 'flex-start' }}>
                 {this.context.strings['file_type']}
               </div>
 
-              <div className="file-list-title file-list-title-c">
+              <div className="file-list-title file-list-title-c" style={{ placeContent: (this.context.language === 'ar' || this.context.language === 'fa') ? 'flex-end' : 'flex-start' }}>
                 {this.context.strings['creation_date']}
               </div>
 

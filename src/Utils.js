@@ -102,7 +102,7 @@ class Utils {
 
     const result = {
       water_type: _waterType,
-      water_depth: _waterDepth + ' - ' + (_waterDepth + 40),
+      water_depth: _waterDepth !== 0 ? _waterDepth + ' - ' + (_waterDepth + 40) : 0,
       sensor_value: value,
       salinity: _salinity,
       salinity_percent: _salinity_percent,

@@ -386,6 +386,7 @@ class Settings extends React.Component {
             }
             else if (this.state.resetSettingsIndex === 1) {
               //factory reset
+              this.props.navigateTo('factoryResetScreen')
             }
           }
         }

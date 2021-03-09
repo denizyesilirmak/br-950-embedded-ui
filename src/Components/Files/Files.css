@@ -58,6 +58,7 @@
   display: flex;
   align-items: center;
   padding-left: 50px;
+  padding-right: 10px;
 }
 
 .file-list-title-b {
@@ -65,7 +66,6 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
-  border-left: 1px solid #00000030;
 }
 
 .file-list-title-c {
@@ -73,7 +73,7 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
-  border-left: 1px solid #00000030;
+
 }
 
 .scroll-icon {

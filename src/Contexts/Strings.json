@@ -80,7 +80,12 @@
     "probe_distance_dis": "حدد المسافة بين المجسات",
     "frequency": "تكرر",
     "advanced": "متقدم",
-    "automatic": "تلقائي"
+    "automatic": "تلقائي",
+    "clear_memory_warn": "سيؤدي مسح الذاكرة إلى حذف جميع ملفاتك. هل أنت متأكد من الاستمرار؟",
+    "factory_reset_warn": "ستؤدي إعادة ضبط المصنع إلى حذف جميع ملفاتك وإعادة تعيين جميع إعداداتك. هل أنت متأكد؟",
+    "reset_wait": "محو الذاكرة الرجاء الانتظار.",
+    "clear_memory_title": "مسح الذاكرة",
+    "factory_reset_title": "اعدادات المصنع"
   },
   "de": {
     "AAA_TEST": "Prüfung",
@@ -163,7 +168,12 @@
     "probe_distance_dis": "Wählen Sie den Abstand zwischen den Sonden",
     "frequency": "Frequenz",
     "advanced": "Fortgeschrittene",
-    "automatic": "Automatisch"
+    "automatic": "Automatisch",
+    "clear_memory_warn": "Durch Löschen des Speichers werden alle Ihre Dateien gelöscht. Bist du sicher weiterzumachen?",
+    "factory_reset_warn": "Beim Zurücksetzen auf die Werkseinstellungen werden alle Ihre Dateien gelöscht und alle Einstellungen zurückgesetzt. Bist du sicher?",
+    "reset_wait": "Speicher löschen, bitte warten.",
+    "clear_memory_title": "Klare Erinnerungen",
+    "factory_reset_title": "Werkseinstellungen zurückgesetzt"
   },
   "en": {
     "AAA_TEST": "Test",
@@ -246,7 +256,12 @@
     "probe_distance_dis": "Select distance between probes",
     "frequency": "Frequency",
     "advanced": "Advanced",
-    "automatic": "Automatic"
+    "automatic": "Automatic",
+    "clear_memory_warn": "Clearing memory will delete all your files. Are you sure to continiue?",
+    "factory_reset_warn": "Factory Reset will delete all your files and resets all your settings. Are you sure?",
+    "reset_wait": "Clearing memory please wait.",
+    "clear_memory_title": "Clear Memory",
+    "factory_reset_title": "Factory Reset"
   },
   "es": {
     "AAA_TEST": "Prueba",
@@ -329,7 +344,12 @@
     "probe_distance_dis": "Seleccionar distancia entre sondas",
     "frequency": "Frecuencia",
     "advanced": "Avanzado",
-    "automatic": "Automático"
+    "automatic": "Automático",
+    "clear_memory_warn": "Limpiar la memoria eliminará todos sus archivos. ¿Estás seguro de continuar?",
+    "factory_reset_warn": "Factory Reset eliminará todos sus archivos y restablecerá todas sus configuraciones. ¿Está seguro?",
+    "reset_wait": "Borrando la memoria, espere.",
+    "clear_memory_title": "Memoria clara",
+    "factory_reset_title": "Restablecimiento de fábrica"
   },
   "fa": {
     "AAA_TEST": "تست",
@@ -412,7 +432,12 @@
     "probe_distance_dis": "فاصله بین کاوشگرها را انتخاب کنید",
     "frequency": "فرکانس",
     "advanced": "پیشرفته",
-    "automatic": "خودکار"
+    "automatic": "خودکار",
+    "clear_memory_warn": "پاک کردن حافظه ، تمام پرونده های شما را پاک می کند. مطمئناً ادامه می دهید؟",
+    "factory_reset_warn": "تنظیم مجدد کارخانه تمام پرونده های شما را حذف می کند و تمام تنظیمات شما را بازنشانی می کند. مطمئنی؟",
+    "reset_wait": "پاک کردن حافظه لطفا صبر کنید",
+    "clear_memory_title": "پاکسازی حافظه",
+    "factory_reset_title": "بازنشانی کارخانه"
   },
   "fr": {
     "AAA_TEST": "Test",
@@ -495,7 +520,12 @@
     "probe_distance_dis": "Sélectionnez la distance entre les sondes",
     "frequency": "La fréquence",
     "advanced": "Avancée",
-    "automatic": "Automatique"
+    "automatic": "Automatique",
+    "clear_memory_warn": "L'effacement de la mémoire supprimera tous vos fichiers. Êtes-vous sûr de continuer?",
+    "factory_reset_warn": "La réinitialisation d'usine supprimera tous vos fichiers et réinitialisera tous vos paramètres. Êtes-vous sûr?",
+    "reset_wait": "Effacement de la mémoire, veuillez patienter.",
+    "clear_memory_title": "Mémoire claire",
+    "factory_reset_title": "Retour aux paramètres d'usine"
   },
   "it": {
     "AAA_TEST": "Test",
@@ -578,7 +608,12 @@
     "probe_distance_dis": "Seleziona la distanza tra le sonde",
     "frequency": "Frequenza",
     "advanced": "Avanzate",
-    "automatic": "Automatico"
+    "automatic": "Automatico",
+    "clear_memory_warn": "La cancellazione della memoria eliminerà tutti i tuoi file. Sei sicuro di continuare?",
+    "factory_reset_warn": "Il ripristino delle impostazioni di fabbrica eliminerà tutti i file e ripristinerà tutte le impostazioni. Sei sicuro?",
+    "reset_wait": "Cancellazione della memoria attendere prego.",
+    "clear_memory_title": "Cancella memoria",
+    "factory_reset_title": "Ripristino delle impostazioni di fabbrica"
   },
   "he": {
     "AAA_TEST": "מִבְחָן",
@@ -661,7 +696,12 @@
     "probe_distance_dis": "בחר מרחק בין בדיקות",
     "frequency": "תדירות",
     "advanced": "מִתקַדֵם",
-    "automatic": "אוֹטוֹמָטִי"
+    "automatic": "אוֹטוֹמָטִי",
+    "clear_memory_warn": "ניקוי זיכרון ימחק את כל הקבצים שלך. האם אתה בטוח להמשיך?",
+    "factory_reset_warn": "איפוס להגדרות היצרן ימחק את כל הקבצים שלך ומאפס את כל ההגדרות שלך. האם אתה בטוח?",
+    "reset_wait": "מנקה זיכרון אנא המתן.",
+    "clear_memory_title": "נקה זיכרון",
+    "factory_reset_title": "איפוס למפעל"
   },
   "ru": {
     "AAA_TEST": "Тест",
@@ -744,7 +784,12 @@
     "probe_distance_dis": "Выберите расстояние между зондами",
     "frequency": "Частота",
     "advanced": "Передовой",
-    "automatic": "Автоматический"
+    "automatic": "Автоматический",
+    "clear_memory_warn": "Очистка памяти приведет к удалению всех ваших файлов. Вы уверены, что продолжите?",
+    "factory_reset_warn": "Factory Reset удалит все ваши файлы и сбросит все ваши настройки. Уверены ли вы?",
+    "reset_wait": "Очистка памяти, подождите.",
+    "clear_memory_title": "Очистить память",
+    "factory_reset_title": "Сброс к заводским настройкам"
   },
   "tr": {
     "AAA_TEST": "Ölçek",
@@ -780,7 +825,7 @@
     "time": "Zaman",
     "date": "Tarih",
     "volume": "Ses",
-    "general_volume": "Genel Hacim",
+    "general_volume": "Genel Ses Seviyesi",
     "brand": "Marka",
     "model": "Cihaz modeli",
     "software_version": "Yazılım versiyonu",
@@ -826,8 +871,13 @@
     "sensitivity_dis": "Lütfen hassasiyet seviyesini seçin",
     "probe_distance_dis": "Problar arasındaki mesafeyi seçin",
     "frequency": "Sıklık",
-    "advanced": "ileri",
-    "automatic": "Otomatik"
+    "advanced": "Gelişmiş",
+    "automatic": "Otomatik",
+    "clear_memory_warn": "Hafızayı temizlemek tüm dosyalarınızı siler. Devam edeceğine emin misin?",
+    "factory_reset_warn": "Fabrika Sıfırlaması tüm dosyalarınızı silecek ve tüm ayarlarınızı sıfırlayacaktır. Emin misiniz?",
+    "reset_wait": "Hafıza siliniyor, lütfen bekleyin.",
+    "clear_memory_title": "Hafızayı temizle",
+    "factory_reset_title": "Fabrika ayarları"
   },
   "ur": {
     "AAA_TEST": "پرکھ",
@@ -910,7 +960,12 @@
     "probe_distance_dis": "تحقیقات کے درمیان فاصلہ منتخب کریں",
     "frequency": "تعدد",
     "advanced": "اعلی درجے کی",
-    "automatic": "خودکار"
+    "automatic": "خودکار",
+    "clear_memory_warn": "میموری کو صاف کرنا آپ کی ساری فائلیں حذف کردے گا۔ کیا آپ کو یقین ہے کہ جاری رکھنا ہے؟",
+    "factory_reset_warn": "فیکٹری ری سیٹ کرنے سے آپ کی ساری فائلیں حذف ہوجائیں گی اور آپ کی ساری ترتیبات کو دوبارہ ترتیب دیا جائے گا۔ کیا تمہیں یقین ہے؟",
+    "reset_wait": "میموری صاف کرنا براہ کرم انتظار کریں۔",
+    "clear_memory_title": "یادداشت صاف کریں",
+    "factory_reset_title": "از سرے نو ترتیب"
   },
   "zh": {
     "AAA_TEST": "Test"

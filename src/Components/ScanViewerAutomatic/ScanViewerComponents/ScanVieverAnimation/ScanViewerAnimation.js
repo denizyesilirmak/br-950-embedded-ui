@@ -2,21 +2,41 @@ import React from 'react'
 import './ScanViewerAnimation.css'
 import { DeviceContext } from '../../../../Contexts/DeviceContext'
 
-import freshWater from '../../../../Assets/videos/auto_fresh_water.mp4'
-import mineralWater from '../../../../Assets/videos/auto_mineral_water.mp4'
-import saltyWater from '../../../../Assets/videos/auto_salty_water.mp4'
+import vfreshWater from '../../../../Assets/videos/auto_fresh_water.mp4'
+import vmineralWater from '../../../../Assets/videos/auto_mineral_water.mp4'
+import vsaltyWater from '../../../../Assets/videos/auto_salty_water.mp4'
 
 class ScanViewerAnimation extends React.Component {
   static contextType = DeviceContext
   constructor(props) {
     super(props)
+
+    this.state = {
+      active_video: this.props.result.water_type
+    }
+
     console.log(this.props.result)
+
   }
+
+
+  getVideo = () => {
+    switch (this.state.active_video) {
+      case 'high_fresh_water': return vfreshWater
+      case 'fresh_water': return vfreshWater
+      case 'mineral_water': return vmineralWater
+      case 'high_mineral_water': return vmineralWater
+      case 'salty_water': return vsaltyWater
+      case 'very_salty_water': return vsaltyWater
+      default: return 0;
+    }
+  }
+
   render() {
     return (
       <div className="scan-viewer-animation">
         <div className="animation-video">
-          <video src={freshWater} muted autoPlay />
+          <video src={this.getVideo()} muted autoPlay />
         </div>
 
         <div className="animation-data">
@@ -26,7 +46,7 @@ class ScanViewerAnimation extends React.Component {
               {this.context.strings['rate']}
             </div>
             <div className="value">
-              30%
+              {this.props.result.rate} %
             </div>
           </div>
 
@@ -36,7 +56,7 @@ class ScanViewerAnimation extends React.Component {
             </div>
 
             <div className="value">
-              Fresh Water
+              {this.context.strings[this.props.result.water_type]}
             </div>
           </div>
 
@@ -45,7 +65,7 @@ class ScanViewerAnimation extends React.Component {
               {this.context.strings['salinity']}
             </div>
             <div className="value">
-              0,0003
+              ~ {this.props.result.salinity} ppm
             </div>
           </div>
 
@@ -54,7 +74,7 @@ class ScanViewerAnimation extends React.Component {
               {this.context.strings['depth']}
             </div>
             <div className="value">
-              30 m
+              ~ {this.props.result.water_depth} m
             </div>
           </div>
 
