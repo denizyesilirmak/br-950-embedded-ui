@@ -138,7 +138,7 @@ class PlotViewer extends React.Component {
       face.vertexColors[2] = new THREE.Color(this.getColor(ScanMatrix[(satir)][sutun + 1] + min))
     }
 
-    this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false, vertexColors: THREE.VertexColors, side: THREE.DoubleSide, shading: THREE.SmoothShading });
+    this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false, vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
     const m = new THREE.Mesh(this.plotGeometry, this.material)
     m.position.z = (max / (32 * 2)) / 2
 

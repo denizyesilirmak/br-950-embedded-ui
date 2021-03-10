@@ -85,7 +85,8 @@
     "factory_reset_warn": "ستؤدي إعادة ضبط المصنع إلى حذف جميع ملفاتك وإعادة تعيين جميع إعداداتك. هل أنت متأكد؟",
     "reset_wait": "محو الذاكرة الرجاء الانتظار.",
     "clear_memory_title": "مسح الذاكرة",
-    "factory_reset_title": "اعدادات المصنع"
+    "factory_reset_title": "اعدادات المصنع",
+    "line": "خط"
   },
   "de": {
     "AAA_TEST": "Prüfung",
@@ -173,7 +174,8 @@
     "factory_reset_warn": "Beim Zurücksetzen auf die Werkseinstellungen werden alle Ihre Dateien gelöscht und alle Einstellungen zurückgesetzt. Bist du sicher?",
     "reset_wait": "Speicher löschen, bitte warten.",
     "clear_memory_title": "Klare Erinnerungen",
-    "factory_reset_title": "Werkseinstellungen zurückgesetzt"
+    "factory_reset_title": "Werkseinstellungen zurückgesetzt",
+    "line": "Linie"
   },
   "en": {
     "AAA_TEST": "Test",
@@ -261,7 +263,8 @@
     "factory_reset_warn": "Factory Reset will delete all your files and resets all your settings. Are you sure?",
     "reset_wait": "Clearing memory please wait.",
     "clear_memory_title": "Clear Memory",
-    "factory_reset_title": "Factory Reset"
+    "factory_reset_title": "Factory Reset",
+    "line": "Line"
   },
   "es": {
     "AAA_TEST": "Prueba",
@@ -349,7 +352,8 @@
     "factory_reset_warn": "Factory Reset eliminará todos sus archivos y restablecerá todas sus configuraciones. ¿Está seguro?",
     "reset_wait": "Borrando la memoria, espere.",
     "clear_memory_title": "Memoria clara",
-    "factory_reset_title": "Restablecimiento de fábrica"
+    "factory_reset_title": "Restablecimiento de fábrica",
+    "line": "Línea"
   },
   "fa": {
     "AAA_TEST": "تست",
@@ -437,7 +441,8 @@
     "factory_reset_warn": "تنظیم مجدد کارخانه تمام پرونده های شما را حذف می کند و تمام تنظیمات شما را بازنشانی می کند. مطمئنی؟",
     "reset_wait": "پاک کردن حافظه لطفا صبر کنید",
     "clear_memory_title": "پاکسازی حافظه",
-    "factory_reset_title": "بازنشانی کارخانه"
+    "factory_reset_title": "بازنشانی کارخانه",
+    "line": "خط"
   },
   "fr": {
     "AAA_TEST": "Test",
@@ -525,7 +530,8 @@
     "factory_reset_warn": "La réinitialisation d'usine supprimera tous vos fichiers et réinitialisera tous vos paramètres. Êtes-vous sûr?",
     "reset_wait": "Effacement de la mémoire, veuillez patienter.",
     "clear_memory_title": "Mémoire claire",
-    "factory_reset_title": "Retour aux paramètres d'usine"
+    "factory_reset_title": "Retour aux paramètres d'usine",
+    "line": "Ligne"
   },
   "it": {
     "AAA_TEST": "Test",
@@ -613,7 +619,8 @@
     "factory_reset_warn": "Il ripristino delle impostazioni di fabbrica eliminerà tutti i file e ripristinerà tutte le impostazioni. Sei sicuro?",
     "reset_wait": "Cancellazione della memoria attendere prego.",
     "clear_memory_title": "Cancella memoria",
-    "factory_reset_title": "Ripristino delle impostazioni di fabbrica"
+    "factory_reset_title": "Ripristino delle impostazioni di fabbrica",
+    "line": "Linea"
   },
   "he": {
     "AAA_TEST": "מִבְחָן",
@@ -701,7 +708,8 @@
     "factory_reset_warn": "איפוס להגדרות היצרן ימחק את כל הקבצים שלך ומאפס את כל ההגדרות שלך. האם אתה בטוח?",
     "reset_wait": "מנקה זיכרון אנא המתן.",
     "clear_memory_title": "נקה זיכרון",
-    "factory_reset_title": "איפוס למפעל"
+    "factory_reset_title": "איפוס למפעל",
+    "line": "קַו"
   },
   "ru": {
     "AAA_TEST": "Тест",
@@ -789,7 +797,8 @@
     "factory_reset_warn": "Factory Reset удалит все ваши файлы и сбросит все ваши настройки. Уверены ли вы?",
     "reset_wait": "Очистка памяти, подождите.",
     "clear_memory_title": "Очистить память",
-    "factory_reset_title": "Сброс к заводским настройкам"
+    "factory_reset_title": "Сброс к заводским настройкам",
+    "line": "Линия"
   },
   "tr": {
     "AAA_TEST": "Ölçek",
@@ -847,9 +856,9 @@
     "not_connected": "Bağlı değil",
     "no_water": "Su yok",
     "high_fresh_water": "Son Derece Tatlı Su",
-    "fresh_water": "Temiz su",
-    "mineral_water": "Maden suyu",
-    "high_mineral_water": "Yüksek Maden Suyu",
+    "fresh_water": "Temiz Su",
+    "mineral_water": "Mineralli Su",
+    "high_mineral_water": "Yüksek Mineralli Su",
     "salty_water": "Tuzlu su",
     "very_salty_water": "Yüksek Tuzlu Su",
     "short_circuit": "Kısa Devre",
@@ -877,7 +886,8 @@
     "factory_reset_warn": "Fabrika Sıfırlaması tüm dosyalarınızı silecek ve tüm ayarlarınızı sıfırlayacaktır. Emin misiniz?",
     "reset_wait": "Hafıza siliniyor, lütfen bekleyin.",
     "clear_memory_title": "Hafızayı temizle",
-    "factory_reset_title": "Fabrika ayarları"
+    "factory_reset_title": "Fabrika ayarları",
+    "line": "Hat"
   },
   "ur": {
     "AAA_TEST": "پرکھ",
@@ -965,7 +975,8 @@
     "factory_reset_warn": "فیکٹری ری سیٹ کرنے سے آپ کی ساری فائلیں حذف ہوجائیں گی اور آپ کی ساری ترتیبات کو دوبارہ ترتیب دیا جائے گا۔ کیا تمہیں یقین ہے؟",
     "reset_wait": "میموری صاف کرنا براہ کرم انتظار کریں۔",
     "clear_memory_title": "یادداشت صاف کریں",
-    "factory_reset_title": "از سرے نو ترتیب"
+    "factory_reset_title": "از سرے نو ترتیب",
+    "line": "لائن"
   },
   "zh": {
     "AAA_TEST": "Test"

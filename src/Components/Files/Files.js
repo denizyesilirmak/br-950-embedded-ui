@@ -90,11 +90,11 @@ class Files extends React.Component {
       .then(res => res.json())
       .then(data => {
         if (fileToOpen.file_type === "advanced") {
-          this.props.navigateTo('scanViewerAdvancedScreen', data.data)
+          this.props.navigateTo('scanViewerAdvancedScreen', {value: data.data, date: fileToOpen.date})
           return
         }
         else if (fileToOpen.file_type === "automatic") {
-          this.props.navigateTo('scanViewerAutomaticScreen', data.data)
+          this.props.navigateTo('scanViewerAutomaticScreen', {value: data.data, date: fileToOpen.date})
           return
         }
       })

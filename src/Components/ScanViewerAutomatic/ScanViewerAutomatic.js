@@ -14,11 +14,9 @@ class ScanViewer extends React.Component {
   static contextType = DeviceContext
   constructor(props) {
     super(props)
-
-
     let scanResults = {}
-    Object.keys(this.props.screenProps).forEach(e => {
-      scanResults[e] = Utils.getWaterInfo(this.props.screenProps[e])
+    Object.keys(this.props.screenProps.value).forEach(e => {
+      scanResults[e] = Utils.getWaterInfo(this.props.screenProps.value[e])
     })
 
     this.state = {
@@ -114,7 +112,7 @@ class ScanViewer extends React.Component {
       <div className="scan-viewer component">
         <ScanTitle
           type="automatic"
-          date="16:45 12.02.2020"
+          date={this.props.screenProps.date}
         />
 
         {

@@ -15,6 +15,7 @@ class QuickScanResult extends React.Component {
   // }
 
   componentDidMount() {
+    // console.log(this.props.screenProps)
     socketHelper.attach(this.handleSocket)
 
   }
@@ -71,17 +72,26 @@ class QuickScanResult extends React.Component {
       <div className="quick-scan-result component">
         <div className="quick-scan-container">
           <div className="quick-scan-result-video-container">
-            <video src={this.getWaterVideo()} autoPlay muted loop />
+            <video src={this.getWaterVideo()} autoPlay muted loop style={{width: '240px', height: '280px'}}/>
           </div>
 
           <div className="quick-scan-result-table">
+
+          <div className="quick-scan-result-row">
+              <div className="left">
+                {this.context.strings['line']}
+              </div>
+              <div className="right">
+                {this.props.screenProps.line.probe}
+              </div>
+            </div>
 
             <div className="quick-scan-result-row">
               <div className="left">
                 {this.context.strings['value']}
               </div>
               <div className="right">
-                {this.props.screenProps.result.rate}
+                {this.props.screenProps.result.rate} %
               </div>
             </div>
 
@@ -90,7 +100,7 @@ class QuickScanResult extends React.Component {
                 {this.context.strings['salinity']}
               </div>
               <div className="right">
-                {this.props.screenProps.result.salinity + ' ppm'}
+                ~ {this.props.screenProps.result.salinity + ' ppm'}
               </div>
             </div>
 
@@ -99,7 +109,7 @@ class QuickScanResult extends React.Component {
                 {this.context.strings['depth']}
               </div>
               <div className="right">
-                {this.props.screenProps.result.water_depth + ' m'}
+                ~ {this.props.screenProps.result.water_depth + ' m'}
               </div>
             </div>
 

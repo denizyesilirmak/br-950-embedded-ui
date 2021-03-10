@@ -3,7 +3,9 @@ import './Reset.css'
 import socketHelper from '../../SocketHelper'
 import Api from '../../Api.json'
 import { DeviceContext } from '../../Contexts/DeviceContext'
+import dbStorage from '../../DatabaseHelper'
 import ClearMemoryIcon from '../../Assets/icons/reset-factory.png'
+import SocketHelper from '../../SocketHelper'
 
 class FactoryReset extends React.Component {
   static contextType = DeviceContext
@@ -25,11 +27,19 @@ class FactoryReset extends React.Component {
     socketHelper.detach()
   }
 
-  factoryReset = () => {
+  factoryReset = async () => {
+
+    await dbStorage.removeItem('lang')
     fetch(Api.url + '/deleteAllFiles')
       .then(res => res.json())
       .then(data => {
         console.log('all files deleted', data)
+        setTimeout(() => {
+          SocketHelper.send(JSON.stringify({
+            'type': 'settings',
+            'mode': 'reboot'
+          }))
+        }, 1000);
       })
   }
 

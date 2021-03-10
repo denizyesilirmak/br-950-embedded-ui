@@ -20,10 +20,10 @@ class ScanViewerAdvanced extends React.Component {
 
     }
 
-    if (Object.keys(this.props.screenProps).length !== 0) {
+    if (Object.keys(this.props.screenProps.value).length !== 0) {
       const results = {}
-      Object.keys(this.props.screenProps).forEach((e, i) => {
-        results[e] = Utils.getWaterInfo(this.props.screenProps[e])
+      Object.keys(this.props.screenProps.value).forEach((e, i) => {
+        results[e] = Utils.getWaterInfo(this.props.screenProps.value[e])
       })
       this.setState({ results: results })
 
@@ -44,10 +44,10 @@ class ScanViewerAdvanced extends React.Component {
   }
 
   calculateWaterInfo = () => {
-    if (Object.keys(this.props.screenProps).length !== 0) {
+    if (Object.keys(this.props.screenProps.value).length !== 0) {
       const results = {}
-      Object.keys(this.props.screenProps).forEach((e, i) => {
-        results[e] = Utils.getWaterInfo(this.props.screenProps[e])
+      Object.keys(this.props.screenProps.value).forEach((e, i) => {
+        results[e] = Utils.getWaterInfo(this.props.screenProps.value[e])
       })
       return results
     }
@@ -132,7 +132,7 @@ class ScanViewerAdvanced extends React.Component {
         </div>
 
 
-        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} plotData={this.props.screenProps} active={this.state.lineMode === 0} />
+        <Plot rotX={this.state.rotation_axis_x} rotZ={this.state.rotation_axis_z} plotData={this.props.screenProps.value} active={this.state.lineMode === 0} />
 
         <ScanLineDetail active={this.state.lineMode === 2} line={Object.keys(this.state.results)[this.state.selectedLineIndex]} data={this.state.results[Object.keys(this.state.results)[this.state.selectedLineIndex]]} />
 
@@ -180,3 +180,4 @@ class ScanViewerAdvanced extends React.Component {
 }
 
 export default ScanViewerAdvanced
+

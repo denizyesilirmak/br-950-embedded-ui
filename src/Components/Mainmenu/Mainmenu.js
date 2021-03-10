@@ -96,7 +96,6 @@ class Mainmenu extends React.Component {
 
   handleSocket = (sd) => {
     if (sd.type !== 'button') { return }
-
     let tempSelectedButtonIndex = this.state.selectedButtonIndex
 
     switch (sd.payload) {
@@ -133,6 +132,16 @@ class Mainmenu extends React.Component {
       case 'turnoff':
         this.setState({
           selectedButtonIndex: 5,
+          key: Math.random()
+        }, () => {
+          this.menuItemRefs.forEach(e => {
+            e.current.style.animationDirection = 'reverse'
+          })
+        })
+        return
+      case 'mode':
+        this.setState({
+          selectedButtonIndex: 3,
           key: Math.random()
         }, () => {
           this.menuItemRefs.forEach(e => {
